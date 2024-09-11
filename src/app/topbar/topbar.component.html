@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<div class="topbar">
+  <div class="toggle">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+
+  <div class="search" style="display: flex; align-items: center;">
+      <label style="flex-grow: 1;">
+          <input type="text" placeholder="Search here" [(ngModel)]="searchQuery" style="width: 100%;">
+      </label>
+      <i class="fa-solid fa-magnifying-glass" (click)="onSearchClick()" style="cursor: pointer; margin-left: 10px;"></i>
+  </div>
+
+  <div class="user">
+      <img [src]="user?.imageUrl" alt="">
+  </div>
+</div>

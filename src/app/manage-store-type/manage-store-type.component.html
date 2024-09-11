@@ -1,0 +1,37 @@
+<div class="details">
+  <div *ngIf="storeTypes.length > 0">
+    <div class="recentOrders" >
+      <table>
+        <thead>
+          <tr>
+            <td style="width:20px">ID</td>
+            <td style="width:200px">Name</td>
+            <td style="width:200px">Thumbnail</td>
+            <td style="width:200px">Description</td>
+            <td style="width:200px">Slug</td>
+            <td style="width:200px">Action</td>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let storeType of storeTypes">
+            <td style="width:20px">{{ storeType.id }}</td>
+            <td style="width:200px">{{ storeType.typeName }}</td>
+            <td style="width:50px"><img [src]="storeType.thumbnail"  width="50px"></td>
+            <td style="width:200px">{{ storeType.description}}</td>
+            <td style="width:200px">{{ storeType.slug }}</td>
+            <td style="display: flex; width:200px;">
+              <button class="btn-edit" (click)="onEdit(storeType)">Edit</button>
+              <button class="btn-delete" (click)="onDelete(storeType)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div *ngIf="storeTypes.length === 0">
+    <p>No store types available.</p>
+  </div>
+</div>
+
+

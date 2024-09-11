@@ -1,0 +1,17 @@
+.topbar{
+  position: fixed;
+  width: calc(100% - 300px);
+  margin-left: 300px;
+  background-color: rgb(233, 230, 226);
+}
+.addStoreType{
+  padding: 5px;
+}
+.addStoreType button{
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(13, 209, 42);
+  margin-left: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
