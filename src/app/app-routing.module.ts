@@ -10,7 +10,7 @@ import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
 import { ManagerdashboardComponent } from './manager-store/managerdashboard/managerdashboard.component';
 import { ManagerproductComponent } from './manager-store/managerproduct/managerproduct.component';
 import { PaginationWrapperComponent } from './pagination-wrapper/pagination-wrapper.component';
-import { AddStoreTypeComponent } from './store_type_form/add-store-type/add-store-type.component';
+
 import { StoretypeComponent } from './admin/storetype/storetype.component';
 
 
@@ -34,10 +34,7 @@ const routes: Routes = [
     component:StoretypeComponent,
     canActivate: [authGuard]
   },
-  {
-    path:'addStoretype',
-    component:AddStoreTypeComponent
-  },
+ 
   {
     path:'manager/dashboard',
     component:ManagerdashboardComponent

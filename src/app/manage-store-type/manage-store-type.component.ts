@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { StoreType } from '../model/store-type.model';
 import { StoretypeService } from '../services/storetype.service';
 import { ToastService } from '../services/toast.service';
+
 @Component({
   selector: 'app-manage-store-type',
   templateUrl: './manage-store-type.component.html',
@@ -11,7 +12,12 @@ import { ToastService } from '../services/toast.service';
 export class ManageStoreTypeComponent {
   storeTypes: StoreType[] = [];
   action!: string;
-  constructor(private route: ActivatedRoute,private storeTypeService: StoretypeService, private toastService : ToastService ) {}
+
+  constructor(
+    private route: ActivatedRoute,
+    private storeTypeService: StoretypeService,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {
     this.storeTypeService.getStoreTypes().subscribe({
@@ -26,16 +32,42 @@ export class ManageStoreTypeComponent {
   }
 
   onEdit(storeType: StoreType): void {
-
-    alert('Edit store type:'+ storeType.typeName);
+    alert('Edit store type: ' + storeType.typeName);
   }
 
   onDelete(storeType: StoreType): void {
     if (confirm('Delete store type with ID: ' + storeType.id)) {
-      this.storeTypeService.deleteStoreType(storeType.id).subscribe();
-      window.location.reload();
+      this.storeTypeService.deleteStoreType(storeType.id).subscribe({
+        next: () => {
+          this.showSuccessToast('Success', 'Store type deleted successfully');
+
+          this.storeTypes = this.storeTypes.filter(st => st.id !== storeType.id);
+
+        },
+        error: (error) => {
+          this.showErrorToast('Error', 'Failed to delete store type');
+          window.location.reload();
+        }
+      });
+    }
   }
+
+  onUpdate(id: number, typeName: string, slug: string, description: string, thumbnailImg: File): void {
+    this.storeTypeService.updateStoreType(id, typeName, slug, description, thumbnailImg).subscribe({
+      next: () => {
+        this.showSuccessToast('Success', 'Store type updated successfully');
+        const index = this.storeTypes.findIndex(st => st.id === id);
+        if (index !== -1) {
+          this.storeTypes[index] = { id, typeName, slug, description, thumbnail: URL.createObjectURL(thumbnailImg) };
+        }
+      },
+      error: (error) => {
+        this.showErrorToast('Error', 'Failed to update store type');
+        console.error('There was an error!', error);
+      }
+    });
   }
+
   showSuccessToast(title: string, message: string) {
     this.toastService.showToast({
       title: title,
@@ -53,6 +85,4 @@ export class ManageStoreTypeComponent {
       duration: 2000
     });
   }
-
-
 }
