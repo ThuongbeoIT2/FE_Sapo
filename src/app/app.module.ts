@@ -30,11 +30,11 @@ import { SidebarmanagerComponent } from './sidebarmanager/sidebarmanager.compone
 import { TopbarComponent } from './topbar/topbar.component';
 import { ManagerproductComponent } from './manager-store/managerproduct/managerproduct.component';
 import { PaginationWrapperComponent } from './pagination-wrapper/pagination-wrapper.component';
-import { AddStoreTypeComponent } from './store_type_form/add-store-type/add-store-type.component';
 import { SidebaradminComponent } from './admin/sidebaradmin/sidebaradmin.component';
 import { OveralladminComponent } from './admin/overalladmin/overalladmin.component';
 import { StoretypeComponent } from './admin/storetype/storetype.component';
 import { ManageStoreTypeComponent } from './manage-store-type/manage-store-type.component';
+import { AddStoreTypeFormComponent } from './store_type_form/add-store-type-form/add-store-type-form.component';
 
 @NgModule({
   declarations: [
@@ -64,11 +64,11 @@ import { ManageStoreTypeComponent } from './manage-store-type/manage-store-type.
      TopbarComponent,
      ManagerproductComponent,
      PaginationWrapperComponent,
-     AddStoreTypeComponent,
      SidebaradminComponent,
      OveralladminComponent,
      StoretypeComponent,
      ManageStoreTypeComponent,
+     AddStoreTypeFormComponent,
   ],
   imports: [
     BrowserModule,

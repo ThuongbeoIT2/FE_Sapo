@@ -29,7 +29,19 @@ export class StoretypeService {
     formData.append('typeName', typeName);
     formData.append('slug', slug);
     formData.append('description', description);
-    formData.append('thumnnailimg', thumbnailImg);
+    formData.append('thumbnailimg', thumbnailImg);
+
+    return this.http.post<any>(url, formData);
+  }
+
+  // Hàm thêm mới StoreType
+  insertStoreType(typeName: string, slug: string, description: string, thumbnailImg: File): Observable<any> {
+    const url = `${this.apiUrl}insert`;
+    const formData: FormData = new FormData();
+    formData.append('typeName', typeName);
+    formData.append('slug', slug);
+    formData.append('description', description);
+    formData.append('thumbnailimg', thumbnailImg);
 
     return this.http.post<any>(url, formData);
   }

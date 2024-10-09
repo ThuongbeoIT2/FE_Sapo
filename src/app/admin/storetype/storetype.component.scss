@@ -1,8 +1,10 @@
 .topbar{
-  position: fixed;
+  position: relative;
   width: calc(100% - 300px);
   margin-left: 300px;
-  background-color: rgb(233, 230, 226);
+  background-color: rgb(221, 217, 212);
+  height: 10000px;
+ 
 }
 .addStoreType{
   padding: 5px;

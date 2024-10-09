@@ -31,8 +31,11 @@ export class ManageStoreTypeComponent {
     });
   }
 
-  onEdit(storeType: StoreType): void {
-    alert('Edit store type: ' + storeType.typeName);
+  insertAction(): void {
+    const url = new URL(window.location.href);
+    url.searchParams.set('action', 'add');
+    window.history.pushState({}, '', url.toString());
+    window.location.reload();
   }
 
   onDelete(storeType: StoreType): void {

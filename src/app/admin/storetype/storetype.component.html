@@ -2,9 +2,9 @@
 <app-sidebaradmin></app-sidebaradmin>
 <div class="topbar">
   <app-topbar></app-topbar>
-  <div class="addStoreType">
+  <div *ngIf="action === ''" class="addStoreType">
     <button (click)="insertAction()" class="btn btn-primary">New Store Type</button>
   </div>
-  <app-manage-store-type *ngIf="action === ''" [storeTypes]="storeTypes"></app-manage-store-type>
-  
+  <app-manage-store-type *ngIf="action === ''"></app-manage-store-type>
+  <app-add-store-type-form *ngIf="action === 'add'"></app-add-store-type-form>
 </div>

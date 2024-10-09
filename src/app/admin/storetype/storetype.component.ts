@@ -27,7 +27,7 @@ export class StoretypeComponent implements OnInit {
         this.storeTypes = data;
       },
       error: (error) => {
-        console.error('There was an error!', error); 
+        console.error('There was an error!', error);
       }
     });
   }
@@ -36,6 +36,6 @@ export class StoretypeComponent implements OnInit {
     const url = new URL(window.location.href);
     url.searchParams.set('action', 'add');
     window.history.pushState({}, '', url.toString());
-    window.location.reload(); // Reload the page to reflect the new action
+    window.location.reload();
   }
 }
