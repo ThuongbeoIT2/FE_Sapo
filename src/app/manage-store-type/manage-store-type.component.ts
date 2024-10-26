@@ -37,7 +37,6 @@ export class ManageStoreTypeComponent {
     window.history.pushState({}, '', url.toString());
     window.location.reload();
   }
-
   onDelete(storeType: StoreType): void {
     if (confirm('Delete store type with ID: ' + storeType.id)) {
       this.storeTypeService.deleteStoreType(storeType.id).subscribe({
@@ -54,7 +53,13 @@ export class ManageStoreTypeComponent {
       });
     }
   }
-
+  updateAction(storeType: StoreType): void {
+    const url = new URL(window.location.href);
+    url.searchParams.set('action', 'update');
+    url.searchParams.set('id', storeType.id.toString());
+    window.history.pushState({}, '', url.toString());
+    window.location.reload();
+  }
   onUpdate(id: number, typeName: string, slug: string, description: string, thumbnailImg: File): void {
     this.storeTypeService.updateStoreType(id, typeName, slug, description, thumbnailImg).subscribe({
       next: () => {

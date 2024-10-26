@@ -35,6 +35,7 @@ import { OveralladminComponent } from './admin/overalladmin/overalladmin.compone
 import { StoretypeComponent } from './admin/storetype/storetype.component';
 import { ManageStoreTypeComponent } from './manage-store-type/manage-store-type.component';
 import { AddStoreTypeFormComponent } from './store_type_form/add-store-type-form/add-store-type-form.component';
+import { UpdateStoreTypeFormComponent } from './store_type_form/update-store-type-form/update-store-type-form.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { AddStoreTypeFormComponent } from './store_type_form/add-store-type-form
      StoretypeComponent,
      ManageStoreTypeComponent,
      AddStoreTypeFormComponent,
+     UpdateStoreTypeFormComponent,
   ],
   imports: [
     BrowserModule,

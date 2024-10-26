@@ -1,0 +1,26 @@
+<form (submit)="onSubmit($event)">
+  <div class="form-container">
+    <h2 class="form-title">Update Store Type</h2>
+    <div class="form-group">
+      <label for="typeName">Store Type Name:</label>
+      <input type="text" id="typeName" name="typeName" [(ngModel)]="typeName" (input)="onTypeNameInput($event)" required>
+    </div>
+    <div class="form-group">
+      <label for="slug">Slug:</label>
+      <input type="text" id="slug" name="slug" [(ngModel)]="slug" readonly>
+    </div>
+    <div class="form-group">
+      <label for="description">Description:</label>
+      <textarea id="description" name="description" [(ngModel)]="description" (input)="onDescriptionInput($event)" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="thumbnail">Thumbnail:</label>
+      <input type="file" id="thumbnail" name="thumbnail" accept="image/*" (change)="onFileChange($event)">
+      <div *ngIf="thumbnailUrl">
+        <img [src]="thumbnailUrl" alt="Current Thumbnail" class="thumbnail-preview">
+      </div>
+    </div>
+    
+    <button type="submit">Submit</button>
+  </div>
+</form>
