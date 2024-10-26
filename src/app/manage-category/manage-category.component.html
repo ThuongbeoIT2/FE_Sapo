@@ -1,0 +1,37 @@
+<div class="details">
+  <div *ngIf="categories.length > 0">
+    <div class="recentOrders">
+      <table>
+        <thead>
+          <tr>
+            <td style="width: 20px">STT</td>
+            <td style="width: 200px">Name</td>
+            <td style="width: 200px">Thumbnail</td>
+            <td style="width: 200px">Description</td>
+            <td style="width: 200px">Slug</td>
+            <td style="width: 200px">Action</td>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let category of categories; let i = index">
+            <td style="width: 20px">{{ i + 1 }}</td>
+            <td style="width: 200px">{{ category.cateName }}</td>
+            <td style="width: 50px">
+              <img [src]="category.thumbnail" width="50px" />
+            </td>
+            <td style="width: 200px">{{ category.description }}</td>
+            <td style="width: 200px">{{ category.slug }}</td>
+            <td style="display: flex; width: 200px;">
+              <button class="btn-edit" (click)="updateAction(category)">Edit</button>
+              <button class="btn-delete" (click)="onDelete(category)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div *ngIf="categories.length === 0">
+    <p>No categories available.</p>
+  </div>
+</div>

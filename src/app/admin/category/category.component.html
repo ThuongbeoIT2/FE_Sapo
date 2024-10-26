@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<app-sidebaradmin></app-sidebaradmin>
+<div class="topbar">
+  <app-topbar></app-topbar>
+  <div *ngIf="action === ''" class="addCategory">
+    <button (click)="insertAction()" class="btn btn-primary">New Category</button>
+  </div>
+  <app-manage-category *ngIf="action === ''"></app-manage-category>
+  <app-add-category-form *ngIf="action === 'add'"></app-add-category-form>
+  <app-update-category-form *ngIf="action === 'update'"></app-update-category-form>
+</div>

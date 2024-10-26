@@ -36,6 +36,10 @@ import { StoretypeComponent } from './admin/storetype/storetype.component';
 import { ManageStoreTypeComponent } from './manage-store-type/manage-store-type.component';
 import { AddStoreTypeFormComponent } from './store_type_form/add-store-type-form/add-store-type-form.component';
 import { UpdateStoreTypeFormComponent } from './store_type_form/update-store-type-form/update-store-type-form.component';
+import { CategoryComponent } from './admin/category/category.component';
+import { ManageCategoryComponent } from './manage-category/manage-category.component';
+import { AddCategoryFormComponent } from './category-form/add-category-form/add-category-form.component';
+import { UpdateCategoryFormComponent } from './category-form/update-category-form/update-category-form.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +75,10 @@ import { UpdateStoreTypeFormComponent } from './store_type_form/update-store-typ
      ManageStoreTypeComponent,
      AddStoreTypeFormComponent,
      UpdateStoreTypeFormComponent,
+     CategoryComponent,
+     ManageCategoryComponent,
+     AddCategoryFormComponent,
+     UpdateCategoryFormComponent,
   ],
   imports: [
     BrowserModule,
