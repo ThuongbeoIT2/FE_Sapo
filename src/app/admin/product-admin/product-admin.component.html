@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<app-sidebaradmin></app-sidebaradmin>
+<div class="topbar">
+  <app-topbar></app-topbar>
+  <div *ngIf="action === ''" class="addProduct">
+    <button (click)="insertAction()" class="btn btn-primary">New Product</button>
+  </div>
+  <app-manage-product *ngIf="action === ''"></app-manage-product>
+  <app-add-product-form *ngIf="action === 'add'"></app-add-product-form>
+  <app-update-product-form *ngIf="action === 'update'"></app-update-product-form>
+  <app-pagination-wrapper  *ngIf="action === ''"  ></app-pagination-wrapper>
+</div>
+

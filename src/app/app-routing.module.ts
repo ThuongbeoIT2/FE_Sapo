@@ -13,6 +13,7 @@ import { PaginationWrapperComponent } from './pagination-wrapper/pagination-wrap
 
 import { StoretypeComponent } from './admin/storetype/storetype.component';
 import { CategoryComponent } from './admin/category/category.component';
+import { ProductAdminComponent } from './admin/product-admin/product-admin.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,11 @@ const routes: Routes = [
   {
     path:'admin/category',
     component:CategoryComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'admin/product',
+    component:ProductAdminComponent,
     canActivate: [authGuard]
   },
   {

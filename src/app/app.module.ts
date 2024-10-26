@@ -40,6 +40,10 @@ import { CategoryComponent } from './admin/category/category.component';
 import { ManageCategoryComponent } from './manage-category/manage-category.component';
 import { AddCategoryFormComponent } from './category-form/add-category-form/add-category-form.component';
 import { UpdateCategoryFormComponent } from './category-form/update-category-form/update-category-form.component';
+import { ProductAdminComponent } from './admin/product-admin/product-admin.component';
+import { ManageProductComponent } from './manage-product/manage-product.component';
+import { AddProductFormComponent } from './product-form/add-product-form/add-product-form.component';
+import { UpdateProductFormComponent } from './product-form/update-product-form/update-product-form.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +83,10 @@ import { UpdateCategoryFormComponent } from './category-form/update-category-for
      ManageCategoryComponent,
      AddCategoryFormComponent,
      UpdateCategoryFormComponent,
+     ProductAdminComponent,
+     ManageProductComponent,
+     AddProductFormComponent,
+     UpdateProductFormComponent,
   ],
   imports: [
     BrowserModule,

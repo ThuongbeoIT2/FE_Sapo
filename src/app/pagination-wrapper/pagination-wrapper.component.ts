@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -7,10 +7,12 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./pagination-wrapper.component.scss']
 })
 export class PaginationWrapperComponent implements OnInit {
-  pages: number[] = Array.from({ length: 100 }, (_, i) => i + 1); // Assuming 100 pages for example
+  pages: number[] = Array.from({ length: 100 }, (_, i) => i + 1);
   visiblePages: number[] = [];
   currentPage: number = 1;
   maxVisiblePages: number = 5;
+
+  @Output() pageChanged: EventEmitter<number> = new EventEmitter<number>(); // Emit page changes
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
@@ -37,6 +39,7 @@ export class PaginationWrapperComponent implements OnInit {
       queryParamsHandling: 'merge' // merge with existing query parameters
     });
     this.updateVisiblePages();
+    this.pageChanged.emit(this.currentPage); // Emit page change
   }
 
   updateVisiblePages(): void {
