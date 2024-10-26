@@ -12,6 +12,7 @@ import { ToastService } from '../services/toast.service';
 export class ManageCategoryComponent implements OnInit {
   categories: CategoryResponse[] = [];
   action!: string;
+  queryKey: string = ''; // Lưu từ khóa tìm kiếm
 
   constructor(
     private route: ActivatedRoute,
@@ -21,12 +22,20 @@ export class ManageCategoryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadCategories();
+    // Lắng nghe query params
     this.route.queryParams.subscribe(params => {
       this.action = params['action'];
+      this.queryKey = params['query'] || ''; // Lấy query key từ URL nếu có
+
+      if (this.queryKey) {
+        this.searchCategories(this.queryKey); // Thực hiện tìm kiếm nếu có query
+      } else {
+        this.loadCategories(); // Nếu không có query, load tất cả danh mục
+      }
     });
   }
 
+  // Tải tất cả danh mục
   loadCategories(): void {
     this.categoryService.getCategories().subscribe({
       next: (data) => {
@@ -35,6 +44,25 @@ export class ManageCategoryComponent implements OnInit {
       },
       error: (error) => {
         console.error('There was an error!', error);
+      }
+    });
+  }
+
+  // Tìm kiếm danh mục theo query key
+  searchCategories(query: string): void {
+    this.categoryService.searchCategories(query).subscribe({
+      next: (data) => {
+        this.categories = data;
+        console.log('Search Results:', this.categories);
+        if (data.length > 0) {
+          this.showToast('Search', `${data.length} categories found.`, 'success');
+        } else {
+          this.showToast('Search', 'No categories found.', 'error');
+        }
+      },
+      error: (error) => {
+        console.error('Search Error:', error);
+        this.showToast('Error', 'Failed to search categories', 'error');
       }
     });
   }
@@ -48,6 +76,8 @@ export class ManageCategoryComponent implements OnInit {
   }
 
   onDelete(category: CategoryResponse): void {
+    const url = new URL(window.location.href); // Create a new URL object
+    url.searchParams.delete('query');
     if (confirm(`Delete category with ID: ${category.id}?`)) {
       this.categoryService.deleteCategory(category.id).subscribe({
         next: () => {
@@ -70,21 +100,7 @@ export class ManageCategoryComponent implements OnInit {
     });
   }
 
-  onUpdate(id: number, cateName: string, slug: string, description: string, thumbnailImg: File): void {
-    this.categoryService.updateCategory(id, cateName, slug, description, thumbnailImg).subscribe({
-      next: () => {
-        this.showToast('Success', 'Category updated successfully', 'success');
-        const index = this.categories.findIndex(ct => ct.id === id);
-        if (index !== -1) {
-          this.categories[index] = { id, cateName, slug, description, thumbnail: URL.createObjectURL(thumbnailImg) };
-        }
-      },
-      error: (error) => {
-        this.showToast('Error', 'Failed to update category', 'error');
-        console.error('Update error:', error);
-      }
-    });
-  }
+ 
 
   showToast(title: string, message: string, type: 'success' | 'error') {
     this.toastService.showToast({

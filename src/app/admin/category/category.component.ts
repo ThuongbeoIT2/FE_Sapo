@@ -10,6 +10,7 @@ import { CategoryResponse } from '../../model/category.model'; // Import the Cat
 })
 export class CategoryComponent implements OnInit {
   action: string | null = '';
+  query : string = ''; // Save search keyword
   categories: CategoryResponse[] = []; // Array to hold categories
 
   constructor(
@@ -18,8 +19,13 @@ export class CategoryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const url = new URL(window.location.href); // Create a new URL object
     this.route.queryParams.subscribe(params => {
       this.action = params['action'] || ''; // Get action from query params
+      this.query = params['query'] || ''; // Get action from query params
+      if (this.query=== '') {
+          url.searchParams.delete('query'); // Remove query param if empty
+      }
     });
     this.fetchCategories(); // Fetch categories when the component initializes
   }
@@ -37,6 +43,7 @@ export class CategoryComponent implements OnInit {
 
   insertAction(): void {
     const url = new URL(window.location.href); // Create a new URL object
+    url.searchParams.delete('query');
     url.searchParams.set('action', 'add'); // Set action to 'add'
     window.history.pushState({}, '', url.toString()); // Update the browser's URL without reloading
     window.location.reload(); // Reload the page to reflect changes

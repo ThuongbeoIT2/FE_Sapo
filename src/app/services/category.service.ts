@@ -18,6 +18,11 @@ export class CategoryService {
     return this.http.get<CategoryResponse[]>(this.apiUrl.concat("getAll"));
   }
 
+  searchCategories(key : string): Observable<CategoryResponse[]> {
+    const formData: FormData = new FormData();
+    formData.append('key', key);
+    return this.http.post<CategoryResponse[]>(this.apiUrl.concat("search"),formData);
+  }
   // Delete a category by ID
   deleteCategory(id: number): Observable<ApiResponse> {
     const url = `${this.apiUrl}delete/${id}`;

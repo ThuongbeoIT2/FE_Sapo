@@ -80,6 +80,21 @@ export class ProductService {
       .get<ApiResponse>(`${this.apiUrl}delete/${id}`)
       .pipe(catchError(this.handleError)); // Handle errors
   }
+
+  // Fetch products by category
+  getProductsByCategory(category: string, page: number = 0): Observable<PaginatedResponse<ProductResponse>> {
+    return this.http
+      .get<PaginatedResponse<ProductResponse>>(`${this.apiUrl}list-product/${category}?page=${page}`)
+      .pipe(catchError(this.handleError)); // Handle errors
+  }
+
+  // Search products by keyword
+  searchProducts(key: string, page: number = 0): Observable<PaginatedResponse<ProductResponse>> {
+    return this.http
+      .get<PaginatedResponse<ProductResponse>>(`${this.apiUrl}search?key=${key}&page=${page}`)
+      .pipe(catchError(this.handleError)); // Handle errors
+  }
+
   // Error handling method
   private handleError(error: HttpErrorResponse) {
     // Handle error response based on status code or other criteria

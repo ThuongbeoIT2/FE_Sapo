@@ -11,7 +11,8 @@ import { ToastService } from '../services/toast.service';
 })
 export class ManageProductComponent implements OnInit {
   products: ProductResponse[] = []; // Array to hold product data
-  action!: string; // Action to be performed (add/update)
+  action!: string;
+  query!: string; // Action to be performed (add/update)
   currentPage: number = 1; // Current page number, default to 1
 
   constructor(
@@ -24,7 +25,12 @@ export class ManageProductComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.action = params['action'] || ''; // Get action parameter from route
-      this.currentPage = +params['page'] || 1; // Get the page number from the URL, default to 1
+      this.currentPage = +params['page'] || 1;
+      this.query = params['query'] || ''; // Get query parameter from route
+
+      if(this.query){
+        this.searchProducts(this.query,this.currentPage - 1);
+      }
       this.loadProducts(this.currentPage - 1); // Load products, subtract 1 for API call
     });
   }
@@ -41,6 +47,19 @@ export class ManageProductComponent implements OnInit {
       }
     });
   }
+  searchProducts(key:string,page: number): void {
+    this.productService.searchProducts(key,page).subscribe({
+      next: (data) => {
+        console.log('Fetched Products:', data); // Log fetched products to console
+        this.products = data.content; // Assuming 'content' holds the products in paginated response
+      },
+      error: (error) => {
+        this.showToast('Error', 'Failed to load products', 'error');
+        console.error('Error loading products:', error); // Log error to console
+      }
+    });
+  }
+
 
   insertAction(): void {
     this.router.navigate([], {
