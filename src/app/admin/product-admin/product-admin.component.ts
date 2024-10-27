@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CategoryResponse } from 'src/app/model/category.model';
 import { ProductResponse } from 'src/app/model/product.model';
+import { CategoryService } from 'src/app/services/category.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -9,20 +11,18 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./product-admin.component.scss']
 })
 export class ProductAdminComponent {
-
   action: string | null = '';
-
-
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService // Inject the ProductService
+    private productService: ProductService, // Inject the ProductService,
+    private categoryService: CategoryService// Inject the CategoryService
   ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.action = params['action'] || ''; // Get action from query params
     });
- 
+
   }
 
 

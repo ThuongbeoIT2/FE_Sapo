@@ -4,7 +4,15 @@
   padding: 0;
   box-sizing: border-box;
 }
+.form-group-search{
+  margin-top: -50px;
+  display: flex;
+  align-items: center;
+  margin-left: 700px;
+  size: 30px;
+  padding: 10px;
 
+}
 /* ================== Order Details List ============== */
 .details {
   min-height: 650px;

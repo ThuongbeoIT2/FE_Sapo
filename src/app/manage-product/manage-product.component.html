@@ -1,29 +1,42 @@
+<div class="form-group-search">
+  <label for="category"><b>Category : </b></label>
+  <select
+    id="category"
+    name="category"
+    [(ngModel)]="category"
+    (change)="onCategoryChange()"
+    required
+  >
+    <option *ngFor="let cate of categories" [value]="cate.slug">
+      {{ cate.cateName }}
+    </option>
+  </select>
+</div>
+
 <div class="details">
-  <div *ngIf="products.length > 0">
+  <div *ngIf="filteredProducts.length > 0">
     <div class="recentOrders">
       <table>
         <thead>
           <tr>
-            <td style="width: 20px">ID</td> <!-- Change "STT" to "ID" -->
-            <td style="width: 200px">Name</td>
-            <td style="width: 200px">Thumbnail</td>
-            <td style="width: 200px">Description</td>
-            <td style="width: 200px">Slug</td>
-            <td style="width: 200px">Category</td>
-            <td style="width: 200px">Action</td>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Thumbnail</td>
+            <td>Description</td>
+            <td>Slug</td>
+            <td>Category</td>
+            <td>Action</td>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let product of products">
-            <td style="width: 20px">{{ product.proId }}</td> <!-- Display product ID -->
-            <td style="width: 200px">{{ product.proName }}</td>
-            <td style="width: 50px">
-              <img [src]="product.thumbnail" width="50px" />
-            </td>
-            <td style="width: 200px">{{ product.description }}</td>
-            <td style="width: 200px">{{ product.slug }}</td>
-            <td style="width: 200px">{{ product.category }}</td>
-            <td style="display: flex; width: 200px;">
+          <tr *ngFor="let product of filteredProducts">
+            <td>{{ product.proId }}</td>
+            <td>{{ product.proName }}</td>
+            <td><img [src]="product.thumbnail" width="50px" /></td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.slug }}</td>
+            <td>{{ product.category }}</td>
+            <td>
               <button class="btn-edit" (click)="updateAction(product)">Edit</button>
               <button class="btn-delete" (click)="onDelete(product)">Delete</button>
             </td>
@@ -32,7 +45,7 @@
       </table>
     </div>
   </div>
-  <div *ngIf="products.length === 0">
+  <div *ngIf="filteredProducts.length === 0">
     <p>No products available.</p>
   </div>
 </div>
