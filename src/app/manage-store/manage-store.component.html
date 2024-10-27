@@ -1,0 +1,56 @@
+<div class="form-group-search">
+  <label for="storeType"><b>Store Type: </b></label>
+  <select
+    id="storeType"
+    name="storeType"
+    [(ngModel)]="storeType"
+    (change)="onStoreTypeChange()"
+    required
+  >
+    <option *ngFor="let type of storeTypes" [value]="type.slug">
+      {{ type.typeName }}
+    </option>
+  </select>
+</div>
+
+<div class="details">
+  <div *ngIf="filteredStores.length > 0">
+    <div class="recentOrders">
+      <table>
+        <thead>
+          <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Address</td>
+            <td>Email Manager</td>
+            <td>Phone</td>
+            <td>Status</td>
+            <td>Evaluate</td>
+            <td>View</td>
+            <td>Type</td>
+            <td>Action</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let store of filteredStores">
+            <td>{{ store.storeId }}</td>
+            <td>{{ store.storeName }}</td>
+            <td>{{ store.address }}</td>
+            <td>{{ store.email_manager }}</td>
+            <td>{{ store.phoneNumber }}</td>
+            <td>{{ store.status ? 'Active' : 'Inactive' }}</td>
+            <td>{{ store.evaluate }}</td>
+            <td>{{ store.view }}</td>
+            <td>{{ store.storeType }}</td>
+            <td>
+                <button class="btn-view" (click)="viewDetail(store)">View</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div *ngIf="filteredStores.length === 0">
+    <p>No stores available.</p>
+  </div>
+</div>

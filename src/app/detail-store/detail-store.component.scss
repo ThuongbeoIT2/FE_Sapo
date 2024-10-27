@@ -1,0 +1,89 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-image-manager {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #ffffff; /* thêm nền trắng cho hình ảnh */
+}
+
+.card {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.profile-section {
+  flex: 2; /* Chiếm 2 phần */
+  padding: 10px;
+}
+
+.image-section {
+  flex: 1; /* Chiếm 1 phần */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.image-section img {
+  max-width: 150px;
+  height: auto; /* Đảm bảo tỉ lệ hình ảnh */
+  border-radius: 50%;
+  border: 2px solid #ddd;
+}
+
+/* Cải thiện kiểu cho bảng */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+td strong {
+  color: #333; /* Màu đậm cho tiêu đề */
+}
+.container .store-register-info {
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  width: 80%;
+  min-height: 600px;
+}
+.data-group{
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  width: 80%;
+}
+.data-thumbnail{
+ padding: 5px;
+ margin-left: 20px;
+}

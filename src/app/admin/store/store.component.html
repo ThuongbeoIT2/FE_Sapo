@@ -1,0 +1,11 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<app-sidebaradmin></app-sidebaradmin>
+<div class="topbar">
+  <app-topbar></app-topbar>
+  <div *ngIf="action === ''" class="addProduct">
+    <button class="btn btn-primary">Yeu cau</button>
+  </div>
+  <app-manage-store  *ngIf="action === ''"></app-manage-store>
+  <app-detail-store  *ngIf="action === 'viewDetail'"></app-detail-store>
+</div>
+

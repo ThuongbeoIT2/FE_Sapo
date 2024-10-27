@@ -14,6 +14,7 @@ import { PaginationWrapperComponent } from './pagination-wrapper/pagination-wrap
 import { StoretypeComponent } from './admin/storetype/storetype.component';
 import { CategoryComponent } from './admin/category/category.component';
 import { ProductAdminComponent } from './admin/product-admin/product-admin.component';
+import { StoreComponent } from './admin/store/store.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path:'admin/dashboard',
     component:AdmindashboardComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'admin/store',
+    component:StoreComponent,
     canActivate: [authGuard]
   },
   {

@@ -1,0 +1,132 @@
+<div class="container">
+  <div class="profile-image-manager">
+    <h2 style="text-align: center; padding: 10px;">PROFILE & IMAGE MANAGER</h2>
+    <div class="card">
+      <div class="card-body">
+        <div class="profile-section">
+          <table>
+            <tbody>
+              <tr>
+                <td><strong>Name</strong></td>
+                <td>:</td>
+                <td>   {{ managerDetails.name}}</td>
+              </tr>
+              <tr>
+                <td><strong>Email</strong></td>
+                <td>:</td>
+                <td> {{ managerDetails.email}}</td>
+              </tr>
+              <tr>
+                <td><strong>Address</strong></td>
+                <td>:</td>
+                <td>Thanh Xuan, Ha Noi</td>
+              </tr>
+              <tr>
+                <td><strong>Provider Account</strong></td>
+                <td>:</td>
+                <td> {{ managerDetails.provider}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="image-section">
+          <img [src]="managerDetails.imageUrl" alt="Image Manager">
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <h2 style="padding: 10px;">STORE REGISTER INFORMATION</h2>
+  <div class="store-register-info" style="border: 2px solid #eebebe; border-radius: 10px; padding: 10px;">
+    <div class="data-group">
+      <div class="title-field" style=" padding: 5px;"> Store Name :</div>
+      <div class="data-field" >{{storeDetails.storeName}}</div>
+    </div>
+    <div class="data-group">
+      <div class="title-field" style=" padding: 5px;"> Store Code :</div>
+      <div class="data-field" >{{storeDetails.storeCode}}</div>
+    </div>
+    <div class="data-thumbnail">
+      <div class="title-field"> Thumbnail :</div>
+      <div class="data-field">
+        <img [src]="storeDetails.thumbnail" alt="Thumbnail" style="width: 600px; height: 300px; border-radius: 5px; padding:5px;">
+      </div>
+    </div>
+    <hr>
+    <h2 style="padding: 5px; color:red;" >Giấy Tờ Chứng Thực</h2>
+    <div class="image-pair" style="display: flex; justify-content: space-between; padding: 10px;">
+      <div class="image-box" style="flex: 1; padding: 5px;">
+        <img [src]="storeDetails.ekyc_01" alt="Image 1" style="width: 300px; height: 200px; border-radius: 5px;">
+      </div>
+      <div class="image-box" style="flex: 1; padding: 5px;">
+        <img [src]="storeDetails.ekyc_02" alt="Image 2" style="width: 300px; height: 200px; border-radius: 5px;">
+      </div>
+    </div>
+
+    <div class="data-table" style="display: flex; flex-wrap: wrap; gap: 10px;">
+      <div class="data-group" style="flex: 1 1 45%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+        <div class="title-field" style="font-weight: bold; margin-bottom: 5px; width: 150px; display: inline-block;">Store ID :</div>
+        <div class="data-field" style="display: inline-block;">{{storeDetails.storeId}}</div>
+      </div>
+      <div class="data-group" style="flex: 1 1 45%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+        <div class="title-field" style="font-weight: bold; margin-bottom: 5px; width: 150px; display: inline-block;">Store Code :</div>
+        <div class="data-field" style="display: inline-block;">{{storeDetails.storeCode}}</div>
+      </div>
+      <div class="data-group" style="flex: 1 1 45%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+        <div class="title-field" style="font-weight: bold; margin-bottom: 5px; width: 150px; display: inline-block;">Address :</div>
+        <div class="data-field" style="display: inline-block;">{{storeDetails.address}}</div>
+      </div>
+      <div class="data-group" style="flex: 1 1 45%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+        <div class="title-field" style="font-weight: bold; margin-bottom: 5px; width: 150px; display: inline-block;">Email Manager :</div>
+        <div class="data-field" style="display: inline-block;">{{storeDetails.email_manager}}</div>
+      </div>
+      <div class="data-group" style="flex: 1 1 45%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+        <div class="title-field" style="font-weight: bold; margin-bottom: 5px; width: 150px; display: inline-block;">Phone Number :</div>
+        <div class="data-field" style="display: inline-block;">{{storeDetails.phoneNumber}}</div>
+      </div>
+      <div class="data-group" style="flex: 1 1 45%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+        <div class="title-field" style="font-weight: bold; margin-bottom: 5px; width: 150px; display: inline-block;">Status :</div>
+        <div class="data-field" style="display: inline-block;">{{storeDetails.status}}</div>
+      </div>
+      <div class="data-group" style="flex: 1 1 45%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+        <div class="title-field" style="font-weight: bold; margin-bottom: 5px; width: 150px; display: inline-block;">Evaluate :</div>
+        <div class="data-field" style="display: inline-block;">{{storeDetails.evaluate}}</div>
+      </div>
+      <div class="data-group" style="flex: 1 1 45%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+        <div class="title-field" style="font-weight: bold; margin-bottom: 5px; width: 150px; display: inline-block;">Created At :</div>
+        <div class="data-field" style="display: inline-block;">{{storeDetails.createdAt}}</div>
+      </div>
+      <div class="data-group" style="flex: 1 1 45%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+        <div class="title-field" style="font-weight: bold; margin-bottom: 5px; width: 150px; display: inline-block;">Updated At :</div>
+        <div class="data-field" style="display: inline-block;">{{storeDetails.updatedAt}}</div>
+      </div>
+      <div class="data-group" style="flex: 1 1 45%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+        <div class="title-field" style="font-weight: bold; margin-bottom: 5px; width: 150px; display: inline-block;">View :</div>
+        <div class="data-field" style="display: inline-block;">{{storeDetails.view}}</div>
+      </div>
+      <div class="data-group" style="flex: 1 1 45%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+        <div class="title-field" style="font-weight: bold; margin-bottom: 5px; width: 150px; display: inline-block;">Store Type :</div>
+        <div class="data-field" style="display: inline-block;">{{storeDetails.storeType}}</div>
+      </div>
+      <div class="data-group" style="flex: 1 1 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9;">
+        <div class="title-field" style="font-weight: bold; margin-bottom: 5px; width: 150px; display: inline-block;">Description :</div>
+        <div class="data-field" style="display: inline-block;">{{storeDetails.description}}</div>
+      </div>
+    </div>
+    <div class="button-group" style="text-align: center; margin-top: 20px;">
+      <button [disabled]="storeDetails.status" (click)="approveStore()" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Duyệt
+      </button>
+      <p style="margin-top: 10px; color: #555;">Duyệt nếu đang yêu cầu kích hoạt cửa hàng</p>
+    </div>
+    <div class="warning-form" style="text-align: center; margin-top: 20px;">
+      <p style="color: red;">Warning: Please review the store information carefully before proceeding.</p>
+      <label for="message" style="display: block; margin-bottom: 10px;">Message:</label>
+      <textarea id="message" name="message" rows="4" cols="50" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc;"></textarea>
+      <div class="button-group" style="text-align: center; margin-top: 10px;">
+      <button style="padding: 10px 20px; background-color: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Gửi Cảnh Cáo
+      </button>
+      </div>
+    </div>
+</div>

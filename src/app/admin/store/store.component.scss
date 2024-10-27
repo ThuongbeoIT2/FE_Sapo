@@ -1,0 +1,19 @@
+.topbar{
+  position: relative;
+  width: calc(100% - 300px);
+  margin-left: 300px;
+  background-color: rgb(221, 217, 212);
+  height: 900px;
+
+}
+.addStoreType{
+  padding: 5px;
+}
+.addCategory button{
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(13, 209, 42);
+  margin-left: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}

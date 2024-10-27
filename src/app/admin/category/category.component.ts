@@ -27,18 +27,6 @@ export class CategoryComponent implements OnInit {
           url.searchParams.delete('query'); // Remove query param if empty
       }
     });
-    this.fetchCategories(); // Fetch categories when the component initializes
-  }
-
-  fetchCategories(): void {
-    this.categoryService.getCategories().subscribe({
-      next: (data) => {
-        this.categories = data; // Assign fetched data to the categories array
-      },
-      error: (error) => {
-        console.error('There was an error!', error); // Log any error
-      }
-    });
   }
 
   insertAction(): void {

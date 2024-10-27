@@ -70,7 +70,6 @@ export class TopbarComponent {
 
   // (Optional) Search stores - example function
   searchStore() {
-    console.log('Searching stores...');
-    // Implement store search logic if needed
+    this.router.navigate(['/admin/store'], { queryParams: { query: this.searchQuery } });
   }
 }

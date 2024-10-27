@@ -44,6 +44,9 @@ import { ProductAdminComponent } from './admin/product-admin/product-admin.compo
 import { ManageProductComponent } from './manage-product/manage-product.component';
 import { AddProductFormComponent } from './product-form/add-product-form/add-product-form.component';
 import { UpdateProductFormComponent } from './product-form/update-product-form/update-product-form.component';
+import { StoreComponent } from './admin/store/store.component';
+import { ManageStoreComponent } from './manage-store/manage-store.component';
+import { DetailStoreComponent } from './detail-store/detail-store.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +90,9 @@ import { UpdateProductFormComponent } from './product-form/update-product-form/u
      ManageProductComponent,
      AddProductFormComponent,
      UpdateProductFormComponent,
+     StoreComponent,
+     ManageStoreComponent,
+     DetailStoreComponent,
   ],
   imports: [
     BrowserModule,
