@@ -1,0 +1,31 @@
+<div class="product-detail-card gentle-background">
+  <div class="row">
+    <div class="col-md-6 zoom-container">
+      <img [src]="product.thumbnail" alt="Product Thumbnail" class="img-fluid" style="width: 400px; height: 300px; border: 2px solid transparent; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); transform: scale(1.1);">
+    </div>
+    <div class="col-md-6 d</div>-flex align-items-center">
+      <div class="data-table" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+        <div class="data-group">
+          <div class="title-field">Product ID:</div>
+          <div class="data-field">{{ product.proId }}</div>
+        </div>
+        <div class="data-group">
+          <div class="title-field">Product Name:</div>
+          <div class="data-field">{{ product.proName }}</div>
+        </div>
+        <div class="data-group">
+          <div class="title-field">Slug:</div>
+          <div class="data-field">{{ product.slug }}</div>
+        </div>
+        <div class="data-group">
+          <div class="title-field">Category:</div>
+          <div class="data-field">{{ product.category }}</div>
+        </div>
+        <div class="data-group" style="min-height: 100px; display: flex; flex-direction: column;">
+          <div class="title-field">Description:</div>
+          <div class="data-field">{{ product.description }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="home-category">
+  <h2 class="title">Category Nổi Bật</h2>
+  <hr class="line">
+</div>
+
+<style>
+  .home-category {
+    text-align: center;
+    margin: 20px 0;
+  }
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .line {
+    width: 50%;
+    margin: 10px auto;
+    border: 0;
+    height: 2px;
+    background: #000;
+  }
+</style>
+<div class="container">
+  <div class="row">
+    <div class="col" *ngFor="let category of categories">
+      <app-item-category [categoryResponse]="category" (click)="navigateToCategory(category.id)"></app-item-category>
+    </div>
+  </div>
+</div>
+<div class="view-all">
+  <a href="/all-categories">Xem tất cả</a>
+  <hr class="line">
+</div>
+
+<style>
+  .view-all a {
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s ease;
+  }
+  .view-all a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #007bff;
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+  }
+  .view-all a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+</style>
+
+<style>
+  .view-all {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .view-all a {
+    font-size: 18px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  .view-all a:hover {
+    text-decoration: underline;
+  }
+</style>

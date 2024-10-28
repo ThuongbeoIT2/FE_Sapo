@@ -1,0 +1,73 @@
+<style>
+  .zoom-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .zoom-container img {
+    transition: transform 0.3s ease-in-out; /* Add transition effect */
+  }
+
+  .zoom-container:hover img {
+    transform: scale(1.1); /* Add transform effect */
+  }
+
+  .data-group {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease-in-out; /* Add transition effect */
+  }
+
+  .data-group:hover {
+    background-color: #e0e0e0; /* Change background color on hover */
+  }
+
+  .title-field {
+    font-weight: bold;
+    margin-right: 20px;
+    font-size: 1.2em;
+  }
+
+  .data-field {
+    font-size: 1.2em;
+  }
+
+  .gentle-background {
+    background-color: #f0f8ff; /* Gentle background color */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+</style>
+
+<div class="container-content gentle-background">
+  <div class="row">
+    <div class="col-md-6 zoom-container">
+      <img [src]="category.thumbnail" alt="Thumbnail" class="img-fluid" style="width: 500px; height: 300px; border: 2px solid transparent; box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5); margin-left: 0;">
+    </div>
+    <div class="col-md-6" style="height: 300px; display: flex; align-items: center;">
+      <div class="data-table" style="display: flex; flex-direction: column; gap: 10px; width: 100%;">
+        <div class="data-group">
+          <div class="title-field">Category ID :</div>
+          <div class="data-field">{{category.id}}</div>
+        </div>
+        <div class="data-group">
+          <div class="title-field">Category Code :</div>
+          <div class="data-field">{{category.cateName}}</div>
+        </div>
+        <div class="data-group">
+          <div class="title-field">Slug :</div>
+          <div class="data-field">{{category.slug}}</div>
+        </div>
+        <div class="data-group" style="flex-direction: column;">
+          <div class="title-field" style="margin-bottom: 5px;">Description :</div>
+          <div class="data-field" style="margin-left: 20px;">{{category.description}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

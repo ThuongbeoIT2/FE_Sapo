@@ -1,0 +1,43 @@
+.zoom-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.zoom-container img {
+  transition: transform 0.3s ease-in-out;
+}
+
+.zoom-container:hover img {
+  transform: scale(1.1);
+}
+
+.data-group {
+  display: flex;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.data-group:hover {
+  background-color: #e0e0e0;
+}
+
+.title-field {
+  width: 200px;
+  font-weight: bold;
+  margin-right: 20px;
+  font-size: 1.2em;
+}
+
+.data-field {
+  font-size: 1.2em;
+}
+
+.gentle-background {
+  background-color: #f0f8ff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,37 @@
+.countdown-container {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  color: #e53935;
+}
+
+.countdown-title {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.countdown-time {
+  font-weight: bold;
+}
+
+.icons-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.icon-item {
+  text-align: center;
+  width: 100px;
+}
+
+.icon-item img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 5px;
+}
+
+.icon-item p {
+  font-size: 0.8em;
+  color: #333;
+}

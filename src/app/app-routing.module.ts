@@ -15,6 +15,9 @@ import { StoretypeComponent } from './admin/storetype/storetype.component';
 import { CategoryComponent } from './admin/category/category.component';
 import { ProductAdminComponent } from './admin/product-admin/product-admin.component';
 import { StoreComponent } from './admin/store/store.component';
+import { AboutComponent } from './pages/about/about.component';
+import { CategoryDasboardComponent } from './pages/category-dasboard/category-dasboard.component';
+import { ProductDashboardComponent } from './pages/product-dashboard/product-dashboard.component';
 
 
 const routes: Routes = [
@@ -36,6 +39,10 @@ const routes: Routes = [
   {
     path:'login',
     component:LoginComponent
+  },
+  {
+    path:'about',
+    component:AboutComponent
   },
   {
     path:'admin/storetype',
@@ -71,6 +78,16 @@ const routes: Routes = [
   {
     path:'profile',
     component:MyprofileComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'category-detail',
+    component:CategoryDasboardComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'product-detail',
+    component:ProductDashboardComponent,
     canActivate: [authGuard]
   },
   {

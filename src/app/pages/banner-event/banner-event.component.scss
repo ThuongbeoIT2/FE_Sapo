@@ -1,0 +1,66 @@
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 300px; // Chiều cao của carousel
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease;
+  height: 100%;
+}
+
+.carousel-item {
+  min-width: 100%;
+  height: 100%;
+}
+
+.carousel-item img {
+  width: 100vw; // Đảm bảo chiếm toàn bộ chiều rộng màn hình
+  height: 100%; // Chiều cao của ảnh bằng chiều cao của carousel
+  object-fit: cover; // Đảm bảo không bị méo hình
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.carousel-control-prev {
+  left: 10px;
+}
+
+.carousel-control-next {
+  right: 10px;
+}
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 300px; // Chiều cao của carousel
+  overflow: hidden; // Giúp che phần ảnh thừa
+}
+
+.carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease;
+  height: 100%;
+}
+
+.carousel-item {
+  min-width: 100%;
+  height: 100%;
+}
+
+.carousel-item img {
+  width: 100%; // Đảm bảo ảnh chiếm toàn bộ chiều rộng
+  height: 100%; // Chiều cao bằng chiều cao của carousel
+  object-fit: cover; // Đảm bảo không bị méo hình
+  image-rendering: -webkit-optimize-contrast; // Tăng độ sắc nét cho ảnh
+  image-rendering: crisp-edges; // Tùy chọn khác cho sắc nét
+}

@@ -1,0 +1,83 @@
+<div class="countdown-container">
+  <p class="countdown-title">
+    ĐẾM NGƯỢC 1.11 I CÒN
+    <span class="countdown-time">{{ days }} Ngày {{ hours }} Giờ {{ minutes }} Phút {{ seconds }} Giây</span>
+  </p>
+  <div class="icons-container">
+    <div class="icon-item">
+      <img src="assets/free-shipping-icon.png" alt="Free Shipping">
+      <p>PHÍ SHIP 0Đ</p>
+    </div>
+    <div class="icon-item">
+      <img src="assets/vinfast-icon.png" alt="Win Vinfast">
+      <p>CƠ HỘI TRÚNG XE VINFAST</p>
+    </div>
+    <div class="icon-item">
+      <img src="assets/voucher-icon.png" alt="Voucher Today">
+      <p>VOUCHER HÔM NAY</p>
+    </div>
+    <div class="icon-item">
+      <img src="assets/sale-icon.png" alt="Weekly Sale">
+      <p>CẢ TUẦN ĐỀU SALE</p>
+    </div>
+    <div class="icon-item">
+      <img src="assets/partner-icon.png" alt="Partner Deals">
+      <p>ƯU ĐÃI ĐỐI TÁC</p>
+    </div>
+    <div class="icon-item">
+      <img src="assets/discount-icon.png" alt="Other Offers">
+      <p>XEM THÊM ƯU ĐÃI KHÁC</p>
+    </div>
+    <div class="icon-item">
+      <img src="assets/like-icon.png" alt="For You">
+      <p>DÀNH RIÊNG CHO BẠN</p>
+    </div>
+  </div>
+</div>
+
+<style>
+.countdown-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.countdown-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.countdown-time {
+  font-weight: bold;
+  color: #ff0000;
+}
+
+.icons-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.icon-item img {
+  max-width: 50px;
+  margin-bottom: 10px;
+}
+
+.icon-item p {
+  margin: 0;
+  font-size: 14px;
+  color: #333333;
+}
+</style>

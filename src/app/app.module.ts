@@ -47,6 +47,18 @@ import { UpdateProductFormComponent } from './product-form/update-product-form/u
 import { StoreComponent } from './admin/store/store.component';
 import { ManageStoreComponent } from './manage-store/manage-store.component';
 import { DetailStoreComponent } from './detail-store/detail-store.component';
+import { AboutComponent } from './pages/about/about.component';
+import { BannerEventComponent } from './pages/banner-event/banner-event.component';
+import { CountdownComponent } from './pages/countdown/countdown.component';
+import { ItemCategoryComponent } from './pages/card-item/item-category/item-category.component';
+import { HomeCategoryComponent } from './pages/home-category/home-category.component';
+import { CategoryDetailCardComponent } from './pages/card-item/category-detail-card/category-detail-card.component';
+import { CategoryDasboardComponent } from './pages/category-dasboard/category-dasboard.component';
+import { ItemProductComponent } from './pages/card-item/item-product/item-product.component';
+import { ProductDetailCardComponent } from './pages/card-item/product-detail-card/product-detail-card.component';
+import { HomeProductComponent } from './pages/home-product/home-product.component';
+import { FavoriteComponent } from './pages/favorite/favorite.component';
+import { ProductDashboardComponent } from './pages/product-dashboard/product-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +105,18 @@ import { DetailStoreComponent } from './detail-store/detail-store.component';
      StoreComponent,
      ManageStoreComponent,
      DetailStoreComponent,
+     AboutComponent,
+     BannerEventComponent,
+     CountdownComponent,
+     ItemCategoryComponent,
+     HomeCategoryComponent,
+     CategoryDetailCardComponent,
+     CategoryDasboardComponent,
+     ItemProductComponent,
+     ProductDetailCardComponent,
+     HomeProductComponent,
+     FavoriteComponent,
+     ProductDashboardComponent,
   ],
   imports: [
     BrowserModule,
