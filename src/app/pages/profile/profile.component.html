@@ -3,22 +3,22 @@
 <!-- Navbar top -->
 <div class="navbar-top">
   <div class="navbar-logo" style="padding:5px 20px;">
-    <a href="/dashboard" class="navbar-brand"><b>GROUP.COM</b></a>
+    <a href="/dashboard" class="navbar-brand" style="color: green;"><b>SAPO STORE</b></a>
 </div>
   <div class="title">
-      <h1>Profile</h1>
+      <h1 style="color: green;">{{ path | uppercase }}</h1>
   </div>
 
   <!-- Navbar -->
   <ul>
       <li>
-          <a href="#message">
+          <a href="#message" style="color: green;">
               <span class="icon-count">29</span>
               <i class="fa fa-envelope fa-2x"></i>
           </a>
       </li>
       <li>
-          <a href="#notification">
+          <a href="#notification" style="color: green;">
               <span class="icon-count">59</span>
               <i class="fa fa-bell fa-2x"></i>
           </a>
@@ -31,107 +31,42 @@
 
 <!-- Sidenav -->
 <div class="sidenav">
-  <div class="profile" *ngIf="user?.imageUrl">
-      <img [src]="user?.imageUrl" alt="{{ user?.name }}'s profile picture">
+  <div class="profile">
+      <img [src]="user.imageUrl"  alt="{{ user.name }}">
 
-      <div class="name">
+      <div class="name" style="color: green;">
           ImDezCode
       </div>
-      <div class="job">
-         {{ user?.email}}
+      <div class="job" style="color: green;">
+         {{ user.email}}
       </div>
   </div>
 
   <div class="sidenav-url">
-      <div class="url">
-          <a href="#profile" class="active">Profile</a>
-          <hr align="center">
-      </div>
-      <div class="url">
-          <a href="#settings">Change Pass</a>
-          <hr align="center">
-      </div>
-      <div class="url">
-          <a href="#logout" (click)="logout()">Logout</a>
-        <hr align="center">
+    <div class="url">
+      <a href="profile" [class.active]="path === 'profile'" style="color: green;">Profile</a>
+      <hr align="center" style="border-top: 1px solid #ccc;">
+    </div>
+    <div class="url">
+      <a href="settings" [class.active]="path === 'settings'" style="color: green;">Setting</a>
+      <hr align="center" style="border-top: 1px solid #ccc;">
+    </div>
+    <div class="url">
+      <a href="myStore" [class.active]="path === 'myStore'" style="color: green;">My Store</a>
+      <hr align="center" style="border-top: 1px solid #ccc;">
+    </div>
+    <div class="url">
+      <a href="change-password" [class.active]="path === 'change-password'" style="color: green;">Password</a>
+      <hr align="center" style="border-top: 1px solid #ccc;">
+    </div>
+    <div class="url">
+      <a href="logout" (click)="logout()" style="color: green;">Logout</a>
+      <hr align="center" style="border-top: 1px solid #ccc;">
     </div>
   </div>
 </div>
-<!-- End -->
 
-<!-- Main -->
-<div class="main">
-  <h2>IDENTITY</h2>
-  <div class="card">
-      <div class="card-body">
-          <i class="fa fa-pen fa-xs edit"></i>
-          <table *ngIf="user">
-              <tbody>
-                  <tr>
-                      <td>Name</td>
-                      <td>:</td>
-                      <td>{{ user.name }}</td>
-                  </tr>
-                  <tr>
-                      <td>Email</td>
-                      <td>:</td>
-                      <td>{{ user.email }}</td>
-                  </tr>
-                  <tr>
-                      <td>Address</td>
-                      <td>:</td>
-                      <td>Bali, Indonesia</td>
-                  </tr>
-                  <tr>
-                      <td>Hobbies</td>
-                      <td>:</td>
-                      <td>Diving, Reading Book</td>
-                  </tr>
-                  <tr>
-                      <td>Job</td>
-                      <td>:</td>
-                      <td>Web Developer</td>
-                  </tr>
-                  <tr>
-                      <td>Skill</td>
-                      <td>:</td>
-                      <td>PHP, HTML, CSS, Java</td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-  </div>
-
-  <h2>SOCIAL MEDIA</h2>
-  <div class="card">
-      <div class="card-body">
-          <i class="fa fa-pen fa-xs edit"></i>
-          <div class="social-media">
-              <span class="fa-stack fa-sm">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-facebook fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="fa-stack fa-sm">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="fa-stack fa-sm">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="fa-stack fa-sm">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-invision fa-stack-1x fa-inverse"></i>
-              </span>
-              <span class="fa-stack fa-sm">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-              </span>
-
-          </div>
-      </div>
-  </div>
+<app-indentity [user]="this.user" *ngIf="this.path ==='profile'"></app-indentity>
+<app-list-setting *ngIf="this.path ==='settings'"></app-list-setting>
+<app-my-store-login *ngIf="this.path ==='myStore'"></app-my-store-login>
 </div>
-  </div>
-
-

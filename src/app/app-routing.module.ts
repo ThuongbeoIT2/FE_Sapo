@@ -18,6 +18,9 @@ import { StoreComponent } from './admin/store/store.component';
 import { AboutComponent } from './pages/about/about.component';
 import { CategoryDasboardComponent } from './pages/category-dasboard/category-dasboard.component';
 import { ProductDashboardComponent } from './pages/product-dashboard/product-dashboard.component';
+import { SettingComponent } from './setting/setting.component';
+import { MyStoreComponent } from './my-store/my-store.component';
+import { PasswordComponent } from './password/password.component';
 
 
 const routes: Routes = [
@@ -78,6 +81,21 @@ const routes: Routes = [
   {
     path:'profile',
     component:MyprofileComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'change-password',
+    component:PasswordComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'settings',
+    component:SettingComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'myStore',
+    component:MyStoreComponent,
     canActivate: [authGuard]
   },
   {

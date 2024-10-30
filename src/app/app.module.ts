@@ -60,6 +60,12 @@ import { HomeProductComponent } from './pages/home-product/home-product.componen
 import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { ProductDashboardComponent } from './pages/product-dashboard/product-dashboard.component';
 import { ItemEventComponent } from './pages/item-event/item-event.component';
+import { IndentityComponent } from './pages/indentity/indentity.component';
+import { SettingComponent } from './setting/setting.component';
+import { MyStoreComponent } from './my-store/my-store.component';
+import { PasswordComponent } from './password/password.component';
+import { ListSettingComponent } from './list-setting/list-setting.component';
+import { MyStoreLoginComponent } from './my-store-login/my-store-login.component';
 
 @NgModule({
   declarations: [
@@ -119,6 +125,12 @@ import { ItemEventComponent } from './pages/item-event/item-event.component';
      FavoriteComponent,
      ProductDashboardComponent,
      ItemEventComponent,
+     IndentityComponent,
+     SettingComponent,
+     MyStoreComponent,
+     PasswordComponent,
+     ListSettingComponent,
+     MyStoreLoginComponent,
   ],
   imports: [
     BrowserModule,

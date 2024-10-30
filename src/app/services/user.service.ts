@@ -21,7 +21,7 @@ export class UserService {
   getUserByEmail(email: string): Observable<User> {
     const formData = new FormData();
     formData.append('email', email);
-    return this.http.post<User>(`${this.baseUrl}/email`, formData);
+    return this.http.post<User>(`${this.baseUrl}/user/email`, formData);
   }
   // Log out the current user and clear accessToken
   logout(): Observable<void> {
