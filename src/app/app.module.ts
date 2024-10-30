@@ -59,6 +59,7 @@ import { ProductDetailCardComponent } from './pages/card-item/product-detail-car
 import { HomeProductComponent } from './pages/home-product/home-product.component';
 import { FavoriteComponent } from './pages/favorite/favorite.component';
 import { ProductDashboardComponent } from './pages/product-dashboard/product-dashboard.component';
+import { ItemEventComponent } from './pages/item-event/item-event.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +118,7 @@ import { ProductDashboardComponent } from './pages/product-dashboard/product-das
      HomeProductComponent,
      FavoriteComponent,
      ProductDashboardComponent,
+     ItemEventComponent,
   ],
   imports: [
     BrowserModule,
