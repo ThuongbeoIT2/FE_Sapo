@@ -32,12 +32,12 @@
 <!-- Sidenav -->
 <div class="sidenav">
   <div class="profile">
-      <img [src]="user.imageUrl"  alt="{{ user.name }}">
+      <img *ngIf="user" [src]="user.imageUrl"  alt="{{ user.name }}">
 
       <div class="name" style="color: green;">
           ImDezCode
       </div>
-      <div class="job" style="color: green;">
+      <div *ngIf="user" class="job" style="color: green;">
          {{ user.email}}
       </div>
   </div>
@@ -65,8 +65,13 @@
     </div>
   </div>
 </div>
+<div class="content">
+  <app-indentity [user]="this.user" *ngIf="this.path ==='profile'"></app-indentity>
+  <app-contactform *ngIf="this.path ==='profile'"></app-contactform>
+  <app-list-setting *ngIf="this.path ==='settings'"></app-list-setting>
+  <app-my-store-login *ngIf="this.path ==='myStore'"></app-my-store-login>
 
-<app-indentity [user]="this.user" *ngIf="this.path ==='profile'"></app-indentity>
-<app-list-setting *ngIf="this.path ==='settings'"></app-list-setting>
-<app-my-store-login *ngIf="this.path ==='myStore'"></app-my-store-login>
+</div>
+
+
 </div>

@@ -57,8 +57,8 @@ export class CategoryService {
   }
 
   // Get a category by ID
-  getCategoryById(id: number): Observable<CategoryResponse> {
-    const url = `${this.apiUrl}getDetail/${id}`;
+  getCategoryById(cateId: number): Observable<CategoryResponse> {
+    const url = `${this.apiUrl}getDetail/${cateId}`;
     return this.http.get<CategoryResponse>(url);
   }
 }

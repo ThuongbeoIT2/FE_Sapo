@@ -21,6 +21,9 @@ import { ProductDashboardComponent } from './pages/product-dashboard/product-das
 import { SettingComponent } from './setting/setting.component';
 import { MyStoreComponent } from './my-store/my-store.component';
 import { PasswordComponent } from './password/password.component';
+import { StoredashboardComponent } from './storedashboard/storedashboard.component';
+import { ManageProductOsComponent } from './manage-product-os/manage-product-os.component';
+import { AllCategoryComponent } from './all-category/all-category.component';
 
 
 const routes: Routes = [
@@ -63,15 +66,16 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path:'manager/dashboard',
-    component:ManagerdashboardComponent
+    path:'store-dashboard',
+    component:StoredashboardComponent,
+    canActivate: [authGuard]
   },
   {
     path:'admin/login',
     component:AdminloginComponent
   },
   {
-    path:'managerproduct',
+    path:'store-product',
     component:ManagerproductComponent
   },
   {
@@ -91,6 +95,16 @@ const routes: Routes = [
   {
     path:'settings',
     component:SettingComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'manage-product-os',
+    component:ManageProductOsComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'all-categories',
+    component:AllCategoryComponent,
     canActivate: [authGuard]
   },
   {

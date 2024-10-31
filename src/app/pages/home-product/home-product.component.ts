@@ -10,7 +10,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class HomeProductComponent {
   products: ProductResponse[] = [];
-
+ urlEvent: string = 'https://res.cloudinary.com/dqvr7kat6/image/upload/v1721289530/agbhiqut7wyrgpjcgxm9.jpg';
   constructor(private productService: ProductService,
     private router: Router
   ) {}

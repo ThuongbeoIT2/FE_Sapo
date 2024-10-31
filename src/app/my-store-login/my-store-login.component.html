@@ -1,12 +1,137 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <div class="container">
-<div class="thumbnail text-center">
-  <img src="https://res.cloudinary.com/dqvr7kat6/image/upload/v1713225766/usz8nfczs6auhqhpq3wv.png" alt="Thumbnail" class="img-fluid" style="width: 300px; height: 200px;">
-  <div class="caption">
-    <h3>My Store</h3>
+  <div  class="thumbnail text-center shadow" style="border: 1px solid #ddd; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <img *ngIf="myStore" [src]="myStore.thumbnail" alt="Thumbnail" class="img-fluid" style="width: 300px; height: 200px;">
+    <div *ngIf="myStore" class="caption">
+      <h3>{{myStore.storeName}}</h3>
+    </div>
+
+    <!-- Login Form -->
+    <form *ngIf="myStore" (ngSubmit)="login()">
+      <div class="form-group">
+        <label for="storeCode">Store Code:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="storeCode"
+          [(ngModel)]="loginData.storeCode"
+          [value]="myStore.storeCode"
+          placeholder="Enter store code"
+          disabled
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          [(ngModel)]="loginData.password"
+          name="password"
+          placeholder="Enter password"
+          required
+        />
+        <div *ngIf="passwordError" class="alert alert-danger" role="alert">
+          Password is required.
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+    
+
+    <div class="form-register" >
+      <div *ngIf="!myStore" class="form-register" style="background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border: 1px solid #ddd;">
+        <h4>Hướng dẫn mở cửa hàng</h4>
+        <a href="/about" class="btn btn-info">About Us</a>
+        <hr style="border-top: 1px solid #970c0c; width: 100%;">
+        <h4>Bạn muốn mở cửa hàng?</h4>
+        <p>Sapo chào mừng bạn</p>
+
+        <!-- Store Name -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="storeName">Store Name:</label>
+              <input type="text" class="form-control" id="storeName" [(ngModel)]="storeData.storeName" name="storeName" placeholder="Enter store name" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="address">Address:</label>
+              <input type="text" class="form-control" id="address" [(ngModel)]="storeData.address" name="address" placeholder="Enter address" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone Number and Thumbnail -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="phoneNumber">Phone Number:</label>
+              <input type="text" class="form-control" id="phoneNumber" [(ngModel)]="storeData.phoneNumber" name="phoneNumber" placeholder="Enter phone number" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="thumbnail">Thumbnail:</label>
+              <input type="file" class="form-control" id="thumbnail" (change)="onFileChange($event, 'thumbnail')" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="description">Description:</label>
+              <textarea class="form-control" id="description" [(ngModel)]="storeData.description" name="description" placeholder="Enter description" required style="height: 100px;"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- eKYC Files -->
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="eKyc_01">eKyc 01:</label>
+              <input type="file" class="form-control" id="eKyc_01" (change)="onFileChange($event, 'eKyc_01')" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="eKyc_02">eKyc 02:</label>
+              <input type="file" class="form-control" id="eKyc_02" (change)="onFileChange($event, 'eKyc_02')" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- Store Type -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="storeType">Store Type:</label>
+              <select class="form-control" id="storeType" [(ngModel)]="storeData.storeType" name="storeType" required>
+              <option *ngFor="let type of storeTypes" [value]="type.slug">{{type.typeName}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" [(ngModel)]="storeData.termsAccepted" name="termsAccepted" required> I agree to the <a href="/terms">terms and conditions</a> and <a href="/privacy">privacy policy</a>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" (click)="registerStore()">Register</button>
+      </div>
+    </div>
+
+
   </div>
-  
 </div>
-</div>
-
-

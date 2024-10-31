@@ -24,7 +24,7 @@ export class HomeCategoryComponent implements OnInit {
   loadCategories(): void {
     this.categoryService.getCategories().subscribe({
       next: (categories: CategoryResponse[]) => {
-        this.categories = categories;
+        this.categories = categories.slice(0, 8);
       },
       error: (error) => {
         console.error('Error loading categories:', error);

@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<div class="container">
+  <app-navigation></app-navigation>
+  <app-banner-event></app-banner-event>
+  <app-countdown></app-countdown>
+  <hr style="padding-top: 10px; border: none; height: 2px; background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));">
+  <div class="container">
+    <div class="row">
+      <div class="col" *ngFor="let category of categories">
+        <app-item-category [categoryResponse]="category" (click)="navigateToCategory(category.id)"></app-item-category>
+      </div>
+    </div>
+  </div>
+</div>

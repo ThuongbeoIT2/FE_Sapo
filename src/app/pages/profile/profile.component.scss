@@ -10,11 +10,14 @@
     background-color: #e8f5ff;
     font-family: Arial;
     overflow: hidden;
-}
 
+}
+.content{
+  min-height: 1000px;
+}
 /* NavbarTop */
 .navbar-top {
-    background-color: #fff;
+
     color: #333;
     box-shadow: 0px 4px 8px 0px grey;
     height: 100px;
@@ -65,13 +68,14 @@
 
 /* Sidenav */
 .sidenav {
-    background-color: #fff;
+    background-color: #a4dbac;
     color: #333;
     border-bottom-right-radius: 25px;
-    height: 86%;
+    height: 1170px;
     left: 0;
     overflow-x: hidden;
-    padding-top: 20px;
+    margin-top: -200px;
+    padding-top: 200px;
     position: absolute;
     top: 70px;
     width: 250px;

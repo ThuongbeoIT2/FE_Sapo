@@ -1,92 +1,63 @@
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
 <div class="dashboard">
-   <!-- =============== Navigation ================ -->
-   <div class="container">
+  <div class="container">
     <div class="navigation">
-        <ul>
-            <li>
-                <a href="#">
-                    <span class="icon">
-                      <i class="fa-solid fa-house"></i>
-                    </span>
-                    <span class="title">Brand Name</span>
-                </a>
-            </li>
+      <ul>
+        <li [ngClass]="{ 'active': isActive('/') }">
+          <a routerLink="/">
+            <span class="icon"><i class="fa-solid fa-house"></i></span>
+            <span class="title">Brand Name</span>
+          </a>
+        </li>
 
-            <li>
-                <a href="/manager/dashboard">
-                    <span class="icon" >
-                      <i class="fa-solid fa-house"></i>
-                    </span>
-                    <span class="title">Dashboard</span>
-                </a>
-            </li>
+        <li [ngClass]="{ 'active': isActive('/store-dashboard') }">
+          <a routerLink="/store-dashboard">
+            <span class="icon"><i class="fa-solid fa-house"></i></span>
+            <span class="title">Dashboard</span>
+          </a>
+        </li>
 
-            <li>
-                <a href="/manager/product">
-                    <span class="icon">
-                      <i class="fa-brands fa-product-hunt"></i>
-                    </span>
-                    <span class="title">Product</span>
-                </a>
-            </li>
+        <li [ngClass]="{ 'active': isActive('/store-product') }">
+          <a routerLink="/store-product">
+            <span class="icon"><i class="fa-brands fa-product-hunt"></i></span>
+            <span class="title">ProductOS</span>
+          </a>
+        </li>
 
-            <li>
-                <a href="#">
-                    <span class="icon">
-                      <i class="fa-regular fa-message"></i>
-                    </span>
-                    <span class="title">Messages</span>
-                </a>
-            </li>
+        <li [ngClass]="{ 'active': isActive('/messages') }">
+          <a routerLink="/messages">
+            <span class="icon"><i class="fa-regular fa-message"></i></span>
+            <span class="title">Messages</span>
+          </a>
+        </li>
 
-            <li>
-                <a href="#">
-                    <span class="icon">
-                      <i class="fa-regular fa-circle-question"></i>
-                    </span>
-                    <span class="title">Help</span>
-                </a>
-            </li>
+        <li [ngClass]="{ 'active': isActive('/help') }">
+          <a routerLink="/help">
+            <span class="icon"><i class="fa-regular fa-circle-question"></i></span>
+            <span class="title">Help</span>
+          </a>
+        </li>
 
-            <li>
-                <a href="#">
-                    <span class="icon">
+        <li [ngClass]="{ 'active': isActive('/settings') }">
+          <a routerLink="/settings">
+            <span class="icon"><i class="fa-solid fa-gear"></i></span>
+            <span class="title">Settings</span>
+          </a>
+        </li>
 
-                    </span>
-                    <span class="title">Settings</span>
-                </a>
-            </li>
+        <li [ngClass]="{ 'active': isActive('/password') }">
+          <a routerLink="/password">
+            <span class="icon"><i class="fa-solid fa-lock"></i></span>
+            <span class="title">Password</span>
+          </a>
+        </li>
 
-            <li>
-                <a href="#">
-                    <span class="icon">
-                      <i class="fa-solid fa-lock"></i>
-                    </span>
-                    <span class="title">Password</span>
-                </a>
-            </li>
-
-            <li>
-                <a href="#">
-                    <span class="icon">
-                      <i class="fa-solid fa-right-from-bracket"></i>
-                    </span>
-                    <span class="title">Sign Out</span>
-                </a>
-            </li>
-        </ul>
+        <li [ngClass]="{ 'active': isActive('/sign-out') }">
+          <a routerLink="/sign-out">
+            <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>
+            <span class="title">Sign Out</span>
+          </a>
+        </li>
+      </ul>
     </div>
-
-    <!-- ========================= Main ==================== -->
-    <div class="main">
-       <app-topbar></app-topbar>
-        <!-- ======================= Cards ================== -->
-        <app-overall></app-overall>
-    </div>
+  </div>
 </div>
-
-
-

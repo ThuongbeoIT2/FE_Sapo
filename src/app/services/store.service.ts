@@ -6,13 +6,14 @@ import { catchError } from 'rxjs/operators';
 import { StoreResponse } from '../model/store.model'; // Ensure correct path
 import { ApiResponse } from '../model/ApiResponse.model'; // Ensure correct path
 import { PaginatedResponse } from '../model/paginated-response.model'; // Ensure correct path
+import { ProductOfStoreResponse } from '../model/productOS.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StoreService {
   private apiUrl = 'http://localhost:8080/store/'; // Backend API URL
-
+  private apiUrlOS = 'http://localhost:8080/productOS/';
   constructor(private http: HttpClient) {}
 
   // Fetch all stores with pagination
@@ -36,7 +37,8 @@ export class StoreService {
     phoneNumber: string,
     description: string,
     thumbnail: File,
-    eKyc: File,
+    eKyc_01: File,
+    eKyc_02: File,
     storeType: string
   ): Observable<ApiResponse> {
     const formData = new FormData();
@@ -45,7 +47,8 @@ export class StoreService {
     formData.append('phoneNumber', phoneNumber);
     formData.append('description', description);
     formData.append('thumbnail', thumbnail);
-    formData.append('eKyc', eKyc);
+    formData.append('eKyc_01', eKyc_01);
+    formData.append('eKyc_02', eKyc_02);
     formData.append('storeType', storeType);
 
     return this.http
@@ -103,15 +106,18 @@ export class StoreService {
   }
 
   // Login to store
-  loginStore(storeCode: string, password: string): Observable<string> {
-    const formData = new FormData();
-    formData.append('storeCode', storeCode);
-    formData.append('password', password);
+// Login to store
+loginStore(storeCode: string, password: string): Observable<ApiResponse> {
+  const formData = new FormData();
+  formData.append('storeCode', storeCode);
+  formData.append('password', password);
 
-    return this.http
-      .post<string>(`${this.apiUrl}login-store`, formData)
-      .pipe(catchError(this.handleError));
-  }
+  return this.http
+    .post<ApiResponse>(`${this.apiUrl}login-store`, formData)
+    .pipe(
+      catchError((error) => this.handleError(error))
+    );
+}
 
   // Get current manager's store information
   getMyStore(): Observable<StoreResponse> {
@@ -121,23 +127,31 @@ export class StoreService {
   }
 
   // Get products from the manager's store
-  getProductsOfMyStore(page: number = 0): Observable<PaginatedResponse<any>> {
+  getProductsOfMyStore(page: number = 0): Observable<PaginatedResponse<ProductOfStoreResponse>> {
+    const storeCode = localStorage.getItem('storeCode');
+    if (!storeCode) {
+      return throwError(() => 'Store code not found!');
+    }
+    const formData = new FormData();
+    formData.append('storeCode', storeCode);
+    formData.append('page', page.toString());
     return this.http
-      .get<PaginatedResponse<any>>(`${this.apiUrl}manager-store/my-store/product?page=${page}`)
+      .post<PaginatedResponse<ProductOfStoreResponse>>(`${this.apiUrlOS}product`,formData)
       .pipe(catchError(this.handleError));
   }
 
   // Search products in manager's store
-  searchProductsInMyStore(key: string, page: number = 0): Observable<PaginatedResponse<any>> {
+  searchProductsInMyStore(key: string, page: number = 0): Observable<PaginatedResponse<ProductOfStoreResponse>> {
     return this.http
-      .get<PaginatedResponse<any>>(`${this.apiUrl}manager-store/my-store/product/search?key=${key}&page=${page}`)
+      .get<PaginatedResponse<ProductOfStoreResponse>>(`${this.apiUrlOS}/search?key=${key}&page=${page}`)
       .pipe(catchError(this.handleError));
   }
 
   // Get product details from manager's store
-  getProductFromMyStore(productOfStoreId: number): Observable<any> {
+  getProductFromMyStore(productOfStoreId: number): Observable<ProductOfStoreResponse> {
+
     return this.http
-      .get<any>(`${this.apiUrl}manager-store/my-store/product/${productOfStoreId}`)
+      .get<ProductOfStoreResponse>(`${this.apiUrlOS}/${productOfStoreId}`)
       .pipe(catchError(this.handleError));
   }
 
@@ -155,7 +169,7 @@ export class StoreService {
     formData.append('slugProduct', slugProduct);
 
     return this.http
-      .post<string>(`${this.apiUrl}manager-store/my-store/product/insert`, formData)
+      .post<string>(`${this.apiUrlOS}/insert`, formData)
       .pipe(catchError(this.handleError));
   }
 
@@ -172,14 +186,14 @@ export class StoreService {
     formData.append('discount', discount.toString());
 
     return this.http
-      .post<string>(`${this.apiUrl}manager-store/my-store/product/update/${id}`, formData)
+      .post<string>(`${this.apiUrlOS}t/update/${id}`, formData)
       .pipe(catchError(this.handleError));
   }
 
   // Delete a product from manager's store
   deleteProductFromMyStore(id: number): Observable<string> {
     return this.http
-      .get<string>(`${this.apiUrl}manager-store/my-store/product/delete/${id}`)
+      .get<string>(`${this.apiUrlOS}/delete/${id}`)
       .pipe(catchError(this.handleError));
   }
 

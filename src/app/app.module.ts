@@ -66,6 +66,11 @@ import { MyStoreComponent } from './my-store/my-store.component';
 import { PasswordComponent } from './password/password.component';
 import { ListSettingComponent } from './list-setting/list-setting.component';
 import { MyStoreLoginComponent } from './my-store-login/my-store-login.component';
+import { StoredashboardComponent } from './storedashboard/storedashboard.component';
+import { ManageProductOsComponent } from './manage-product-os/manage-product-os.component';
+import { AllCategoryComponent } from './all-category/all-category.component';
+import { ProductOsAddFormComponent } from './product-os-form/product-os-add-form/product-os-add-form.component';
+import { ProductOsUpdateFormComponent } from './product-os-form/product-os-update-form/product-os-update-form.component';
 
 @NgModule({
   declarations: [
@@ -131,6 +136,12 @@ import { MyStoreLoginComponent } from './my-store-login/my-store-login.component
      PasswordComponent,
      ListSettingComponent,
      MyStoreLoginComponent,
+
+     StoredashboardComponent,
+       ManageProductOsComponent,
+       AllCategoryComponent,
+       ProductOsAddFormComponent,
+       ProductOsUpdateFormComponent,
   ],
   imports: [
     BrowserModule,

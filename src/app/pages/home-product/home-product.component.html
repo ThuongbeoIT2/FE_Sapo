@@ -20,14 +20,15 @@
     background: #000;
   }
 </style>
-<div class="container">
+<div class="container" style="padding: 20px;">
   <div class="row">
     <div class="col" *ngFor="let productResponse of products">
       <app-item-product [productResponse]="productResponse" (click)="navigateToProduct(productResponse.slug)"></app-item-product>
     </div>
   </div>
+
 </div>
-<div class="view-all">
+<div class="view-all" *ngIf="">
   <a href="/all-products">Xem tất cả</a>
   <hr class="line">
 </div>

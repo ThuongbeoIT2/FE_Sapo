@@ -12,7 +12,7 @@ export class CategoryComponent implements OnInit {
   action: string | null = '';
   query : string = ''; // Save search keyword
   categories: CategoryResponse[] = []; // Array to hold categories
-
+  
   constructor(
     private route: ActivatedRoute,
     private categoryService: CategoryService // Inject the CategoryService

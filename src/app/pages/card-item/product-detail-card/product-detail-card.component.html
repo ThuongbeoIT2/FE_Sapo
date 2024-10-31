@@ -1,3 +1,8 @@
+
+<h1 class="text-center" style="font-size: 2.5rem; font-weight: bold; margin-bottom: 20px; color: #333;">
+  Thông tin sản phẩm
+</h1>
+<app-countdown></app-countdown>
 <div class="product-detail-card gentle-background">
   <div class="row">
     <div class="col-md-6 zoom-container">
@@ -25,6 +30,17 @@
           <div class="title-field">Description:</div>
           <div class="data-field">{{ product.description }}</div>
         </div>
+      </div>
+    </div>
+  </div>
+  <hr style="padding-top: 10px; border: none; height: 2px; background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));">
+  <div class="row mt-4" *ngIf="productAdded">
+    <div class="col text-center">
+      <button class="btn btn-primary btn-lg" (click)="addProductOS(product.slug)" style="padding: 10px 20px; font-size: 1.25rem;">
+        Add Product
+      </button>
+      <div class="alert alert-success mt-3" role="alert" style="font-size: 1.1rem;">
+        Bạn có muốn mở sản phẩm trong gian hàng của chính mình không ?
       </div>
     </div>
   </div>

@@ -4,8 +4,7 @@
 <app-category-detail-card></app-category-detail-card>
 <hr>
 <hr style="border: 1px solid #000; width: 100%;">
-<h2 class="featured-title">Các sản phẩm nổi bật</h2>
-<hr style="border: 1px solid #000; width: 100%;">
+</div>
 <style>
   .featured-title {
     text-align: center;
@@ -27,4 +26,17 @@
     }
   }
 </style>
+
+<div class="container" style="padding: 50px;">
+  <div class="text-center">
+    <h2 class="featured-title" style="color: blue;">Các Sản Phẩm Liên Quan</h2>
+  </div>
+  <div class="row">
+    <div class="col" *ngFor="let productResponse of products">
+      <app-item-product [productResponse]="productResponse" (click)="navigateToProduct(productResponse.slug)"></app-item-product>
+    </div>
+  </div>
+  <hr style="border: 1px solid #000; width: 100%;">
 </div>
+
+<app-pagination-wrapper></app-pagination-wrapper>
