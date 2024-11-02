@@ -1,0 +1,35 @@
+.product-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.product-card {
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.product-field {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.product-field label {
+  font-weight: bold;
+  color: #333;
+}
+
+.product-field span {
+  color: #555;
+}
+.container {
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  height: 1800px;
+}

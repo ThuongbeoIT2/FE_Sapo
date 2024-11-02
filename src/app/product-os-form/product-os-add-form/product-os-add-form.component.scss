@@ -1,0 +1,78 @@
+/* Tổng thể bảng */
+.recentImages table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+/* Đầu bảng */
+.recentImages thead {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.recentImages thead td {
+  padding: 12px 15px;
+  font-weight: bold;
+  text-align: left;
+}
+
+/* Hàng trong bảng */
+.recentImages tbody tr {
+  border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s;
+}
+
+.recentImages tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Hover */
+.recentImages tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Ô trong bảng */
+.recentImages td {
+  padding: 12px 15px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Hình ảnh */
+.product-image-thumbnail {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Nút hành động */
+.btn-active,
+.btn-inactive {
+  padding: 5px 10px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-right: 5px;
+}
+
+.btn-active {
+  background-color: #28a745;
+}
+
+.btn-inactive {
+  background-color: #dc3545;
+}
+
+.btn-active:hover {
+  background-color: #218838;
+}
+
+.btn-inactive:hover {
+  background-color: #c82333;
+}

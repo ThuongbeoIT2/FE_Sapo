@@ -2,6 +2,20 @@
 <button *ngIf="action === ''" class="btn-add" (click)="addAction()" style="padding: 10px 20px; border-radius: 5px; box-shadow: 0 4px 6px rgba(219, 200, 200, 0.1); margin-left: 10px;">
   Add ProductOS
 </button>
+<div class="form-group-search" *ngIf="action === ''" >
+  <label for="category"><b>Category : </b></label>
+  <select
+    id="category"
+    name="category"
+    [(ngModel)]="category"
+    (change)="onCategoryChange()"
+    required
+  >
+    <option *ngFor="let cate of categories" [value]="cate.slug">
+      {{ cate.cateName }}
+    </option>
+  </select>
+</div>
 <hr style="padding-top: 10px; border: none; height: 2px; background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));">
 <div *ngIf="filteredProducts.length === 0">
   <div class="no-products" *ngIf="action === ''">
@@ -16,10 +30,12 @@
           <tr>
             <td>ID</td>
             <td>Name</td>
-            <td>Thumbnail</td>
-            <td>Description</td>
+            <td>priceI</td>
+            <td>priceO</td>
             <td>Slug</td>
             <td>Category</td>
+            <td>View</td>
+            <td>Status</td>
             <td>Action</td>
           </tr>
         </thead>
@@ -27,10 +43,14 @@
           <tr *ngFor="let productos of filteredProducts">
             <td>{{ productos.id }}</td>
             <td>{{ productos.proName }}</td>
-            <td>{{ productos.priceO }} + {{productos.CU}}</td>
+            <td>{{ productos.priceI }}</td>
+            <td>{{ productos.priceO }}</td>
             <td>{{ productos.slug }}</td>
             <td>{{ productos.category }}</td>
+            <td>{{ productos.view }}</td>
+            <td>{{ productos.status === true ? 'Active' : 'Inactive' }}</td>
             <td>
+              <button class="btn-detail" (click)="detailAction(productos)">Detail</button>
               <button class="btn-edit" (click)="updateAction(productos)">Edit</button>
               <button class="btn-delete" (click)="onDelete(productos)">Delete</button>
             </td>
@@ -47,4 +67,10 @@
 </div>
 <div class="view-product" *ngIf="action === 'insert'">
   <app-product-os-add-form></app-product-os-add-form>
+</div>
+<div class="view-product" *ngIf="action === 'update'">
+  <app-product-os-update-form ></app-product-os-update-form>
+</div>
+<div class="view-product" *ngIf="action === 'detail'">
+  <app-product-os-detail ></app-product-os-detail>
 </div>

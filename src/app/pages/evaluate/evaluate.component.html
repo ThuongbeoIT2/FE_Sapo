@@ -1,0 +1,13 @@
+<div class="rating-container">
+  <div class="title">
+    <span>Rate this product :</span>
+  </div>
+  <div class="stars">
+    <ng-container *ngFor="let star of stars; index as i">
+      <span (click)="rate(i + 1)"
+            class="star"
+            [class.filled]="i < rating">&#9733;</span>
+    </ng-container>
+  </div>
+  <span class="rating-number">{{ rating }}/5</span>
+</div>

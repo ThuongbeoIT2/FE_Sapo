@@ -1,1 +1,512 @@
-<p>product-os-update-form works!</p>
+<div class="form-container">
+  <h2 class="form-title">Update Product</h2>
+  <form (ngSubmit)="updateProductOS()" #updateProductForm="ngForm">
+    <div class="form-row">
+      <!-- Store Code (Read-only) -->
+      <div class="form-group">
+        <label for="storeCode">Store Code:</label>
+        <input
+          type="text"
+          id="storeCode"
+          name="storeCode"
+          [(ngModel)]="storeCode"
+          readonly
+        />
+      </div>
+
+      <!-- Product Name -->
+      <div class="form-group">
+        <label for="proName">Product Name:</label>
+        <input
+          type="text"
+          id="proName"
+          name="proName"
+          [(ngModel)]="proName"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <!-- Slug (Read-only) -->
+      <div class="form-group">
+        <label for="slugProduct">Slug:</label>
+        <input
+          type="text"
+          id="slugProduct"
+          name="slugProduct"
+          [(ngModel)]="slugProduct"
+          readonly
+        />
+      </div>
+
+      <!-- Price Inputs -->
+      <div class="form-group">
+        <label for="priceI">Price I:</label>
+        <input
+          type="number"
+          id="priceI"
+          name="priceI"
+          [(ngModel)]="priceI"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="priceO">Price O:</label>
+        <input
+          type="number"
+          id="priceO"
+          name="priceO"
+          [(ngModel)]="priceO"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <!-- Discount -->
+      <div class="form-group">
+        <label for="discount">Discount (%):</label>
+        <input
+          type="number"
+          id="discount"
+          name="discount"
+          [(ngModel)]="discount"
+          required
+        />
+      </div>
+
+      <!-- Quantity -->
+      <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input
+          type="number"
+          id="quantity"
+          name="quantity"
+          [(ngModel)]="quantity"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <!-- Category (Read-only) -->
+      <div class="form-group">
+        <label for="category">Category:</label>
+        <input
+          type="text"
+          id="category"
+          name="category"
+          [(ngModel)]="category"
+          readonly
+        />
+      </div>
+
+      <!-- Store Name (Read-only) -->
+      <div class="form-group">
+        <label for="storeName">Store Name:</label>
+        <input
+          type="text"
+          id="storeName"
+          name="storeName"
+          [(ngModel)]="storeName"
+          readonly
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <!-- Product Views (Read-only) -->
+      <div class="form-group">
+        <label for="view">Views:</label>
+        <input
+          type="number"
+          id="view"
+          name="view"
+          [(ngModel)]="view"
+          readonly
+        />
+      </div>
+
+      <!-- Status (Read-only) -->
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <input
+          type="text"
+          id="status"
+          name="status"
+          [(ngModel)]="status"
+          readonly
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <!-- Description -->
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea
+          id="description"
+          name="description"
+          [(ngModel)]="description"
+          required
+        ></textarea>
+      </div>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+      <button type="submit" [disabled]="!updateProductForm.valid">Update Product</button>
+      <button type="button">Cancel</button>
+      <button type="button" style="background-color: green;" (click)="active(id)">Active</button>
+    </div>
+  </form>
+</div>
+<hr>
+<div class="imageOS-list" style="width: 80%; margin: 0 auto;">
+  <h2 class="form-title">Product Images</h2>
+  <div class="details" *ngIf="productOSImages.length > 0; else noImages">
+    <div class="recentImages">
+      <table class="image-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let image of productOSImages">
+            <td>{{ image.id }}</td>
+            <td>
+              <img [src]="image.urlImage" alt="Product Image" class="product-image-thumbnail" />
+            </td>
+            <td>{{ image.title }}</td>
+            <td>{{ image.description }}</td>
+            <td>{{ image.status === true ? 'Active' : 'Inactive' }}</td>
+            <td>
+              <button class="btn-active" (click)="activeImage(image.id)" style="margin-right: 5px;">Active</button>
+              <button class="btn-inactive" (click)="inActiveImage(image.id)">Inactive</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <ng-template #noImages>
+    <p>No detailed images available.</p>
+  </ng-template>
+</div>
+<hr style="border: 0; height: 1px; background: linear-gradient(to right, transparent, #ccc, transparent); margin: 20px 0;">
+
+<style>
+  .image-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .image-table th, .image-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .image-table th {
+    background-color: #f0f8ff;
+    font-weight: bold;
+  }
+
+  .product-image-thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .btn-active, .btn-inactive {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .btn-active {
+    background-color: #28a745;
+    color: #fff;
+  }
+
+  .btn-active:hover {
+    background-color: #218838;
+  }
+
+  .btn-inactive {
+    background-color: #dc3545;
+    color: #fff;
+  }
+
+  .btn-inactive:hover {
+    background-color: #c82333;
+  }
+</style>
+<h2 class="form-title">Add Product Image</h2>
+<form (ngSubmit)="uploadProductImage()" #uploadImageForm="ngForm" class="image-upload-form">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="productImage">Product Image:</label>
+      <input
+        type="file"
+        id="productImage"
+        name="productImage"
+        (change)="onFileSelected($event)"
+        required
+      />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input
+        type="text"
+        id="title"
+        name="title"
+        [(ngModel)]="title"
+        required
+      />
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="imageDescription">Image Description:</label>
+      <textarea
+        id="imageDescription"
+        name="imageDescription"
+        [(ngModel)]="imageDescription"
+        required
+      ></textarea>
+    </div>
+  </div>
+  <div class="form-actions">
+    <button type="submit" [disabled]="!uploadImageForm.valid">Upload Image</button>
+  </div>
+</form>
+<hr>
+
+
+<style>
+  .product-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .image-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .image-container:hover {
+    transform: scale(1.05);
+  }
+
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .remove-image-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .remove-image-button:hover {
+    background-color: #ff1a1a;
+  }
+</style>
+<style>
+  .image-upload-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f0f8ff; /* Light blue background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .image-upload-form:hover {
+    transform: scale(1.02);
+  }
+
+  .image-upload-form .form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+
+  .image-upload-form .form-group {
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  .image-upload-form .form-group:last-child {
+    margin-right: 0;
+  }
+
+  .image-upload-form .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+
+  .image-upload-form .form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+
+  .image-upload-form .form-group input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+  }
+
+  .image-upload-form .form-actions {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .image-upload-form .form-actions button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .image-upload-form .form-actions button:hover {
+    background-color: #0056b3;
+  }
+</style>
+<style>
+  .form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f0f8ff; /* Light blue background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .form-container:hover {
+    transform: scale(1.02);
+  }
+
+  .form-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+
+  .form-group {
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  .form-group:last-child {
+    margin-right: 0;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.25);
+  }
+
+  .form-actions {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .form-actions button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .form-actions button:hover {
+    background-color: #0056b3;
+  }
+
+  .form-actions button[type="button"] {
+    background-color: #6c757d;
+  }
+
+  .form-actions button[type="button"]:hover {
+    background-color: #5a6268;
+  }
+</style>
+

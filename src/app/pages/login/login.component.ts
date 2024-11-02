@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit{
       localStorage.clear
     }
     constructor(private http: HttpClient, private router : Router, private route: ActivatedRoute,private toastService: ToastService){
+      localStorage.removeItem('storeCode');
       this.route.queryParams.subscribe(params => {
         const token = params['token'];
         if (token) {

@@ -1,0 +1,25 @@
+.rating-container {
+  display: flex;
+  align-items: center;         /* Căn giữa các phần tử theo chiều dọc */
+}
+
+.stars {
+  display: flex;               /* Sử dụng flexbox để căn chỉnh các sao */
+  cursor: pointer;            /* Đổi con trỏ khi di chuột qua sao */
+}
+
+.star {
+  font-size: 24px;            /* Kích thước sao */
+  color: #ccc;                /* Màu sắc cho các sao chưa được chọn */
+  transition: color 0.2s;     /* Hiệu ứng chuyển màu mượt mà */
+}
+
+.star.filled {
+  color: #FFD700;             /* Màu vàng cho các sao đã được chọn */
+}
+
+.rating-number {
+  font-size: 18px;            /* Kích thước chữ cho số đánh giá */
+  margin-left: 8px;           /* Khoảng cách giữa sao và số đánh giá */
+  color: #555;                /* Màu sắc cho số đánh giá */
+}

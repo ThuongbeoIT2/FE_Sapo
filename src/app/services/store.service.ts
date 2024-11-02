@@ -149,27 +149,36 @@ loginStore(storeCode: string, password: string): Observable<ApiResponse> {
 
   // Get product details from manager's store
   getProductFromMyStore(productOfStoreId: number): Observable<ProductOfStoreResponse> {
-
+    const storeCode = localStorage.getItem('storeCode');
+    if (!storeCode) {
+      return throwError(() => 'Store code not found!');
+    }
+    const formData = new FormData();
+    formData.append('storeCode', storeCode);
     return this.http
-      .get<ProductOfStoreResponse>(`${this.apiUrlOS}/${productOfStoreId}`)
+      .post<ProductOfStoreResponse>(`${this.apiUrlOS}${productOfStoreId}`, formData)
       .pipe(catchError(this.handleError));
   }
 
   // Insert a new product to manager's store
   insertProductToMyStore(
+    storeCode: string,
     priceI: number,
     priceO: number,
     discount: number,
+    quantity: number,
     slugProduct: string
-  ): Observable<string> {
+  ): Observable<ApiResponse> {
     const formData = new FormData();
+    formData.append('storeCode', storeCode);
     formData.append('priceI', priceI.toString());
     formData.append('priceO', priceO.toString());
     formData.append('discount', discount.toString());
+    formData.append('quantity', quantity.toString());
     formData.append('slugProduct', slugProduct);
 
     return this.http
-      .post<string>(`${this.apiUrlOS}/insert`, formData)
+      .post<ApiResponse>(`${this.apiUrlOS}insert`, formData)
       .pipe(catchError(this.handleError));
   }
 
@@ -178,25 +187,108 @@ loginStore(storeCode: string, password: string): Observable<ApiResponse> {
     id: number,
     priceI: number,
     priceO: number,
-    discount: number
-  ): Observable<string> {
+    discount: number,
+    description: string,
+    quantity: number,
+  ): Observable<ApiResponse> {
+    const storeCode = localStorage.getItem('storeCode');
+    if (!storeCode) {
+      return throwError(() => 'Store code not found!');
+    }
     const formData = new FormData();
+    formData.append('storeCode', storeCode);
     formData.append('priceI', priceI.toString());
     formData.append('priceO', priceO.toString());
     formData.append('discount', discount.toString());
+    formData.append('description', description);
+    formData.append('quantity', quantity.toString());
 
     return this.http
-      .post<string>(`${this.apiUrlOS}t/update/${id}`, formData)
+      .post<ApiResponse>(`${this.apiUrlOS}update/${id}`, formData)
+      .pipe(catchError(this.handleError));
+  }
+
+  activeProductInMyStore(
+    id: number
+  ): Observable<ApiResponse> {
+    const storeCode = localStorage.getItem('storeCode');
+    if (!storeCode) {
+      return throwError(() => 'Store code not found!');
+    }
+    const formData = new FormData();
+    formData.append('storeCode', storeCode);
+
+    return this.http
+      .post<ApiResponse>(`${this.apiUrlOS}active/${id}`, formData)
       .pipe(catchError(this.handleError));
   }
 
   // Delete a product from manager's store
-  deleteProductFromMyStore(id: number): Observable<string> {
+  deleteProductFromMyStore(id: number): Observable<ApiResponse> {
+    const storeCode = localStorage.getItem('storeCode');
+    if (!storeCode) {
+      return throwError(() => 'Store code not found!');
+    }
+    const formData = new FormData();
+    formData.append('storeCode', storeCode);
     return this.http
-      .get<string>(`${this.apiUrlOS}/delete/${id}`)
+      .post<ApiResponse>(`${this.apiUrlOS}delete/${id}`, formData)
       .pipe(catchError(this.handleError));
   }
 
+  uploadProductImageToMyStore(title:string,imageDescription:string,imageOS:File,productOSID:number): Observable<ApiResponse> {
+    const storeCode = localStorage.getItem('storeCode');
+    if (!storeCode) {
+      return throwError(() => 'Store code not found!');
+    }
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('description', imageDescription);
+    formData.append('imageOS', imageOS);
+    formData.append('productOSID', productOSID.toString());
+    formData.append('storeCode', storeCode);
+    return this.http
+      .post<ApiResponse>(`${this.apiUrlOS}image/insert`, formData)
+      .pipe(catchError(this.handleError));
+  }
+getAllProductOSImageById( productOSID: number): Observable<ApiResponse> {
+    const storeCode = localStorage.getItem('storeCode');
+    if (!storeCode) {
+      return throwError(() => 'Store code not found!');
+    }
+    const formData = new FormData();
+    formData.append('productOSID', productOSID.toString());
+    formData.append('storeCode', storeCode);
+    return this.http
+      .post<ApiResponse>(`${this.apiUrlOS}image/getAll`, formData)
+      .pipe(catchError(this.handleError));
+  }
+  activeImageProductFromMyStore(id: number, productOSID: number): Observable<ApiResponse> {
+    const storeCode = localStorage.getItem('storeCode');
+    if (!storeCode) {
+      return throwError(() => 'Store code not found!');
+    }
+    const formData = new FormData();
+    formData.append('productOSID', productOSID.toString());
+    formData.append('storeCode', storeCode);
+    formData.append('id', 'id');
+    return this.http
+      .post<ApiResponse>(`${this.apiUrlOS}image/active/${id}`, formData)
+      .pipe(catchError(this.handleError));
+  }
+  inActiveImageProductFromMyStore(id: number, productOSID: number): Observable<ApiResponse> {
+    const storeCode = localStorage.getItem('storeCode');
+    if (!storeCode) {
+      return throwError(() => 'Store code not found!');
+    }
+    const formData = new FormData();
+    formData.append('productOSID', productOSID.toString());
+    formData.append('storeCode', storeCode);
+    formData.append('id', 'id');
+    return this.http
+      .post<ApiResponse>(`${this.apiUrlOS}image/inactive/${id}`, formData)
+      .pipe(catchError(this.handleError));
+  }
   // Error handling
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';

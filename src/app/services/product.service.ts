@@ -108,5 +108,5 @@ export class ProductService {
     }
     return throwError(errorMessage); // Return an observable with a user-facing error message
   }
-  
+
 }

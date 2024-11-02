@@ -38,12 +38,14 @@ export class TopbarComponent {
     }
 
     // Thực hiện tìm kiếm dựa trên ngữ cảnh URL
-    if (url.pathname.includes('category')) {
+    if (url.pathname.includes('/admin/category')) {
       this.searchCategory(); // Tìm kiếm category
-    } else if (url.pathname.includes('product')) {
+    } else if (url.pathname.includes('/admin/product')) {
       this.searchProduct(); // Tìm kiếm product
-    } else if (url.pathname.includes('store')) {
+    } else if (url.pathname.includes('/admin/store')) {
       this.searchStore(); // Tìm kiếm store
+    } else if (url.pathname.includes('store-product')) {
+      this.searchStoreProduct(); // Tìm kiếm store
     } else {
       console.log('Unknown search context.');
     }
@@ -64,4 +66,8 @@ export class TopbarComponent {
   searchStore() {
     this.router.navigate(['/admin/store'], { queryParams: { query: this.searchQuery } });
   }
+  searchStoreProduct() {
+    this.router.navigate(['/store-product'], { queryParams: { query: this.searchQuery } });
+  }
+
 }

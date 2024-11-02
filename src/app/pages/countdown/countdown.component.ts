@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./countdown.component.scss']
 })
 export class CountdownComponent {
-  targetDate: Date = new Date('2024-11-01T00:00:00'); // Set your target date and time here
+  targetDate: Date = new Date('2025-01-01T00:00:00'); // Set your target date and time here
   days: number = 0;
   hours: number = 0;
   minutes: number = 0;

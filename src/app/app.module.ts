@@ -26,7 +26,7 @@ import { ManagerdashboardComponent } from './manager-store/managerdashboard/mana
 import { OverallComponent } from './manager-store/overall/overall.component';
 import { Searchv02Component } from './searchv02/searchv02.component';
 import { ProductComponent } from './manager-store/product/product.component';
-import { SidebarmanagerComponent } from './sidebarmanager/sidebarmanager.component';
+
 import { TopbarComponent } from './topbar/topbar.component';
 import { ManagerproductComponent } from './manager-store/managerproduct/managerproduct.component';
 import { PaginationWrapperComponent } from './pagination-wrapper/pagination-wrapper.component';
@@ -71,6 +71,8 @@ import { ManageProductOsComponent } from './manage-product-os/manage-product-os.
 import { AllCategoryComponent } from './all-category/all-category.component';
 import { ProductOsAddFormComponent } from './product-os-form/product-os-add-form/product-os-add-form.component';
 import { ProductOsUpdateFormComponent } from './product-os-form/product-os-update-form/product-os-update-form.component';
+import { ProductOSDetailComponent } from './product-os-detail/product-os-detail.component';
+import { EvaluateComponent } from './pages/evaluate/evaluate.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +98,6 @@ import { ProductOsUpdateFormComponent } from './product-os-form/product-os-updat
      OverallComponent,
      Searchv02Component,
      ProductComponent,
-     SidebarmanagerComponent,
      TopbarComponent,
      ManagerproductComponent,
      PaginationWrapperComponent,
@@ -142,6 +143,8 @@ import { ProductOsUpdateFormComponent } from './product-os-form/product-os-updat
        AllCategoryComponent,
        ProductOsAddFormComponent,
        ProductOsUpdateFormComponent,
+       ProductOSDetailComponent,
+       EvaluateComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { ProductService } from '../services/product.service';
 import { Toast, ToastService } from '../services/toast.service';
 import { CategoryService } from '../services/category.service';
 import { StoreService } from '../services/store.service';
+import { ApiResponse } from '../model/ApiResponse.model';
 
 @Component({
   selector: 'app-manage-product-os',
@@ -17,7 +18,7 @@ export class ManageProductOsComponent {
   filteredProducts: ProductOfStoreResponse[] = []; // Filtered products
   categories: CategoryResponse[] = []; // List of categories
 
-  category: string = ''; // Current category (slug)
+  category: string = '';
   action!: string; // Current action (add/update)
   query!: string; // Search keyword
   currentPage: number = 1; // Current page (starting from 1)
@@ -49,13 +50,11 @@ export class ManageProductOsComponent {
   fetchCategories(): void {
     this.categoryService.getCategories().subscribe({
       next: (data) => {
-        console.log('Categories:', data);
         this.categories = [
-          { id: 0, cateName: 'All', slug: '', thumbnail: '', description: '' },
+          { id: 0, cateName: 'All', slug: 'All', thumbnail: '', description: '' },
           ...data,
         ];
         this.category = this.categories[0].cateName; // Default to "All"
-        console.log('category:', this.category);
       },
       error: (error) => {
         console.error('Error loading categories!', error);
@@ -106,7 +105,8 @@ export class ManageProductOsComponent {
 
   // Filter products by selected category
   filterProducts(): void {
-    if (this.category === '') {
+    console.log('Category:', this.category);
+    if (this.category === 'All') {
       // Show all products if "All" is selected
       this.filteredProducts = [...this.products];
     } else {
@@ -116,6 +116,7 @@ export class ManageProductOsComponent {
           this.category
       );
     }
+    console.log('Filtered products:', this.filteredProducts);
   }
 
   // Navigate to add product action
@@ -133,18 +134,13 @@ export class ManageProductOsComponent {
       `Are you sure you want to delete the product with ID: ${product.id}?`
     );
     if (confirmDelete) {
-      this.productService.deleteProduct(product.id).subscribe({
-        next: () => {
+      this.storeService.deleteProductFromMyStore(product.id).subscribe((res: ApiResponse)=>{
+        if(res.status === 'OK'){
           this.showToast('Success', 'Product deleted successfully', 'success');
-          this.products = this.products.filter(
-            (pr) => pr.id !== product.id
-          );
-          this.filterProducts(); // Update list after deletion
-        },
-        error: (error) => {
+          this.loadProducts(this.currentPage - 1);
+        }else{
           this.showToast('Error', 'Failed to delete product', 'error');
-          console.error('Error deleting product:', error);
-        },
+        }
       });
     }
   }
@@ -153,11 +149,17 @@ export class ManageProductOsComponent {
   updateAction(product: ProductOfStoreResponse): void {
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { action: 'update', slug: product.slug, page: this.currentPage },
+      queryParams: { action: 'update', productosid: product.id, page: this.currentPage },
       queryParamsHandling: 'merge',
     });
   }
-
+  detailAction(product: ProductOfStoreResponse): void {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { action: 'detail', productosid: product.id, page: this.currentPage },
+      queryParamsHandling: 'merge',
+    });
+  }
   // Display a toast message
   showToast(title: string, message: string, type: 'success' | 'error'): void {
     this.toastService.showToast({
