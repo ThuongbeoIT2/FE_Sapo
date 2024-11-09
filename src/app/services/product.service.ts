@@ -82,9 +82,9 @@ export class ProductService {
   }
 
   // Fetch products by category
-  getProductsByCategory(category: string, page: number = 0): Observable<PaginatedResponse<ProductResponse>> {
+  getProductsByCategory(cateId: number, page: number = 0): Observable<PaginatedResponse<ProductResponse>> {
     return this.http
-      .get<PaginatedResponse<ProductResponse>>(`${this.apiUrl}list-product/${category}?page=${page}`)
+      .get<PaginatedResponse<ProductResponse>>(`${this.apiUrl}list-product/${cateId}?page=${page}`)
       .pipe(catchError(this.handleError)); // Handle errors
   }
 

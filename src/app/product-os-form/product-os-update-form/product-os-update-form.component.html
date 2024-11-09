@@ -164,6 +164,24 @@
 </div>
 <hr>
 <div class="imageOS-list" style="width: 80%; margin: 0 auto;">
+
+  <p *ngIf="!this.hasEnoughActiveImages()" style="color: red; text-align: center; animation: blink 1s infinite;">
+    <i class="fas fa-exclamation-triangle"></i> Yêu cầu có 3 ảnh active <i class="fas fa-exclamation-triangle"></i>
+  </p>
+
+  <style>
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+    }
+  </style>
+  <hr>
+
+
   <h2 class="form-title">Product Images</h2>
   <div class="details" *ngIf="productOSImages.length > 0; else noImages">
     <div class="recentImages">
@@ -197,7 +215,7 @@
     </div>
   </div>
   <ng-template #noImages>
-    <p>No detailed images available.</p>
+    <p>No detailed images available. Please provide at least 3 active images.</p>
   </ng-template>
 </div>
 <hr style="border: 0; height: 1px; background: linear-gradient(to right, transparent, #ccc, transparent); margin: 20px 0;">

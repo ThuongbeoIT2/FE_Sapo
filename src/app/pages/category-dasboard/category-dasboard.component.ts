@@ -20,6 +20,7 @@ export class CategoryDasboardComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       const cateId = params['cateId'];
+      this.currentPage = +params['page'] || 1;
        if (cateId) {
          this.cateId = cateId;
          this.loadProductsByCategory(cateId, 0);
@@ -29,8 +30,8 @@ export class CategoryDasboardComponent implements OnInit {
   navigateToProduct(slug: string): void {
     this.router.navigate(['/product-detail'], { queryParams: { slug: slug } });
   }
-  loadProductsByCategory(slug:string,page: number): void {
-    this.productService.getProductsByCategory(slug, page).subscribe({
+  loadProductsByCategory(cateId:number,page: number): void {
+    this.productService.getProductsByCategory(cateId, this.currentPage-1).subscribe({
       next: (data) => {
         this.products = data.content; // Lưu tất cả sản phẩm
       },

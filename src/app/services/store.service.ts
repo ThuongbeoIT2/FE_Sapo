@@ -139,7 +139,14 @@ loginStore(storeCode: string, password: string): Observable<ApiResponse> {
       .post<PaginatedResponse<ProductOfStoreResponse>>(`${this.apiUrlOS}product`,formData)
       .pipe(catchError(this.handleError));
   }
-
+  getListProductOfStoreBySlug(slug:string,page: number): Observable<PaginatedResponse<ProductOfStoreResponse>> {
+    const formData = new FormData();
+    formData.append('slug', slug);
+    formData.append('page', page.toString());
+    return this.http
+      .post<PaginatedResponse<ProductOfStoreResponse>>(`${this.apiUrlOS}getPOSBySlug`,formData)
+      .pipe(catchError(this.handleError));
+  }
   // Search products in manager's store
   searchProductsInMyStore(key: string, page: number = 0): Observable<PaginatedResponse<ProductOfStoreResponse>> {
     return this.http
@@ -149,12 +156,7 @@ loginStore(storeCode: string, password: string): Observable<ApiResponse> {
 
   // Get product details from manager's store
   getProductFromMyStore(productOfStoreId: number): Observable<ProductOfStoreResponse> {
-    const storeCode = localStorage.getItem('storeCode');
-    if (!storeCode) {
-      return throwError(() => 'Store code not found!');
-    }
     const formData = new FormData();
-    formData.append('storeCode', storeCode);
     return this.http
       .post<ProductOfStoreResponse>(`${this.apiUrlOS}${productOfStoreId}`, formData)
       .pipe(catchError(this.handleError));
@@ -167,7 +169,8 @@ loginStore(storeCode: string, password: string): Observable<ApiResponse> {
     priceO: number,
     discount: number,
     quantity: number,
-    slugProduct: string
+    slugProduct: string,
+    description: string
   ): Observable<ApiResponse> {
     const formData = new FormData();
     formData.append('storeCode', storeCode);
@@ -176,6 +179,7 @@ loginStore(storeCode: string, password: string): Observable<ApiResponse> {
     formData.append('discount', discount.toString());
     formData.append('quantity', quantity.toString());
     formData.append('slugProduct', slugProduct);
+    formData.append('description', description);
 
     return this.http
       .post<ApiResponse>(`${this.apiUrlOS}insert`, formData)

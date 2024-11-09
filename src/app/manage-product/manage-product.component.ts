@@ -16,7 +16,7 @@ export class ManageProductComponent implements OnInit {
   filteredProducts: ProductResponse[] = []; // Sản phẩm sau khi lọc
   categories: CategoryResponse[] = []; // Danh sách danh mục
 
-  category: string = ''; // Giá trị danh mục hiện tại (slug)
+  cateId: number = 0; // Giá trị danh mục hiện tại (slug)
   action!: string; // Thao tác (add/update)
   query!: string; // Từ khóa tìm kiếm
   currentPage: number = 1; // Trang hiện tại (bắt đầu từ 1)
@@ -50,7 +50,7 @@ export class ManageProductComponent implements OnInit {
           { id: 0, cateName: 'Tất cả', slug: '', thumbnail: '', description: '' },
           ...data
         ];
-        this.category = this.categories[0].slug; // Mặc định là 'Tất cả'
+        this.cateId = this.categories[0].id; // Mặc định là 'Tất cả'
       },
       error: (error) => {
         console.error('Có lỗi xảy ra khi lấy danh mục!', error);
@@ -85,20 +85,32 @@ export class ManageProductComponent implements OnInit {
   }
 
   onCategoryChange(): void {
-    this.filterProducts(); // Lọc sản phẩm khi danh mục thay đổi
+    this.filterProducts();
+    // Lọc sản phẩm khi danh mục thay đổi
   }
 
   filterProducts(): void {
-    console.log(this.category);
-    if (this.category === '') {
-      // Hiển thị tất cả nếu chọn "Tất cả"
-      this.filteredProducts = [...this.products];
+    window.scrollTo(0, 0); // Cuộn lên đầu trang
+    console.log(this.cateId);
+    if (this.cateId == 0) {
+      this.productService.getProducts(this.currentPage-1).subscribe({
+        next: (data) => {
+          this.filteredProducts = data.content;
+        },
+        error: (error) => {
+          console.error('Error loading products:', error);
+        }
+      });
     } else {
       // Lọc sản phẩm theo danh mục
-      this.filteredProducts = this.products.filter(
-        (product) => product.category.trim().toLowerCase().replace(/\s+/g, '-') === this.category
-      );
-      console.log(this.filteredProducts);
+      this.productService.getProductsByCategory(this.cateId, this.currentPage-1).subscribe({
+        next: (data) => {
+          this.filteredProducts = data.content;
+        },
+        error: (error) => {
+          console.error('Error loading products:', error);
+        }
+      });
     }
   }
 

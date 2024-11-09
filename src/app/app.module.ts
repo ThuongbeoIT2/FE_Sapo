@@ -73,6 +73,7 @@ import { ProductOsAddFormComponent } from './product-os-form/product-os-add-form
 import { ProductOsUpdateFormComponent } from './product-os-form/product-os-update-form/product-os-update-form.component';
 import { ProductOSDetailComponent } from './product-os-detail/product-os-detail.component';
 import { EvaluateComponent } from './pages/evaluate/evaluate.component';
+import { ProductOsDetailClientComponent } from './pages/card-item/product-os-detail-client/product-os-detail-client.component';
 
 @NgModule({
   declarations: [
@@ -145,6 +146,7 @@ import { EvaluateComponent } from './pages/evaluate/evaluate.component';
        ProductOsUpdateFormComponent,
        ProductOSDetailComponent,
        EvaluateComponent,
+       ProductOsDetailClientComponent
   ],
   imports: [
     BrowserModule,

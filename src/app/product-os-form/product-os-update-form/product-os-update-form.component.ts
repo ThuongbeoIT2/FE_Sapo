@@ -38,6 +38,7 @@ export class ProductOsUpdateFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
     this.storeCode = localStorage.getItem('storeCode') || '';
     if (!this.storeCode) {
       window.location.href = '/login';
@@ -50,12 +51,14 @@ export class ProductOsUpdateFormComponent implements OnInit {
         console.log(this.productosid);
       }
     });
+
   }
   loadProductOSImages(id :number){
     this.storeService.getAllProductOSImageById(id).subscribe((response: ApiResponse) => {
       console.log(response);
       if (response.status === 'OK') {
         this.productOSImages = response.data;
+        this.hasEnoughActiveImages();
       }
       else {
         alert('Product images not found');
@@ -184,5 +187,9 @@ export class ProductOsUpdateFormComponent implements OnInit {
 
   }
 
+  hasEnoughActiveImages(): boolean {
+    console.log( this.productOSImages?.filter(image => image.status === true).length===3);
+    return this.productOSImages?.filter(image => image.status === true).length === 3;
 
+  }
 }

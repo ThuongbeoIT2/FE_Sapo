@@ -11,6 +11,7 @@ export class ProductOfStoreResponse {
   slug: string;
   description: string;
   evaluate: number;
+  thumbnail: string;
   category: string;
   storeName: string;
   storeCode: string;
@@ -27,6 +28,7 @@ export class ProductOfStoreResponse {
     status: boolean,
     proName: string,
     slug: string,
+    thumbnail: string,
     description: string,
     category: string,
     storeName: string,
@@ -43,6 +45,7 @@ export class ProductOfStoreResponse {
     this.status = status;
     this.proName = proName;
     this.slug = slug;
+    this.thumbnail = thumbnail;
     this.description = description;
     this.category = category;
     this.storeName = storeName;

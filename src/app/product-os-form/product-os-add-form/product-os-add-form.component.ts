@@ -57,7 +57,7 @@ export class ProductOsAddFormComponent implements OnInit {
     };
     console.log(productData);
 
-   this.storeService.insertProductToMyStore(this.storeCode,this.priceI,this.priceO,this.discount,this.quantity,this.slugProduct)
+   this.storeService.insertProductToMyStore(this.storeCode,this.priceI,this.priceO,this.discount,this.quantity,this.slugProduct,this.description)
    .subscribe((response:ApiResponse) => {
       if(response.status === 'OK'){
         window.location.href = '/store-product';

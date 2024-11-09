@@ -24,6 +24,7 @@ import { PasswordComponent } from './password/password.component';
 import { StoredashboardComponent } from './storedashboard/storedashboard.component';
 import { ManageProductOsComponent } from './manage-product-os/manage-product-os.component';
 import { AllCategoryComponent } from './all-category/all-category.component';
+import { ProductOsDetailClientComponent } from './pages/card-item/product-os-detail-client/product-os-detail-client.component';
 
 
 const routes: Routes = [
@@ -95,6 +96,11 @@ const routes: Routes = [
   {
     path:'settings',
     component:SettingComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'productOS-detail',
+    component:ProductOsDetailClientComponent,
     canActivate: [authGuard]
   },
   {

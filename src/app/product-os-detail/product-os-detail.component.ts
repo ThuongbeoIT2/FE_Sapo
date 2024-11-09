@@ -58,6 +58,16 @@ export class ProductOSDetailComponent {
       userName: 'Ngô Văn E',
       comment: 'Tôi rất hài lòng với sản phẩm này, sẽ giới thiệu cho bạn bè.',
       date: new Date(2024, 10, 5, 14, 20)
+    },
+    {
+      userName: 'Ngô Văn U',
+      comment: 'Tôi rất hài lòng với sản phẩm này, sẽ giới thiệu cho bạn bè.',
+      date: new Date(2024, 10, 5, 14, 20)
+    },
+    {
+      userName: 'Ngô Văn Y',
+      comment: 'Tôi rất hài lòng với sản phẩm này, sẽ giới thiệu cho bạn bè.',
+      date: new Date(2024, 10, 5, 14, 20)
     }
   ];
   constructor(

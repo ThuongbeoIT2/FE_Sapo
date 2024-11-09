@@ -3,11 +3,11 @@
   <select
     id="category"
     name="category"
-    [(ngModel)]="category"
+    [(ngModel)]="cateId"
     (change)="onCategoryChange()"
     required
   >
-    <option *ngFor="let cate of categories" [value]="cate.slug">
+    <option *ngFor="let cate of categories" [value]="cate.id">
       {{ cate.cateName }}
     </option>
   </select>

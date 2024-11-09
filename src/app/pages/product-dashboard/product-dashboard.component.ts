@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PaginatedResponse } from 'src/app/model/paginated-response.model';
 import { ProductResponse } from 'src/app/model/product.model';
+import { ProductOfStoreResponse } from 'src/app/model/productOS.model';
 import { ProductService } from 'src/app/services/product.service';
+import { StoreService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-product-dashboard',
@@ -11,24 +14,40 @@ import { ProductService } from 'src/app/services/product.service';
 export class ProductDashboardComponent {
   slug!: string;
   products: ProductResponse[] = [];
+  productOSBySlug: ProductOfStoreResponse[]=[];
   product!: ProductResponse;
 
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute
+    private storeService: StoreService,
+    private route: ActivatedRoute,
+    private router: Router
+
   ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       const slug = params['slug'];
+      const page = params['page'] || 0;
+      console.log('slug : '+slug + '  |page : '+page);
       if (slug) {
         this.slug = slug;
         this.loadProductBySlug(slug);
-        console.log(this.product);
+        this.loadProductOSBySlug(slug,page);
       }
     });
-    console.log(this.product);
+  }
+  loadProductOSBySlug(slug: string, page: number): void {
+    this.storeService.getListProductOfStoreBySlug(slug, page).subscribe({
+      next: (data: PaginatedResponse<ProductOfStoreResponse>) => {
+        this.productOSBySlug = data.content;
+
+      },
+      error: (error) => {
+        console.error('Error loading products:', error);
+      }
+    });
   }
   addProduct(newProduct: ProductResponse): void {
     const storedProducts = localStorage.getItem('favoriteProducts');
@@ -61,5 +80,9 @@ export class ProductDashboardComponent {
         console.error('Error loading product:', error);
       }
     });
+  }
+  productOSDetail(productOS: ProductOfStoreResponse): void {
+    const productosid = productOS.id;
+    this.router.navigate(['/productOS-detail'], { queryParams: { productosid: productosid, slug: this.slug } });
   }
 }
