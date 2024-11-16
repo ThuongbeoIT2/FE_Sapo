@@ -256,13 +256,9 @@ loginStore(storeCode: string, password: string): Observable<ApiResponse> {
       .pipe(catchError(this.handleError));
   }
 getAllProductOSImageById( productOSID: number): Observable<ApiResponse> {
-    const storeCode = localStorage.getItem('storeCode');
-    if (!storeCode) {
-      return throwError(() => 'Store code not found!');
-    }
+
     const formData = new FormData();
     formData.append('productOSID', productOSID.toString());
-    formData.append('storeCode', storeCode);
     return this.http
       .post<ApiResponse>(`${this.apiUrlOS}image/getAll`, formData)
       .pipe(catchError(this.handleError));

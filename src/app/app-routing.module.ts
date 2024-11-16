@@ -25,6 +25,7 @@ import { StoredashboardComponent } from './storedashboard/storedashboard.compone
 import { ManageProductOsComponent } from './manage-product-os/manage-product-os.component';
 import { AllCategoryComponent } from './all-category/all-category.component';
 import { ProductOsDetailClientComponent } from './pages/card-item/product-os-detail-client/product-os-detail-client.component';
+import { CartComponent } from './cart/cart.component';
 
 
 const routes: Routes = [
@@ -106,6 +107,11 @@ const routes: Routes = [
   {
     path:'manage-product-os',
     component:ManageProductOsComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'my-cart',
+    component:CartComponent,
     canActivate: [authGuard]
   },
   {

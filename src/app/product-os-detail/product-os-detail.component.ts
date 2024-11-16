@@ -5,6 +5,9 @@ import { ProductService } from '../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { StoreService } from '../services/store.service';
 import { ApiResponse } from '../model/ApiResponse.model';
+import { PaymentService } from '../services/payment.service';
+import { ToastService } from '../services/toast.service';
+import { PaymentMethod } from '../model/paymentMethod.model';
 
 @Component({
   selector: 'app-product-os-detail',
@@ -29,9 +32,16 @@ export class ProductOSDetailComponent {
   storeName!: string;
   id!: number;
   product?: ProductOfStoreResponse;
-
+  quantityorder = 1;
   title = '';
   imageDescription = '';
+  selectedPaymentMethod = '1';
+  paymentMethods: PaymentMethod[] = [
+    { id: 1, description: "VN Pay. Ví điện tử", method: "VN-PAY", slug: "VN-PAY" },
+    { id: 2, description: "VI VIET. Ví điện tử", method: "Vi-VIET", slug: "Vi-VIET" },
+    { id: 3, description: "CREDIT-CARD. Thẻ thanh toán", method: "CREDIT-CARD", slug: "CREDIT-CARD" },
+    { id: 4, description: "MONEY. Thanh toán tại chỗ", method: "MONEY", slug: "MONEY" }
+  ];
 
   fakeComments = [
     {
@@ -72,7 +82,9 @@ export class ProductOSDetailComponent {
   ];
   constructor(
     private route: ActivatedRoute,
-    private storeService: StoreService
+    private storeService: StoreService,
+    private paymentService: PaymentService,
+    private toastService: ToastService
   ) {}
 
   ngOnInit(): void {
@@ -99,6 +111,31 @@ export class ProductOSDetailComponent {
       }
     });
   }
+  addToCart() {
+    this.paymentService.addToCart(this.productosid, this.quantityorder).subscribe((response: ApiResponse) => {
+      if (response.status === 'OK') {
+        alert('Add to cart successfully');
+      } else {
+        alert('Add to cart failed');
+      }
+    });
+  }
+  buyNow(selectedPaymentMethod: string) {
+    console.log('Buying now with payment method:', this.selectedPaymentMethod);
+    this.paymentService.buyNow(this.productosid, this.quantityorder).subscribe((response: ApiResponse) => {
+      if (response.status === 'OK') {
+        if (selectedPaymentMethod === '1') {
+           alert( 'Bạn đã mua hàng thành công! Vui lòng thanh toán từ cửa hàng.');
+          // Redirect to VNPay
+            window.location.href = '/my-cart';
+        }
+      } else {
+        alert('Buy now failed');
+      }
+    });
+
+  }
+
   // Load product details
   loadProduct(id: number) {
     this.storeService.getProductFromMyStore(this.productosid).subscribe((response: ProductOfStoreResponse) => {
@@ -133,5 +170,12 @@ export class ProductOSDetailComponent {
     largeImage.setAttribute('src', smallImage.getAttribute('src') || '');
     smallImage.setAttribute('src', tempSrc);
   }
-
+  showSuccessToast(title: string, message: string) {
+    this.toastService.showToast({
+      title: title,
+      message: message,
+      type: 'success',
+      duration: 2000
+    });
+  }
 }

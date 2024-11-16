@@ -1,0 +1,123 @@
+<div class="container">
+  <div class="text-right">
+    <button class="btn btn-info" (click)="viewOrders()">Các đơn hàng của bạn</button>
+  </div>
+  <style>
+    .table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+    .table th, .table td {
+      font-size: 16px;
+      text-align: center;
+      vertical-align: middle;
+      border: 1px solid #ddd;
+      padding: 12px;
+    }
+    .table th {
+      font-weight: bold;
+      background-color: #f8f8f8;
+    }
+    .btn {
+      font-size: 14px;
+      padding: 6px 12px;
+      margin-right: 5px;
+    }
+    .btn:last-child {
+      margin-right: 0;
+    }
+  </style>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Price Total</th>
+        <th>Store Name</th>
+        <th>Original Price</th>
+        <th>Discount</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="orderInit.length === 0">
+      <tr>
+        <td colspan="7">Chưa có sản phẩm nào trong giỏ</td>
+      </tr>
+    </tbody>
+    <tbody>
+      <tr *ngFor="let order of orderInit">
+        <td>{{ order.productName }}</td>
+        <td>{{ order.quantity }}</td>
+        <td>{{ order.price_total | currency }}</td>
+        <td>{{ order.storeName }}</td>
+        <td>{{ order.priceO | currency }}</td>
+        <td>{{ order.discount }}%</td>
+        <td>
+          <button class="btn btn-primary" (click)="editOrder(order)">Sửa</button>
+          <button class="btn btn-success" (click)="buyOrder(order)">Mua hàng</button>
+          <button class="btn btn-danger" (click)="deleteOrder(order)">Xóa</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<hr>
+<h2 class="text-center">Các đơn hàng của bạn</h2>
+<div class="container">
+  <style>
+    .user-orders-table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+    .user-orders-table th, .user-orders-table td {
+      font-size: 16px;
+      text-align: center;
+      vertical-align: middle;
+      border: 1px solid #ddd;
+      padding: 12px;
+    }
+    .user-orders-table th {
+      font-weight: bold;
+      background-color: #f1f1f1;
+    }
+    .user-btn {
+      font-size: 14px;
+      padding: 6px 12px;
+      margin-right: 5px;
+    }
+    .user-btn:last-child {
+      margin-right: 0;
+    }
+  </style>
+  <div class="text-right"></div>
+  <table class="user-orders-table">
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Quantity</th>
+        <th>Price Total</th>
+        <th>Store Name</th>
+        <th>Original Price</th>
+        <th>Discount</th>
+        <th>isPayment</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let userOrder of orderSuccess ">
+        <td>{{ userOrder.productName }}</td>
+        <td>{{ userOrder.quantity }}</td>
+        <td>{{ userOrder.price_total | currency }}</td>
+        <td>{{ userOrder.storeName }}</td>
+        <td>{{ userOrder.priceO | currency }}</td>
+        <td>{{ userOrder.discount }}%</td>
+        <td>{{ userOrder.isPayment === '1' ? 'Đã thanh toán' : 'Chưa thanh toán' }}</td>
+        <td>
+          <button class="user-btn btn-success">Chi tiết</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

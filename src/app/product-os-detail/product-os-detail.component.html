@@ -1,6 +1,6 @@
 
 <div class="container">
-
+<app-toastsuccess></app-toastsuccess>
 <h1 style="font-size: 2.5em; font-weight: bold; text-align: center; margin-top: 20px;">
   Thông tin sản phẩm
 </h1>
@@ -61,15 +61,36 @@
           <label>Store Code:</label>
           <span>{{ product.storeCode }}</span>
         </div>
+      <hr style="border: none; height: 2px; background: linear-gradient(to right, #ff0000, #ffff00, #00ff00); margin-top: 20px;">
+      <div style="margin-top: 20px; text-align: left;">
+        <label for="quantityInput" style="font-size: 1.2em; font-weight: bold; margin-right: 10px;">Quantity of the order:</label>
+        <input id="quantityInput" type="number" [(ngModel)]="quantityorder" min="1" required style="width: 150px; padding: 10px; font-size: 1.2em; border: 1px solid #ccc; border-radius: 5px;">
+      </div>
+      <div style="margin-top: 20px; text-align: left;">
+        <label for="paymentMethod" style="font-size: 1.2em; font-weight: bold; margin-right: 10px;">
+          Hình thức thanh toán:
+        </label>
+        <select
+          id="paymentMethod"
+          [(ngModel)]="selectedPaymentMethod"
+          required
+          style="width: 200px; padding: 10px; font-size: 1.2em; border: 1px solid #ccc; border-radius: 5px;"
+        >
+          <option *ngFor="let method of paymentMethods" [value]="method.id">
+            {{ method.description }}
+          </option>
+        </select>
+      </div>
+
       </div>
     </div>
   </div>
 </div>
 <div style="display: flex; justify-content: center; margin-top: 20px;">
-  <button style="padding: 10px 20px; font-size: 1.2em; margin-right: 10px; cursor: pointer; background-color: #4CAF50; color: white; border: none; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+  <button (click)="addToCart()" style="padding: 10px 20px; font-size: 1.2em; margin-right: 10px; cursor: pointer; background-color: #4CAF50; color: white; border: none; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
     Thêm vào giỏ hàng
   </button>
-  <button style="padding: 10px 20px; font-size: 1.2em; cursor: pointer; background-color: #f44336; color: white; border: none; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+  <button (click)="buyNow(this.selectedPaymentMethod)" style="padding: 10px 20px; font-size: 1.2em; cursor: pointer; background-color: #f44336; color: white; border: none; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
     Mua ngay
   </button>
 </div>

@@ -74,6 +74,9 @@ import { ProductOsUpdateFormComponent } from './product-os-form/product-os-updat
 import { ProductOSDetailComponent } from './product-os-detail/product-os-detail.component';
 import { EvaluateComponent } from './pages/evaluate/evaluate.component';
 import { ProductOsDetailClientComponent } from './pages/card-item/product-os-detail-client/product-os-detail-client.component';
+import { CartComponent } from './cart/cart.component';
+import { CartDetailComponent } from './cart-detail/cart-detail.component';
+import { BillpaymentComponent } from './billpayment/billpayment.component';
 
 @NgModule({
   declarations: [
@@ -146,7 +149,10 @@ import { ProductOsDetailClientComponent } from './pages/card-item/product-os-det
        ProductOsUpdateFormComponent,
        ProductOSDetailComponent,
        EvaluateComponent,
-       ProductOsDetailClientComponent
+       ProductOsDetailClientComponent,
+       CartComponent,
+       CartDetailComponent,
+       BillpaymentComponent
   ],
   imports: [
     BrowserModule,

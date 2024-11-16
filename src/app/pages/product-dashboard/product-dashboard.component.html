@@ -1,6 +1,31 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<app-navigation></app-navigation>
+<app-topbar></app-topbar>
+<hr class="styled-hr">
+<style>
+  .styled-hr {
+    border: 0;
+    height: 2px;
+    background: linear-gradient(to right, #ff4500, #ffcc00, #ff4500);
+    margin: 20px 0;
+    animation: gradient 3s infinite;
+  }
 
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+</style>
 <div class="container">
-  <app-navigation></app-navigation>
+
+
 <app-product-detail-card [product]="this.product"></app-product-detail-card>
 
 <hr>
