@@ -21,7 +21,15 @@ export class PaymentService {
   deleteOrder(orderDetailID: number): Observable<ApiResponse> {
     const formData = new FormData();
     formData.append('orderId', orderDetailID.toString());
-    return this.http.post<ApiResponse>(`${environment.apiUrl}/delete-order`,formData).pipe(
+    return this.http.post<ApiResponse>(`${this.baseUrl}/delete-order`,formData).pipe(
+      catchError(this.handleError)
+    );
+
+  }
+  getOrderById(orderDetailID: number): Observable<ApiResponse> {
+    const formData = new FormData();
+    formData.append('orderId', orderDetailID.toString());
+    return this.http.post<ApiResponse>(`${this.baseUrl}order/getById`,formData).pipe(
       catchError(this.handleError)
     );
 
@@ -53,20 +61,38 @@ export class PaymentService {
   }
 
   // Payment with VNPay
-  paymentWithVNPAY(orderDetailID: number): Observable<ApiResponse> {
-    const params = new HttpParams().set('orderDetailID', orderDetailID.toString());
-    return this.http.post<ApiResponse>(`${environment.apiUrl}/paymentVNPAY`, {}, { params }).pipe(
+  paymentWithVNPAY(orderDetailID: number, fullName: string, phoneNumber: string, address: string): Observable<ApiResponse> {
+    const formData = new FormData();
+    formData.append('orderDetailID', orderDetailID.toString());
+    formData.append('fullName', fullName);
+    formData.append('phoneNumber', phoneNumber);
+    formData.append('address', address);
+
+    return this.http.post<ApiResponse>(`${environment.apiUrl}/paymentVNPAY`, formData).pipe(
       catchError(this.handleError)
     );
   }
 
-  // Manual Payment
-  paymentManual(orderDetailID: number): Observable<ApiResponse> {
-    const params = new HttpParams().set('orderDetailID', orderDetailID.toString());
-    return this.http.post<ApiResponse>(`${environment.apiUrl}/paymentManual`, {}, { params }).pipe(
+  PaymentInCart(orderDetailID: number): Observable<ApiResponse> {
+    const formData = new FormData();
+    formData.append('orderDetailID', orderDetailID.toString());
+    return this.http.post<ApiResponse>(`${environment.apiUrl}/order-in-cart`, formData).pipe(
       catchError(this.handleError)
     );
   }
+  // Manual Payment
+  paymentManual(orderDetailID: number, fullName: string, phoneNumber: string, address: string): Observable<ApiResponse> {
+    const formData = new FormData();
+    formData.append('orderDetailID', orderDetailID.toString());
+    formData.append('fullName', fullName);
+    formData.append('phoneNumber', phoneNumber);
+    formData.append('address', address);
+
+    return this.http.post<ApiResponse>(`${environment.apiUrl}/paymentManual`, formData).pipe(
+      catchError(this.handleError)
+    );
+  }
+
 
   // Error handling
   private handleError(error: HttpErrorResponse) {

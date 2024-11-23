@@ -120,15 +120,12 @@ export class ProductOSDetailComponent {
       }
     });
   }
-  buyNow(selectedPaymentMethod: string) {
+  buyNow() {
     console.log('Buying now with payment method:', this.selectedPaymentMethod);
     this.paymentService.buyNow(this.productosid, this.quantityorder).subscribe((response: ApiResponse) => {
       if (response.status === 'OK') {
-        if (selectedPaymentMethod === '1') {
-           alert( 'Bạn đã mua hàng thành công! Vui lòng thanh toán từ cửa hàng.');
-          // Redirect to VNPay
-            window.location.href = '/my-cart';
-        }
+          const orderDetailID = response.data;
+          window.location.href = `/order-detail?orderId=${orderDetailID}`;
       } else {
         alert('Buy now failed');
       }

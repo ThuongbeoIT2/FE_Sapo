@@ -1,0 +1,111 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<app-navigation></app-navigation>
+<div class="container">
+  <marquee behavior="scroll" direction="left" class="text-center text-danger" style="font-size: 24px; font-weight: bold; animation: blink 1s step-end infinite;">
+    Quảng cáo: Giảm giá 50% cho tất cả các sản phẩm!
+  </marquee>
+
+  <style>
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+  </style>
+  <hr style="border: 0; height: 1px; background: linear-gradient(to right, transparent, #000, transparent);">
+  <h1 class="text-center text-black">Thông tin đơn hàng</h1>
+  <app-order-process [status]="1"></app-order-process>
+
+  <div style="padding-top: 20px;"></div>
+  <div class="row">
+    <div class="col-md-4 content-left">
+      <div class="order-container">
+        <h2>Order Information</h2>
+        <div class="order-details">
+          <div class="order-item">
+            <span class="label">Product Name:</span>
+            <span class="value">{{ orderData.productName }}</span>
+          </div>
+          <div class="order-item">
+            <span class="label">Store Name:</span>
+            <span class="value">{{ orderData.storeName }}</span>
+          </div>
+          <div class="order-item">
+            <span class="label">Quantity:</span>
+            <span class="value">{{ orderData.quantity }}</span>
+          </div>
+          <div class="order-item">
+            <span class="label">Price Total:</span>
+            <span class="value">{{ orderData.price_total | currency }}</span>
+          </div>
+          <div class="order-item">
+            <span class="label">Status:</span>
+            <span class="value">{{ orderData.initStatus }}</span>
+          </div>
+          <div class="order-item">
+            <span class="label">Discount:</span>
+            <span class="value">{{ orderData.discount }}%</span>
+          </div>
+            <div class="order-item">
+            <span class="label">isPayment:</span>
+            <span class="value">{{ orderData.isPayment === '1' ? 'Đã thanh toán' : 'Chưa thanh toán' }}</span>
+            </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-8 content-right">
+      <div class="form-container">
+        <!-- Buyer Information Section -->
+        <div class="section">
+          <form>
+            <div class="form-group">
+              <label>Họ và tên</label>
+              <input type="text" class="form-control" placeholder="Nhập họ và tên" [(ngModel)]="dataUser.fullName" name="fullName">
+            </div>
+            <div class="form-group">
+              <label>Số điện thoại</label>
+              <input type="tel" class="form-control" placeholder="Nhập số điện thoại" [(ngModel)]="dataUser.phoneNumber" name="phoneNumber">
+            </div>
+            <div class="form-group">
+              <label>Địa chỉ</label>
+              <input type="text" class="form-control" placeholder="Nhập địa chỉ" [(ngModel)]="dataUser.address" name="address">
+            </div>
+          </form>
+        </div>
+
+
+        <!-- Shipping Section -->
+        <div class="section">
+          <h3>Vận chuyển</h3>
+            <p class="alert alert-warning">
+            Vui lòng nhập thông tin giao hàng đầy đủ và chính xác để chúng tôi có thể giao hàng đến đúng địa chỉ của bạn. Nếu có bất kỳ thắc mắc nào, vui lòng liên hệ với bộ phận chăm sóc khách hàng của chúng tôi để được hỗ trợ.
+            </p>
+        </div>
+
+        <!-- Payment Section -->
+        <div class="section">
+            <h3>Thanh toán</h3>
+            <div class="payment-options">
+            <div class="radio-option">
+              <input type="radio" id="cod" name="paymentMethod" value="4" [(ngModel)]="dataUser.paymentMethod">
+              <label for="cod">Giao hàng nhanh tận nơi (COD)</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="card" name="paymentMethod" value="1" [(ngModel)]="dataUser.paymentMethod">
+              <label for="card">Thanh toán VNPAY</label>
+            </div>
+            </div>
+          <p class="info-text">
+            Bạn có thể thanh toán đơn hàng bằng cách chuyển khoản vào STK của chúng tôi. Chúng tôi sẽ chuyển hàng ngay cho bạn khi xác nhận đã nhận được tiền. Cảm ơn bạn đã mua sản phẩm của chúng tôi.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="text-center" style="margin-top: 20px;">
+    <button (click)="payment()" class="btn btn-success btn-lg" style="font-size: 20px; padding: 15px 30px;" [disabled]="orderData.isPayment === '1'">Thanh toán</button>
+  </div>
+</div>
+<app-footer></app-footer>

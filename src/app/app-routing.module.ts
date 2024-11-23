@@ -26,6 +26,7 @@ import { ManageProductOsComponent } from './manage-product-os/manage-product-os.
 import { AllCategoryComponent } from './all-category/all-category.component';
 import { ProductOsDetailClientComponent } from './pages/card-item/product-os-detail-client/product-os-detail-client.component';
 import { CartComponent } from './cart/cart.component';
+import { OrderDetailUserComponent } from './order-detail-user/order-detail-user.component';
 
 
 const routes: Routes = [
@@ -117,6 +118,11 @@ const routes: Routes = [
   {
     path:'all-categories',
     component:AllCategoryComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'order-detail',
+    component:OrderDetailUserComponent,
     canActivate: [authGuard]
   },
   {

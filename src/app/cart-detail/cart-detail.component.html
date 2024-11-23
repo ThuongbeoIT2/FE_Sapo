@@ -1,7 +1,4 @@
 <div class="container">
-  <div class="text-right">
-    <button class="btn btn-info" (click)="viewOrders()">Các đơn hàng của bạn</button>
-  </div>
   <style>
     .table {
       border-collapse: collapse;
@@ -115,7 +112,7 @@
         <td>{{ userOrder.discount }}%</td>
         <td>{{ userOrder.isPayment === '1' ? 'Đã thanh toán' : 'Chưa thanh toán' }}</td>
         <td>
-          <button class="user-btn btn-success">Chi tiết</button>
+          <button class="user-btn btn-success" (click)="viewOrderById(userOrder)">Chi tiết</button>
         </td>
       </tr>
     </tbody>

@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<div class="order-process container text-center">
+  <div class="row position-relative">
+    <!-- Line under milestones -->
+    <div class="progress-line" [ngClass]="{'progress-step-1': status >= 1, 'progress-step-2': status >= 2, 'progress-step-3': status >= 3}"></div>
+
+    <!-- Step 1: Order Placed -->
+    <div class="col-sm-4">
+      <div class="step-icon" [ngClass]="{'active': status >= 1}">
+        <i class="fas fa-shopping-cart"></i>
+      </div>
+      <h3 [ngClass]="{'active-text': status >= 1}">Đặt hàng</h3>
+      <p *ngIf="status >= 1">Đơn hàng của bạn đã được đặt thành công.</p>
+    </div>
+
+    <!-- Step 2: In Transit -->
+    <div class="col-sm-4">
+      <div class="step-icon" [ngClass]="{'active': status >= 2}">
+        <i class="fas fa-motorcycle"></i>
+      </div>
+      <h3 [ngClass]="{'active-text': status >= 2}">Đang vận chuyển</h3>
+      <p *ngIf="status >= 2">Đơn hàng của bạn đang được giao.</p>
+    </div>
+
+    <!-- Step 3: Delivered -->
+    <div class="col-sm-4">
+      <div class="step-icon" [ngClass]="{'active': status >= 3}">
+        <i class="fas fa-handshake"></i>
+      </div>
+      <h3 [ngClass]="{'active-text': status >= 3}">Hoàn thành</h3>
+      <p *ngIf="status >= 3">Bạn đã nhận được đơn hàng.</p>
+    </div>
+  </div>
+</div>

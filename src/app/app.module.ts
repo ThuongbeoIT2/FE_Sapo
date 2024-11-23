@@ -77,6 +77,8 @@ import { ProductOsDetailClientComponent } from './pages/card-item/product-os-det
 import { CartComponent } from './cart/cart.component';
 import { CartDetailComponent } from './cart-detail/cart-detail.component';
 import { BillpaymentComponent } from './billpayment/billpayment.component';
+import { OrderDetailUserComponent } from './order-detail-user/order-detail-user.component';
+import { OrderProcessComponent } from './order-process/order-process.component';
 
 @NgModule({
   declarations: [
@@ -152,7 +154,9 @@ import { BillpaymentComponent } from './billpayment/billpayment.component';
        ProductOsDetailClientComponent,
        CartComponent,
        CartDetailComponent,
-       BillpaymentComponent
+       BillpaymentComponent,
+       OrderDetailUserComponent,
+       OrderProcessComponent
   ],
   imports: [
     BrowserModule,

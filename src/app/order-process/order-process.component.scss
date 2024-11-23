@@ -1,0 +1,62 @@
+.order-process {
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  .row {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .step-icon {
+    font-size: 50px;
+    color: #ccc;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+  }
+
+  .step-icon.active {
+    color: #4CAF50; // Active color
+  }
+
+  h3 {
+    color: #333;
+    font-weight: bold;
+    &.active-text {
+      color: #4CAF50;
+    }
+  }
+
+  p {
+    color: #666;
+  }
+
+  /* Progress Line */
+  .progress-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    width: 33.33%;
+    background-color: #ccc;
+    transition: width 0.3s ease;
+    z-index: -1;
+  }
+
+  /* Progress line width based on the current step */
+  .progress-step-1 .progress-line {
+    width: 33.33%;
+    background-color: #4CAF50;
+  }
+
+  .progress-step-2 .progress-line {
+    width: 66.66%;
+    background-color: #4CAF50;
+  }
+
+  .progress-step-3 .progress-line {
+    width: 100%;
+    background-color: #4CAF50;
+  }
+}

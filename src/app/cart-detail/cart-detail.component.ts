@@ -33,8 +33,19 @@ export class CartDetailComponent implements OnInit {
   }
 
   buyOrder(order: OrderDetailResponse): void {
-    // Logic to buy the order
-    console.log('Buying order', order);
+      this.paymentService.PaymentInCart(order.id).subscribe({
+        next: (ApiResponse) => {
+          if (ApiResponse.status === 'OK') {
+            console.log('Payment success:', ApiResponse);
+            window.location.href = '/my-cart';
+          } else {
+            console.error('Payment failed:', ApiResponse);
+          }
+        },
+        error: (error) => {
+          console.error('Error making payment:', error);
+        }
+      });
   }
 
   deleteOrder(order: OrderDetailResponse): void {
@@ -53,8 +64,8 @@ export class CartDetailComponent implements OnInit {
       });
     }
   }
-  viewOrders(): void {
+  viewOrderById(userOrder : OrderDetailResponse){
+  window.location.href = `/order-detail?orderId=${userOrder.id}`;
 
-    console.log('Viewing orders', this.orders);
   }
 }
