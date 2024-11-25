@@ -17,7 +17,6 @@ export class ProductDashboardComponent {
   productOSBySlug: ProductOfStoreResponse[]=[];
   product!: ProductResponse;
 
-
   constructor(
     private productService: ProductService,
     private storeService: StoreService,

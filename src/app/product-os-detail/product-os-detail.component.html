@@ -86,7 +86,7 @@
     </div>
   </div>
 </div>
-<div style="display: flex; justify-content: center; margin-top: 20px;">
+<div style="display: flex; justify-content: center; margin-top: 20px;" *ngIf="!this.isManager" >
   <button (click)="addToCart()" style="padding: 10px 20px; font-size: 1.2em; margin-right: 10px; cursor: pointer; background-color: #4CAF50; color: white; border: none; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
     Thêm vào giỏ hàng
   </button>

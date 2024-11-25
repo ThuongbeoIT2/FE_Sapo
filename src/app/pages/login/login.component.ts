@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit{
       password: ''
     };
     ngOnInit() {
-      localStorage.clear
+      localStorage.clear();
     }
     constructor(private http: HttpClient, private router : Router, private route: ActivatedRoute,private toastService: ToastService){
       localStorage.removeItem('storeCode');

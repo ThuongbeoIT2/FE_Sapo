@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , OnInit} from '@angular/core';
 import { ProductOSImageResponse } from '../model/productOSImageResponse.model';
 import { ProductOfStoreResponse } from '../model/productOS.model';
 import { ProductService } from '../services/product.service';
@@ -14,7 +14,7 @@ import { PaymentMethod } from '../model/paymentMethod.model';
   templateUrl: './product-os-detail.component.html',
   styleUrls: ['./product-os-detail.component.scss']
 })
-export class ProductOSDetailComponent {
+export class ProductOSDetailComponent implements OnInit {
   productOSImages: ProductOSImageResponse[] = [];
   productOSImagesActive: ProductOSImageResponse[] = [];
   storeCode: string = '';
@@ -36,6 +36,7 @@ export class ProductOSDetailComponent {
   title = '';
   imageDescription = '';
   selectedPaymentMethod = '1';
+  isManager = false;
   paymentMethods: PaymentMethod[] = [
     { id: 1, description: "VN Pay. Ví điện tử", method: "VN-PAY", slug: "VN-PAY" },
     { id: 2, description: "VI VIET. Ví điện tử", method: "Vi-VIET", slug: "Vi-VIET" },
@@ -89,6 +90,7 @@ export class ProductOSDetailComponent {
 
   ngOnInit(): void {
     this.storeCode = localStorage.getItem('storeCode') || '';
+    this.isManager = this.getStoreCodeFromLocalStorage();
     this.route.queryParams.subscribe((params) => {
       this.productosid = params['productosid'];
       if (this.productosid) {
@@ -174,5 +176,13 @@ export class ProductOSDetailComponent {
       type: 'success',
       duration: 2000
     });
+  }
+  getStoreCodeFromLocalStorage(): boolean {
+    const storeCode = localStorage.getItem('storeCode');
+    if (storeCode) {
+      this.storeCode = storeCode;
+      return true;
+    }
+    return false;
   }
 }

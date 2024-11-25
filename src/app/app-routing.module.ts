@@ -7,7 +7,6 @@ import { authGuard } from './services/guard/auth.guard'
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { AdmindashboardComponent } from './admin/admindashboard/admindashboard.component';
 import { AdminloginComponent } from './admin/adminlogin/adminlogin.component';
-import { ManagerdashboardComponent } from './manager-store/managerdashboard/managerdashboard.component';
 import { ManagerproductComponent } from './manager-store/managerproduct/managerproduct.component';
 import { PaginationWrapperComponent } from './pagination-wrapper/pagination-wrapper.component';
 

@@ -1,6 +1,5 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<app-navigation></app-navigation>
-<app-topbar></app-topbar>
+<app-header-shop></app-header-shop>
 <hr class="styled-hr">
 <style>
   .styled-hr {
@@ -31,6 +30,9 @@
 <hr>
 <hr style="border: 1px solid #000; width: 100%;">
 <h2 class="featured-title">Các sản phẩm </h2>
+<div *ngIf="productOSBySlug.length === 0" class="alert alert-warning" role="alert">
+  Chưa có sản phẩm liên quan
+</div>
 <div class="row">
   <div class="col-sm-4" *ngFor="let productOS of productOSBySlug">
     <div class="card">
@@ -53,15 +55,6 @@
 
   </div>
 </div>
-
-
-
-
-
-
-
-
-
 <hr style="border: 1px solid #000; width: 100%;">
 <style>
   .featured-title {
@@ -85,4 +78,6 @@
   }
 </style>
 </div>
+
+<app-footer></app-footer>
 
