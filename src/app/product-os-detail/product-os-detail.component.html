@@ -26,27 +26,27 @@
       <div class="product-card" *ngIf="product">
 
         <div class="product-field">
-          <label>Category:</label>
+          <label>Danh mục:</label>
           <span>{{ product.category }}</span>
         </div>
         <div class="product-field">
-          <label>Price Output:</label>
+          <label>Giá bán:</label>
           <span>{{ product.priceO | currency: 'VND' }}</span>
         </div>
         <div class="product-field">
-          <label>Discount:</label>
+          <label>Khuyến mãi:</label>
           <span>{{ product.discount }}%</span>
         </div>
         <div class="product-field">
-          <label>View Count:</label>
+          <label>Lượt xem :</label>
           <span>{{ product.view }}</span>
         </div>
         <div class="product-field">
-          <label>Quantity:</label>
+          <label>Số lượng:</label>
           <span>{{ product.quantity }}</span>
         </div>
         <div class="product-field">
-          <label>Status:</label>
+          <label>Trạng thái:</label>
           <span>{{ product.status ? 'Active' : 'Inactive' }}</span>
         </div>
         <div class="product-field">
@@ -54,11 +54,11 @@
           <span>{{ product.slug }}</span>
         </div>
         <div class="product-field">
-          <label>Store Name:</label>
+          <label>Tên cửa hàng:</label>
           <span>{{ product.storeName }}</span>
         </div>
         <div class="product-field">
-          <label>Store Code:</label>
+          <label>Mã cửa hàng :</label>
           <span>{{ product.storeCode }}</span>
         </div>
       <hr style="border: none; height: 2px; background: linear-gradient(to right, #ff0000, #ffff00, #00ff00); margin-top: 20px;">
@@ -108,23 +108,8 @@
   </div>
 </div>
 <hr style="border: none; height: 2px; background: linear-gradient(to right, #ff0000, #ffff00, #00ff00); margin-top: 40px;">
-<div style="margin-top: 20px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-  <h2 style="text-align: center; font-size: 2em; font-weight: bold; margin-bottom: 20px;">
-    Các phản hồi từ khách hàng trải nghiệm sản phẩm
-  </h2>
-</div>
 
-<div style="margin-top: 20px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
-  <h2 style="text-align: center; font-size: 2em; font-weight: bold; margin-bottom: 20px;">
-    Bình luận giả
-  </h2>
-  <div *ngFor="let fakeComment of fakeComments" style="margin-bottom: 20px;">
-    <div style="border-bottom: 1px solid #ccc; padding-bottom: 10px;">
-      <p style="font-weight: bold; margin: 0;">{{ fakeComment.userName }}</p>
-      <p style="margin: 5px 0;">{{ fakeComment.comment }}</p>
-      <p style="font-size: 0.9em; color: #555; margin: 0;">{{ fakeComment.date | date: 'short' }}</p>
-    </div>
-  </div>
-</div>
 
+
+<app-comment-list></app-comment-list>
 </div>

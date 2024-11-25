@@ -1,0 +1,74 @@
+.features-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f4f8fc; /* Màu nền nhẹ cho toàn bộ giao diện */
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.feature-item {
+  background: linear-gradient(135deg, #00c6ff, #0aa517); /* Gradient màu xanh dương */
+  border-radius: 12px;
+  padding: 20px;
+  color: #ffffff; /* Màu chữ trắng */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-5px); /* Hiệu ứng hover nâng lên */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.feature-item h3 {
+  margin: 0 0 10px;
+  color: #ffffff; /* Màu chữ trắng */
+  font-size: 1.3rem;
+}
+
+.feature-item p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.cta-section {
+  margin-top: 40px;
+  text-align: center;
+  background-color: #1d3557; /* Màu xanh đậm */
+  padding: 30px;
+  border-radius: 12px;
+  color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cta-section h2 {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+  color: #f4f4f9; /* Màu sáng hơn */
+}
+
+.cta-section p {
+  margin-bottom: 20px;
+  color: #a8dadc; /* Màu xanh nhạt */
+}
+
+.cta-button {
+  background-color: #00a84f; /* Màu xanh lá */
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cta-button:hover {
+  background-color: #007a3a; /* Màu xanh lá đậm hơn khi hover */
+  transform: scale(1.05); /* Phóng to nhẹ khi hover */
+}

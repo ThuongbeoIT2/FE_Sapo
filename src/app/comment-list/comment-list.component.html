@@ -1,0 +1,41 @@
+<div class="comment-list-container">
+  <div *ngFor="let comment of comments" class="comment-item">
+    <!-- Avatar -->
+    <div class="comment-avatar">
+      <img [src]="comment.avatar_user" alt="User Avatar" />
+    </div>
+
+    <!-- Nội dung comment -->
+    <div class="comment-content">
+      <div class="comment-header">
+        <span class="comment-user">{{ comment.email_user }}</span>
+        <span class="comment-purchase">{{ comment.isDisplay ? 'Đã mua tại TGDĐ' : '' }}</span>
+      </div>
+
+      <!-- Đánh giá -->
+      <div class="comment-rating">
+        <i
+          *ngFor="let star of generateStars(comment.evaluate); let i = index"
+          [class.filled]="i < comment.evaluate"
+          class="star-icon"
+        >
+          ★
+        </i>
+      </div>
+
+      <!-- Nội dung -->
+      <p class="comment-description">{{ comment.description }}</p>
+
+      <!-- Thông tin thêm -->
+      <div class="comment-extra">
+        <button (click)="onLike(comment)" class="like-button">
+          👍 Hữu ích ({{ comment.vote }})
+        </button>
+        <span>{{ formatTime(comment.createdAt) }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,84 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<div class="navbar">
+  <!-- Top Bar -->
+  <div class="top-bar" style="font-family: Arial, sans-serif; font-size: 14px;">
+    <a href="#">Kênh Người Bán</a>
+    <a href="#">Trở thành Người bán Sapo</a>
+    <a href="#">Tải ứng dụng</a>
+    <a href="#">Kết nối</a>
+    <a href="#" class="btn btn-xs" style="font-size: 20px; padding: 0; position: relative; top: -5px;">
+      <i class="fab fa-facebook"></i>
+    </a>
+    <a href="#" class="btn btn-xs" style="font-size: 20px; padding: 0; position: relative; top: -5px;">
+      <i class="fab fa-twitter"></i>
+    </a>
+    <a href="#" class="btn btn-xs" style="font-size: 20px; padding: 0; position: relative; top: -5px;">
+      <i class="fab fa-instagram"></i>
+    </a>
+  </div>
+
+  <!-- Main Bar -->
+  <div class="main-bar" style="font-family: Arial, sans-serif; font-size: 14px; position: relative; top: -5px; left: -20px;">
+    <div class="actions">
+      <a href="notification" class="notification">🔔 Thông Báo</a>
+      <a href="help" class="help">❓ Hỗ Trợ</a>
+      <a href="#" class="#">🌐 Tiếng Việt</a>
+      <a href="/profile" class="profile">👤 Hồ Sơ</a>
+    </div>
+  </div>
+</div>
+
+
+<!-- Navigation Bar -->
+<div class="nav-bar" style="font-family: Arial, sans-serif; font-size: 14px; display: flex; justify-content: center; background-color: #4CAF50; padding: 10px 0; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); position: relative; top: -20px;">
+  <a href="/all-product" style="margin: 0 15px; text-decoration: none; color: #333; transition: color 0.3s;">
+    Thương hiệu
+  </a>
+  <a href="/all-categories" style="margin: 0 15px; text-decoration: none; color: #333; transition: color 0.3s;">
+    Danh mục
+  </a>
+  <a href="/all-product-os" style="margin: 0 15px; text-decoration: none; color: #333; transition: color 0.3s;">
+    Sản phẩm
+  </a>
+  <a href="#" style="margin: 0 15px; text-decoration: none; color: #333; transition: color 0.3s;">
+    Giới thiệu
+  </a>
+  <a href="/about" style="margin: 0 15px; text-decoration: none; color: #333; transition: color 0.3s;">
+    Bài viết
+  </a>
+  <a href="/all-event" style="margin: 0 15px; text-decoration: none; color: #333; transition: color 0.3s;">
+    Sự kiện
+  </a>
+</div>
+<!-- Search Bar -->
+
+  <div class="search" style="display: flex; align-items: center;  ">
+    <div class="logo" style="display: flex; align-items: center; padding: 5px; margin-left: 20px; cursor: pointer;" onclick="window.location.href='/dashboard';">
+      <img src="../../assets/imgs/sapo-image.jpg" alt="Shopee Logo" style="max-width: 50px; height: auto; margin-right: 10px;">
+      <span style="font-size: 24px; font-weight: bold;">Sapo</span>
+    </div>
+    <div class="search-bar" style="flex-grow: 1; display: flex; align-items: center; margin-left: 20px;">
+      <input type="text" placeholder="Tìm kiếm sản phẩm" style="width: 70%; padding: 5px; border: 1px solid #ccc; border-radius: 4px;">
+      <button style="background-color: #4CAF50; border: none; padding: 5px 10px; margin-left: 5px; border-radius: 4px; cursor: pointer;">
+        <i class="fas fa-search" style="color: white;"></i>
+      </button>
+      <div class="actions" style="display: flex; margin-left: 30px;">
+        <a href="/my-cart" style="background-color: #4CAF50; border: none; padding: 5px 10px; margin-left: 25px; border-radius: 4px; cursor: pointer; display: inline-block;">
+          <i class="fas fa-shopping-cart" style="color: white;"></i>
+        </a>
+        <button style="background-color: #4CAF50; border: none; padding: 5px 10px; margin-left: 25px; border-radius: 4px; cursor: pointer;">
+          <i class="fas fa-ticket-alt" style="color: white;"></i>
+        </button>
+      </div>
+      <button style="background-color: #4CAF50; border: none; padding: 5px 10px; margin-left: 25px; border-radius: 4px; cursor: pointer;">
+        <i class="fas fa-robot" style="color: white;"></i> Chatbot
+      </button>
+    </div>
+  </div>
+  <!-- Marquee for Promotions -->
+  <div class="marquee" style="background-color: #4CAF50; padding: 10px 0; font-family: Arial, sans-serif; font-size: 14px; color: #333; overflow: hidden; white-space: nowrap;">
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+      Khuyến mãi đặc biệt: Giảm giá 50% cho tất cả sản phẩm! | Sản phẩm mới: Điện thoại thông minh XYZ vừa ra mắt! | Miễn phí vận chuyển cho đơn hàng trên 500,000 VND!
+    </marquee>
+  </div>

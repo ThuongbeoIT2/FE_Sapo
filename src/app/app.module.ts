@@ -79,6 +79,9 @@ import { CartDetailComponent } from './cart-detail/cart-detail.component';
 import { BillpaymentComponent } from './billpayment/billpayment.component';
 import { OrderDetailUserComponent } from './order-detail-user/order-detail-user.component';
 import { OrderProcessComponent } from './order-process/order-process.component';
+import { HeaderShopComponent } from './header-shop/header-shop.component';
+import { FeaturesComponent } from './features/features.component';
+import { CommentListComponent } from './comment-list/comment-list.component';
 
 @NgModule({
   declarations: [
@@ -156,7 +159,10 @@ import { OrderProcessComponent } from './order-process/order-process.component';
        CartDetailComponent,
        BillpaymentComponent,
        OrderDetailUserComponent,
-       OrderProcessComponent
+       OrderProcessComponent,
+       HeaderShopComponent,
+       FeaturesComponent,
+       CommentListComponent
   ],
   imports: [
     BrowserModule,
