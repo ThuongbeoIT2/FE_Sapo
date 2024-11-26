@@ -22,6 +22,12 @@ export class StoreService {
       .get<PaginatedResponse<StoreResponse>>(`${this.apiUrl}getall?page=${page}`)
       .pipe(catchError(this.handleError));
   }
+  getStoresInActive(): Observable<ApiResponse> {
+    return this.http
+      .get<ApiResponse>(`${this.apiUrl}getall-order`)
+      .pipe(catchError(this.handleError));
+  }
+
 
   // Get store details by storeCode
   getStoreByCode(storeCode: string): Observable<StoreResponse> {
@@ -39,7 +45,8 @@ export class StoreService {
     thumbnail: File,
     eKyc_01: File,
     eKyc_02: File,
-    storeType: string
+    storeType: string,
+    VNPayAccountLink: string
   ): Observable<ApiResponse> {
     const formData = new FormData();
     formData.append('storeName', storeName);
@@ -50,6 +57,7 @@ export class StoreService {
     formData.append('eKyc_01', eKyc_01);
     formData.append('eKyc_02', eKyc_02);
     formData.append('storeType', storeType);
+    formData.append('VNPayAccountLink', VNPayAccountLink);
 
     return this.http
       .post<ApiResponse>(`${this.apiUrl}register-store`, formData)
@@ -76,9 +84,9 @@ export class StoreService {
   }
 
   // Approve a store
-  approveStore(storeCode: string): Observable<string> {
+  approveStore(storeCode: string): Observable<ApiResponse> {
     return this.http
-      .get<string>(`${this.apiUrl}acpstore/${storeCode}`)
+      .get<ApiResponse>(`${this.apiUrl}acpstore/${storeCode}`)
       .pipe(catchError(this.handleError));
   }
 
@@ -89,13 +97,13 @@ export class StoreService {
       .pipe(catchError(this.handleError));
   }
 
-  warningStore(storeCode: string, email: string, message: string): Observable<string> {
+  warningStore(storeCode: string, email: string, message: string): Observable<ApiResponse> {
     const formData = new FormData();
     formData.append('email', email);
     formData.append('message', message);
 
     return this.http
-      .post<string>(`${this.apiUrl}warningstore/${storeCode}`, formData)
+      .post<ApiResponse>(`http://localhost:8080/admin/acpstore/${storeCode}`, formData)
       .pipe(catchError(this.handleError));
   }
   // Search stores by keyword

@@ -9,7 +9,7 @@
     <!-- Login Form -->
     <form *ngIf="myStore" (ngSubmit)="login()">
       <div class="form-group">
-        <label for="storeCode">Store Code:</label>
+        <label for="storeCode">Mã cửa hàng:</label>
         <input
           type="text"
           class="form-control"
@@ -22,7 +22,7 @@
       </div>
 
       <div class="form-group">
-        <label for="password">Password:</label>
+        <label for="password">Mật khẩu:</label>
         <input
           type="password"
           class="form-control"
@@ -37,10 +37,10 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">Đăng nhập</button>
 
     </form>
-    
+
 
     <div class="form-register" >
       <div *ngIf="!myStore" class="form-register" style="background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); border: 1px solid #ddd;">
@@ -54,13 +54,13 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="storeName">Store Name:</label>
+              <label for="storeName">Tên cửa hàng:</label>
               <input type="text" class="form-control" id="storeName" [(ngModel)]="storeData.storeName" name="storeName" placeholder="Enter store name" required>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
-              <label for="address">Address:</label>
+              <label for="address">Địa chỉ:</label>
               <input type="text" class="form-control" id="address" [(ngModel)]="storeData.address" name="address" placeholder="Enter address" required>
             </div>
           </div>
@@ -70,7 +70,7 @@
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label for="phoneNumber">Phone Number:</label>
+              <label for="phoneNumber">Số điện thoại:</label>
               <input type="text" class="form-control" id="phoneNumber" [(ngModel)]="storeData.phoneNumber" name="phoneNumber" placeholder="Enter phone number" required>
             </div>
           </div>
@@ -86,7 +86,7 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label for="description">Description:</label>
+              <label for="description">Mô tả:</label>
               <textarea class="form-control" id="description" [(ngModel)]="storeData.description" name="description" placeholder="Enter description" required style="height: 100px;"></textarea>
             </div>
           </div>
@@ -107,12 +107,20 @@
             </div>
           </div>
         </div>
-
+        <!-- VNPay Account Link -->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="vnpayAccountLink">Tài khoản liên kết VNPAY:</label>
+              <input type="text" class="form-control" id="vnpayAccountLink" [(ngModel)]="storeData.vnpayAccountLink" name="vnpayAccountLink" placeholder="Enter VNPay account link" required>
+            </div>
+          </div>
+        </div>
         <!-- Store Type -->
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <label for="storeType">Store Type:</label>
+              <label for="storeType">Loại cửa hàng:</label>
               <select class="form-control" id="storeType" [(ngModel)]="storeData.storeType" name="storeType" required>
               <option *ngFor="let type of storeTypes" [value]="type.slug">{{type.typeName}}</option>
               </select>
@@ -123,12 +131,12 @@
         <div class="form-group">
           <div class="checkbox">
             <label>
-              <input type="checkbox" [(ngModel)]="storeData.termsAccepted" name="termsAccepted" required> I agree to the <a href="/terms">terms and conditions</a> and <a href="/privacy">privacy policy</a>
+              <input type="checkbox" [(ngModel)]="storeData.termsAccepted" name="termsAccepted" required> Tôi đồng ý với <a href="/terms">điều khoản và điều kiện</a> và <a href="/privacy">chính sách bảo mật</a>
             </label>
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary" (click)="registerStore()">Register</button>
+        <button type="submit" class="btn btn-primary" (click)="registerStore()">Đăng ký</button>
       </div>
     </div>
 

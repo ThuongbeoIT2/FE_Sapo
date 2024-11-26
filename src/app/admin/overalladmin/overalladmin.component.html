@@ -3,8 +3,8 @@
   <div class="cardBox">
     <div class="card" style="display: flex;">
         <div>
-            <div class="numbers">300</div>
-            <div class="cardName">Store</div>
+            <div class="numbers">{{adminStatistical.store}}</div>
+            <div class="cardName">Cửa hàng </div>
         </div>
 
 
@@ -12,180 +12,76 @@
 
     <div class="card">
         <div>
-            <div class="numbers">80</div>
-            <div class="cardName">Product</div>
+            <div class="numbers">{{adminStatistical.product}}</div>
+            <div class="cardName">Sản phẩm</div>
         </div>
     </div>
 
     <div class="card">
         <div>
-            <div class="numbers">284</div>
-            <div class="cardName">User</div>
+            <div class="numbers">{{adminStatistical.user}} </div>
+            <div class="cardName">Khách hàng</div>
         </div>
     </div>
 
     <div class="card">
         <div>
-            <div class="numbers">$7,842</div>
-            <div class="cardName">Earning</div>
+            <div class="numbers">{{adminStatistical.revenue | number}}</div>
+            <div class="cardName">Vốn hóa</div>
         </div>
     </div>
+    <div class="card">
+      <div>
+          <div class="numbers">{{adminStatistical.orderDetail}}</div>
+          <div class="cardName">Đơn hàng</div>
+      </div>
+  </div>
   </div>
 
 <!-- ================ Order Details List ================= -->
 <div class="details">
     <div class="recentOrders">
         <div class="cardHeader">
-            <h2>Recent requests</h2>
-            <a href="#" class="btn">View All</a>
+            <h2>Yêu cầu mở cửa hàng</h2>
+            <a href="#" class="btn">Xem tất cả yêu cầu</a>
         </div>
-
-        <table>
+        <hr style="margin-top: -200px;">
+        <div class="contentstore">
+          <table>
             <thead>
                 <tr>
-                    <td>Name</td>
-                    <td>Price</td>
-                    <td>Payment</td>
-                    <td>Status</td>
+                    <td>Tên cửa hàng</td>
+                    <td>Tên cửa hàng </td>
+                    <td>Loại cửa hàng</td>
+                    <td>Hành động</td>
                 </tr>
             </thead>
-
             <tbody>
-                <tr>
-                    <td>Star Refrigerator</td>
-                    <td>$1200</td>
-                    <td>Paid</td>
-                    <td><span class="status delivered">Delivered</span></td>
-                </tr>
-
-                <tr>
-                    <td>Dell Laptop</td>
-                    <td>$110</td>
-                    <td>Due</td>
-                    <td><span class="status pending">Pending</span></td>
-                </tr>
-
-                <tr>
-                    <td>Apple Watch</td>
-                    <td>$1200</td>
-                    <td>Paid</td>
-                    <td><span class="status return">Return</span></td>
-                </tr>
-
-                <tr>
-                    <td>Addidas Shoes</td>
-                    <td>$620</td>
-                    <td>Due</td>
-                    <td><span class="status inProgress">In Progress</span></td>
-                </tr>
-
-                <tr>
-                    <td>Star Refrigerator</td>
-                    <td>$1200</td>
-                    <td>Paid</td>
-                    <td><span class="status delivered">Delivered</span></td>
-                </tr>
-
-                <tr>
-                    <td>Dell Laptop</td>
-                    <td>$110</td>
-                    <td>Due</td>
-                    <td><span class="status pending">Pending</span></td>
-                </tr>
-
-                <tr>
-                    <td>Apple Watch</td>
-                    <td>$1200</td>
-                    <td>Paid</td>
-                    <td><span class="status return">Return</span></td>
-                </tr>
-
-                <tr>
-                    <td>Addidas Shoes</td>
-                    <td>$620</td>
-                    <td>Due</td>
-                    <td><span class="status inProgress">In Progress</span></td>
-                </tr>
-            </tbody>
+              <tr *ngFor="let store of stores">
+                <td>{{ store.storeName }}</td>
+                <td>{{ store.storeCode }}</td>
+                <td>{{ store.storeType }}</td>
+                <td>
+                    <button class="btn-view" (click)="viewDetail(store)">Chi tiết</button>
+                </td>
+              </tr>
         </table>
+        </div>
     </div>
 
     <!-- ================= New Customers ================ -->
     <div class="recentCustomers">
         <div class="cardHeader">
-            <h2>Recent Store</h2>
+            <h2>Sản phẩm nổi bật</h2>
         </div>
 
         <table>
-            <tr>
+            <tr  *ngFor="let product of products">
                 <td width="60px">
-                    <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
+                    <div class="imgBx"><img [src]="product.thumbnail" alt=""></div>
                 </td>
                 <td>
-                    <h4>David <br> <span>Italy</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="60px">
-                    <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>Amit <br> <span>India</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="60px">
-                    <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>David <br> <span>Italy</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="60px">
-                    <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>Amit <br> <span>India</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="60px">
-                    <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>David <br> <span>Italy</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="60px">
-                    <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>Amit <br> <span>India</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="60px">
-                    <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>David <br> <span>Italy</span></h4>
-                </td>
-            </tr>
-
-            <tr>
-                <td width="60px">
-                    <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                </td>
-                <td>
-                    <h4>Amit <br> <span>India</span></h4>
+                    <h4>{{product.proName}} <br> <span>{{product.category}}</span></h4>
                 </td>
             </tr>
         </table>

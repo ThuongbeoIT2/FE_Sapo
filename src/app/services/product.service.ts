@@ -14,10 +14,16 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
+
   // Fetch all products with pagination
   getProducts(page: number = 0): Observable<PaginatedResponse<ProductResponse>> {
     return this.http
       .get<PaginatedResponse<ProductResponse>>(`${this.apiUrl}getall?page=${page}`)
+      .pipe(catchError(this.handleError)); // Handle errors
+  }
+  getHOtProducts(page: number = 0): Observable<PaginatedResponse<ProductResponse>> {
+    return this.http
+      .get<PaginatedResponse<ProductResponse>>(`${this.apiUrl}getall-hotsales?page=${page}`)
       .pipe(catchError(this.handleError)); // Handle errors
   }
 

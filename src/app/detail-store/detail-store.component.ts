@@ -5,6 +5,7 @@ import { StoreResponse } from '../model/store.model'; // Adjust path if needed
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service'; // Adjust path if needed
 import { User } from '../model/user.model';
+import { ApiResponse } from '../model/ApiResponse.model';
 
 @Component({
   selector: 'app-detail-store',
@@ -43,7 +44,7 @@ export class DetailStoreComponent implements OnInit {
     }
 
     this.storeService.approveStore(this.storeCode).subscribe(
-      (response: string) => {
+      (response: ApiResponse) => {
         console.log('Store approved successfully:', response);
         this.storeDetails.status = true; // Update store status
 

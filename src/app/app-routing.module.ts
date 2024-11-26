@@ -26,6 +26,7 @@ import { AllCategoryComponent } from './all-category/all-category.component';
 import { ProductOsDetailClientComponent } from './pages/card-item/product-os-detail-client/product-os-detail-client.component';
 import { CartComponent } from './cart/cart.component';
 import { OrderDetailUserComponent } from './order-detail-user/order-detail-user.component';
+import { HelpAdminComponent } from './admin/help-admin/help-admin.component';
 
 
 const routes: Routes = [
@@ -55,6 +56,11 @@ const routes: Routes = [
   {
     path:'admin/storetype',
     component:StoretypeComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'admin/help',
+    component:HelpAdminComponent,
     canActivate: [authGuard]
   },
   {

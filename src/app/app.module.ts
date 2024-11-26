@@ -82,6 +82,7 @@ import { OrderProcessComponent } from './order-process/order-process.component';
 import { HeaderShopComponent } from './header-shop/header-shop.component';
 import { FeaturesComponent } from './features/features.component';
 import { CommentListComponent } from './comment-list/comment-list.component';
+import { HelpAdminComponent } from './admin/help-admin/help-admin.component';
 
 @NgModule({
   declarations: [
@@ -95,13 +96,11 @@ import { CommentListComponent } from './comment-list/comment-list.component';
     NavigationComponent,
     ProfileComponent,
     SearchComponent,
-
     SliderloginComponent,
     ContactformComponent,
     MyprofileComponent,
     AdmindashboardComponent,
     AdminloginComponent,
-
     NavbarComponent,
      ManagerdashboardComponent,
      OverallComponent,
@@ -146,7 +145,6 @@ import { CommentListComponent } from './comment-list/comment-list.component';
      PasswordComponent,
      ListSettingComponent,
      MyStoreLoginComponent,
-
      StoredashboardComponent,
        ManageProductOsComponent,
        AllCategoryComponent,
@@ -162,7 +160,8 @@ import { CommentListComponent } from './comment-list/comment-list.component';
        OrderProcessComponent,
        HeaderShopComponent,
        FeaturesComponent,
-       CommentListComponent
+       CommentListComponent,
+       HelpAdminComponent
   ],
   imports: [
     BrowserModule,

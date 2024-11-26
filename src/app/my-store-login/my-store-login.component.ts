@@ -33,6 +33,7 @@ export class MyStoreLoginComponent implements OnInit {
     description: '',
     storeType: '',
     termsAccepted: false,
+    VNPayAccountLink: '',
   };
 
   onFileChange(event: any, field: string) {
@@ -53,12 +54,12 @@ export class MyStoreLoginComponent implements OnInit {
 
     registerStore() {
       console.log('Registering store:', this.storeData);
-      if (!this.storeData.storeName || !this.storeData.address || !this.storeData.phoneNumber || !this.storeData.description || !this.storeData.storeType || !this.storeData.termsAccepted) {
+      if (!this.storeData.storeName || !this.storeData.address || !this.storeData.phoneNumber || !this.storeData.description || !this.storeData.storeType || !this.storeData.termsAccepted || !this.storeData.thumbnail || !this.storeData.eKyc_01 || !this.storeData.eKyc_02 || !this.storeData.VNPayAccountLink) {
         console.error('All fields are required and terms must be accepted!');
         return;
       }
 
-      this.storeService.registerStore(this.storeData.storeName,this.storeData.address,this.storeData.phoneNumber,this.storeData.description,this.storeData.thumbnail,this.storeData.eKyc_01,this.storeData.eKyc_02,this.storeData.storeType).subscribe({
+      this.storeService.registerStore(this.storeData.storeName,this.storeData.address,this.storeData.phoneNumber,this.storeData.description,this.storeData.thumbnail,this.storeData.eKyc_01,this.storeData.eKyc_02,this.storeData.storeType, this.storeData.VNPayAccountLink).subscribe({
         next: (data) => {
           console.log('Store registered successfully!', data);
           this.router.navigate(['/store-dashboard']);
