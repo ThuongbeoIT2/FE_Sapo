@@ -47,6 +47,7 @@ export class MyStoreLoginComponent implements OnInit {
     private router: Router,
     private storeService: StoreService,
     private storeTypeService: StoretypeService) { }
+
     ngOnInit(): void {
       this.fetchStoreTypes();
       this.loadMyStore();
@@ -54,21 +55,22 @@ export class MyStoreLoginComponent implements OnInit {
 
     registerStore() {
       console.log('Registering store:', this.storeData);
-      if (!this.storeData.storeName || !this.storeData.address || !this.storeData.phoneNumber || !this.storeData.description || !this.storeData.storeType || !this.storeData.termsAccepted || !this.storeData.thumbnail || !this.storeData.eKyc_01 || !this.storeData.eKyc_02 || !this.storeData.VNPayAccountLink) {
-        console.error('All fields are required and terms must be accepted!');
+      if (!this.storeData.storeName || !this.storeData.address || !this.storeData.phoneNumber || !this.storeData.thumbnail || !this.storeData.eKyc_01 || !this.storeData.eKyc_02 || !this.storeData.description || !this.storeData.storeType || !this.storeData.VNPayAccountLink) {
+        alert('All fields are required!');
         return;
       }
 
       this.storeService.registerStore(this.storeData.storeName,this.storeData.address,this.storeData.phoneNumber,this.storeData.description,this.storeData.thumbnail,this.storeData.eKyc_01,this.storeData.eKyc_02,this.storeData.storeType, this.storeData.VNPayAccountLink).subscribe({
         next: (data) => {
           console.log('Store registered successfully!', data);
-          this.router.navigate(['/store-dashboard']);
+          window.location.reload();
         },
         error: (error) => {
           console.error('Error registering store!', error);
         }
       });
     }
+
     loadMyStore(): void {
       this.storeService.getMyStore().subscribe({
         next: (data) => {
