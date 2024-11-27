@@ -7,6 +7,7 @@ import { StoreResponse } from '../model/store.model'; // Ensure correct path
 import { ApiResponse } from '../model/ApiResponse.model'; // Ensure correct path
 import { PaginatedResponse } from '../model/paginated-response.model'; // Ensure correct path
 import { ProductOfStoreResponse } from '../model/productOS.model';
+import { OrderDetailResponse } from '../model/orderDetail.model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,19 @@ export class StoreService {
   }
 
 
+    // Gọi API lấy danh sách OrderDetail
+    getOrderDetails( page: number): Observable<PaginatedResponse<OrderDetailResponse>> {
+      const storeCode = localStorage.getItem('storeCode');
+      if (!storeCode) {
+        return throwError(() => 'Store code not found!');
+      }
+     const formData = new FormData();
+      formData.append('storeCode', storeCode);
+      formData.append('page', page.toString());
+      return this.http
+        .post<PaginatedResponse<OrderDetailResponse>>(`${this.apiUrl}order`, formData)
+        .pipe(catchError(this.handleError));
+    }
   // Get store details by storeCode
   getStoreByCode(storeCode: string): Observable<StoreResponse> {
     return this.http

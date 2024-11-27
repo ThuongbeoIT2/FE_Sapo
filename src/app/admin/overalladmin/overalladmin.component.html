@@ -53,7 +53,7 @@
                     <td>Tên cửa hàng</td>
                     <td>Tên cửa hàng </td>
                     <td>Loại cửa hàng</td>
-                    <td>Hành động</td>
+                    <td>Loại cửa hàng</td>
                 </tr>
             </thead>
             <tbody>
@@ -61,9 +61,7 @@
                 <td>{{ store.storeName }}</td>
                 <td>{{ store.storeCode }}</td>
                 <td>{{ store.storeType }}</td>
-                <td>
-                    <button class="btn-view" (click)="viewDetail(store)">Chi tiết</button>
-                </td>
+                <td>{{ store.address }}</td>
               </tr>
         </table>
         </div>

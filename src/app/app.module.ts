@@ -83,6 +83,8 @@ import { HeaderShopComponent } from './header-shop/header-shop.component';
 import { FeaturesComponent } from './features/features.component';
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { HelpAdminComponent } from './admin/help-admin/help-admin.component';
+import { ManagerproductStatisComponent } from './admin/managerproduct-statis/managerproduct-statis.component';
+import { StoreListOrderComponent } from './admin/store-list-order/store-list-order.component';
 
 @NgModule({
   declarations: [
@@ -161,7 +163,9 @@ import { HelpAdminComponent } from './admin/help-admin/help-admin.component';
        HeaderShopComponent,
        FeaturesComponent,
        CommentListComponent,
-       HelpAdminComponent
+       HelpAdminComponent,
+       ManagerproductStatisComponent,
+       StoreListOrderComponent
   ],
   imports: [
     BrowserModule,

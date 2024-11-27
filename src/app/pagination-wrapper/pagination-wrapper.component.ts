@@ -26,9 +26,9 @@ export class PaginationWrapperComponent implements OnInit {
 
   navigate(direction: number): void {
     const newPage = this.currentPage + direction;
-    if (newPage >= 1 && newPage <= this.pages.length) {
-      this.navigateToPage(newPage);
-    }
+  if (newPage >= 1 && newPage <= this.pages.length) {
+    this.navigateToPage(newPage);
+  }
   }
 
   navigateToPage(page: number): void {
@@ -40,6 +40,7 @@ export class PaginationWrapperComponent implements OnInit {
     });
     this.updateVisiblePages();
     this.pageChanged.emit(this.currentPage); // Emit page change
+
   }
 
   updateVisiblePages(): void {
@@ -62,5 +63,6 @@ export class PaginationWrapperComponent implements OnInit {
     }
 
     this.visiblePages = this.pages.slice(start - 1, end);
+    
   }
 }

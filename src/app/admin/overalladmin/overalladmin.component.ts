@@ -59,12 +59,13 @@ export class OveralladminComponent implements OnInit {
   }
 
   viewDetail(store: StoreResponse): void {
-    this.router.navigate(['/admin/store'], {
-      queryParams: {
-      action: 'viewDetail',
-      storeCode: store.storeCode
-      },
-      queryParamsHandling: 'merge'
-    });
+    alert('View detail of store: ' + store.storeCode);
+    // this.router.navigate(['/admin/store'], {
+    //   queryParams: {
+    //   action: 'viewDetail',
+    //   storeCode: store.storeCode
+    //   },
+    //   queryParamsHandling: 'merge'
+    // });
   }
 }

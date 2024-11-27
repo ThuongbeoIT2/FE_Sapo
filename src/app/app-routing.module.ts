@@ -27,6 +27,7 @@ import { ProductOsDetailClientComponent } from './pages/card-item/product-os-det
 import { CartComponent } from './cart/cart.component';
 import { OrderDetailUserComponent } from './order-detail-user/order-detail-user.component';
 import { HelpAdminComponent } from './admin/help-admin/help-admin.component';
+import { ManagerproductStatisComponent } from './admin/managerproduct-statis/managerproduct-statis.component';
 
 
 const routes: Routes = [
@@ -76,6 +77,11 @@ const routes: Routes = [
   {
     path:'store-dashboard',
     component:StoredashboardComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'store-order',
+    component:ManagerproductStatisComponent,
     canActivate: [authGuard]
   },
   {

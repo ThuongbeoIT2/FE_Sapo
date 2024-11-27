@@ -1,0 +1,31 @@
+<div class="table-container">
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Mã đơn</th>
+        <th>Tên sản phẩm</th>
+        <th>Tên cửa hàng</th>
+        <th>Số lượng</th>
+        <th>Giảm giá (%)</th>
+        <th>Tổng giá</th>
+        <th>Thanh toán</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orderDetailResponse">
+        <td>{{ order.id }}</td>
+        <td>{{ order.productName }}</td>
+        <td>{{ order.storeName }}</td>
+        <td>{{ order.quantity }}</td>
+        <td>{{ order.discount }}%</td>
+        <td>{{ order.price_total | currency:'VND' }}</td>
+        <td>{{ order.isPayment === '1' ? 'Đã thanh toán' : 'Chưa thanh toán' }}</td>
+        <td>
+          <button class="action-button detail" (click)="viewDetails(order)">Chi tiết</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<app-pagination-wrapper ></app-pagination-wrapper>
