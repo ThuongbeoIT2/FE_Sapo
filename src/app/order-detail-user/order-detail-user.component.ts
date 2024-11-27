@@ -7,6 +7,7 @@ import { ProductOfStoreResponse } from '../model/productOS.model';
 import { User } from '../model/user.model';
 import { UserService } from '../services/user.service';
 import { urlVNPayResponse } from '../model/urlVNPayResponse.model';
+import { BillPaymentResponse } from '../model/BillPaymentResponse.model';
 
 @Component({
   selector: 'app-order-detail-user',
@@ -22,22 +23,25 @@ export class OrderDetailUserComponent implements OnInit {
     ) {}
   orderId: number = 0;
   user!: User;
+  billPaymentResponse!: BillPaymentResponse
   dataUser = {
     fullName: '',
     phoneNumber: '',
     address: '',
     paymentMethod: ''
   };
+  isPayment: boolean = false;
   urlVNPayResponse!: urlVNPayResponse;
   productOS!: ProductOfStoreResponse;
   orderData!: OrderDetailResponse ;
-  
+
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       const orderId = +params['orderId'] || 0;
       this.orderId = orderId;
       console.log('Order ID:', orderId);
     });
+    this.loadBillDetail(this.orderId);
     this.paymentService.getOrderById(this.orderId).subscribe({
       next: (ApiResponse) => {
         if (ApiResponse.status === 'OK') {
@@ -77,6 +81,22 @@ export class OrderDetailUserComponent implements OnInit {
     });
   }
 
+  loadBillDetail(orderId: number) {
+    this.paymentService.getPaymentBillDetail(orderId).subscribe({
+      next: (ApiResponse) => {
+        if (ApiResponse.status === 'OK') {
+          console.log('Bill detail:', ApiResponse);
+          this.billPaymentResponse = ApiResponse.data;
+          this.isPayment = this.billPaymentResponse.isPayment;
+        } else {
+          console.error('Error loading bill detail:', ApiResponse);
+        }
+      },
+      error: (error) => {
+        console.error('Error loading bill detail:', error);
+      }
+    });
+  }
   payment(){
    if(this.dataUser.paymentMethod==='1'){
     this.paymentService.paymentWithVNPAY(this.orderId, this.dataUser.fullName, this.dataUser.phoneNumber, this.dataUser.address).subscribe({

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { BillPaymentResponse } from '../model/BillPaymentResponse.model';
 
 @Component({
   selector: 'app-billpayment',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./billpayment.component.scss']
 })
 export class BillpaymentComponent {
-
+  @Input() bill!: BillPaymentResponse;
+  
 }

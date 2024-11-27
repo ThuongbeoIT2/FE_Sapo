@@ -93,6 +93,13 @@ export class PaymentService {
     );
   }
 
+  getPaymentBillDetail(orderId: number): Observable<ApiResponse> {
+    const formData = new FormData();
+    formData.append('orderId', orderId.toString());
+    return this.http.post<ApiResponse>(`${this.baseUrl}payment-bill/detail`, formData).pipe(
+      catchError(this.handleError)
+    );
+  }
 
   // Error handling
   private handleError(error: HttpErrorResponse) {

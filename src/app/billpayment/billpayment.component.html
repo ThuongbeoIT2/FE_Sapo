@@ -1,1 +1,47 @@
-<p>billpayment works!</p>
+<div class="bill-container">
+  <h2 class="bill-header">Chi Tiết Hóa Đơn</h2>
+  <div class="bill-grid">
+    <div class="bill-item">
+      <span class="bill-label">Mã hóa đơn:</span>
+      <span class="bill-value">{{ bill.billID }}</span>
+    </div>
+    <div class="bill-item">
+      <span class="bill-label">Mã đơn hàng:</span>
+      <span class="bill-value">{{ bill.orderID }}</span>
+    </div>
+    <div class="bill-item">
+      <span class="bill-label">Trạng thái thanh toán:</span>
+      <span class="bill-value">{{ bill.isPayment ? 'Đã thanh toán' : 'Chưa thanh toán' }}</span>
+    </div>
+    <div class="bill-item">
+      <span class="bill-label">Tài khoản shipper:</span>
+      <span class="bill-value">{{ bill.shipperAccount }}</span>
+    </div>
+    <div class="bill-item">
+      <span class="bill-label">Họ và tên:</span>
+      <span class="bill-value">{{ bill.fullName }}</span>
+    </div>
+    <div class="bill-item">
+      <span class="bill-label">Số điện thoại:</span>
+      <span class="bill-value">{{ bill.phone }}</span>
+    </div>
+    <div class="bill-item">
+      <span class="bill-label">Địa chỉ:</span>
+      <span class="bill-value">{{ bill.address }}</span>
+    </div>
+    <div class="bill-item">
+      <span class="bill-label">Mã giao dịch:</span>
+      <div class="bill-value">
+        <a [href]="'http://transaction-details.com/' + bill.transID" target="_blank">{{bill.transID}}</a>
+      </div>
+    </div>
+    <div class="bill-item">
+      <span class="bill-label">Phương thức thanh toán:</span>
+      <span class="bill-value">{{ bill.paymentMethod }}</span>
+    </div>
+    <div class="bill-item">
+      <span class="bill-label">Trạng thái đơn hàng:</span>
+      <span class="bill-value">{{ bill.orderStatus }}</span>
+    </div>
+  </div>
+</div>

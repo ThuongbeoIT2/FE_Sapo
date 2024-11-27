@@ -23,6 +23,7 @@
     "bootstrap": "^5.2.3",
     "chart.js": "^4.4.6",
     "event-source-polyfill": "^1.0.31",
+    "ngx-qrcode": "^0.1.0-rc.1",
     "rxjs": "~7.8.0",
     "swiper": "^11.1.8",
     "tslib": "^2.3.0"
