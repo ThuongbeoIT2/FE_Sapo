@@ -32,7 +32,7 @@
             <td>Giá nhập</td>
             <td>Giá bán</td>
             <td>Danh mục</td>
-            <td>Lượt xem</td>
+            <td>Lượt bán</td>
             <td>Trạng thái</td>
             <td>Hành động</td>
           </tr>
@@ -44,7 +44,7 @@
             <td>{{ productos.priceI }}</td>
             <td>{{ productos.priceO }}</td>
             <td>{{ productos.category }}</td>
-            <td>{{ productos.view }}</td>
+            <td>{{ productos.sold }}</td>
             <td>{{ productos.status === true ? 'Active' : 'Inactive' }}</td>
             <td>
               <button class="btn-detail" (click)="detailAction(productos)">Detail</button>

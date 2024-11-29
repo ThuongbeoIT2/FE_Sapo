@@ -44,6 +44,9 @@
         </tbody>
       </table>
     </div>
+    <app-pagination-wrapper
+      [maxPage]="maxPage"
+      (pageChanged)="goToPage($event)"></app-pagination-wrapper>
   </div>
   <div *ngIf="filteredProducts.length === 0">
     <p>No products available.</p>

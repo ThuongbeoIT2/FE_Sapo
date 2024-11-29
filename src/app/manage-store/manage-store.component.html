@@ -49,7 +49,11 @@
         </tbody>
       </table>
     </div>
+    <app-pagination-wrapper
+      [maxPage]="maxPage"
+      (pageChanged)="goToPage($event)"  ></app-pagination-wrapper>
   </div>
+
   <div *ngIf="filteredStores.length === 0">
     <p>No stores available.</p>
   </div>

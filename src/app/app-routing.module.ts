@@ -28,6 +28,7 @@ import { CartComponent } from './cart/cart.component';
 import { OrderDetailUserComponent } from './order-detail-user/order-detail-user.component';
 import { HelpAdminComponent } from './admin/help-admin/help-admin.component';
 import { ManagerproductStatisComponent } from './admin/managerproduct-statis/managerproduct-statis.component';
+import { OrderDetailAdminComponent } from './admin/order-detail-admin/order-detail-admin.component';
 
 
 const routes: Routes = [
@@ -82,6 +83,11 @@ const routes: Routes = [
   {
     path:'store-order',
     component:ManagerproductStatisComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'store-order-detail',
+    component:OrderDetailAdminComponent,
     canActivate: [authGuard]
   },
   {

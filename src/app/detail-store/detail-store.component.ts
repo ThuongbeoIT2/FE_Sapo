@@ -13,7 +13,7 @@ import { ApiResponse } from '../model/ApiResponse.model';
   styleUrls: ['./detail-store.component.scss']
 })
 export class DetailStoreComponent implements OnInit {
-  @Input() storeCode: string | null = ''; // Optional input from parent
+ storeCode!: string; // Optional input from parent
   storeDetails!: StoreResponse; // Store details to display
   managerDetails!: User; // Store manager details fetched by email
   errorMessage: string = ''; // Store error messages
@@ -37,21 +37,16 @@ export class DetailStoreComponent implements OnInit {
 
   // Approve a store and handle response
   approveStore(): void {
-    if (!this.storeCode) {
-      this.errorMessage = 'Store code is required!';
-      console.error(this.errorMessage);
-      return;
-    }
+    alert('Approve store: ' + this.storeCode);
 
     this.storeService.approveStore(this.storeCode).subscribe(
       (response: ApiResponse) => {
         console.log('Store approved successfully:', response);
-        this.storeDetails.status = true; // Update store status
-
-        // Fetch manager details after approving the store
+        this.storeDetails.status = true;
         if (this.storeDetails.email_manager) {
           this.fetchManagerDetails(this.storeDetails.email_manager);
         }
+        window.location.reload();
       },
       (error) => {
         this.errorMessage = 'Error approving store!';

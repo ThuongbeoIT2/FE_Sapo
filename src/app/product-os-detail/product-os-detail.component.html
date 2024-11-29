@@ -16,6 +16,12 @@
     <div style="display: flex; justify-content: center; margin-top: 20px;" *ngIf="product">
       <app-evaluate [rating]="product.evaluate"></app-evaluate>
     </div>
+    <div style="display: flex; justify-content: center; margin-top: 20px;" *ngIf="product">
+      <div class="product-field">
+        <label>Lượt bán:</label>
+        <span>{{ product.sold }}</span>
+      </div>
+    </div>
   </div>
   <div style="flex: 1; padding: 20px; border: 1px solid #ccc; margin-left: 10px;">
     <h2 style="text-align: center; font-size: 2em; font-weight: bold; margin-bottom: 20px;">

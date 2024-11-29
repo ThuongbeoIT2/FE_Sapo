@@ -14,13 +14,13 @@ export class ProductAdminComponent {
   action: string | null = '';
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService, // Inject the ProductService,
-    private categoryService: CategoryService// Inject the CategoryService
+    private productService: ProductService,
+    private categoryService: CategoryService
   ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.action = params['action'] || ''; // Get action from query params
+      this.action = params['action'] || ''; 
     });
 
   }

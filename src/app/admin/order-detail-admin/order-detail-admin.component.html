@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<app-header-shop></app-header-shop>
 <div class="container">
   <marquee behavior="scroll" direction="left" class="text-center text-danger" style="font-size: 24px; font-weight: bold; animation: blink 1s step-end infinite;">
     Quảng cáo: Giảm giá 50% cho tất cả các sản phẩm!
@@ -104,15 +103,12 @@
 
     </div>
   </div>
-  <div *ngIf="orderData.isPayment === '1'" class="bill-section">
+  <div *ngIf="orderData.isPayment === '1'" class="bill-section" >
     <app-billpayment [bill]="this.billPaymentResponse"></app-billpayment>
   </div>
+
   <div class="text-center" style="margin-top: 20px;">
-    <button *ngIf="this.billPaymentResponse.orderStatus === 1" (click)="cancelOrder()" class="btn btn-danger btn-lg" style="font-size: 20px; padding: 15px 30px;">Hủy đơn</button>
-  </div>
-  <div class="text-center" style="margin-top: 20px;">
-    <button *ngIf="orderData.isPayment === '0'" (click)="payment()" class="btn btn-success btn-lg" style="font-size: 20px; padding: 15px 30px;">Thanh toán</button>
     <div *ngIf="orderData.isPayment === '1'" class="alert alert-success" style="font-size: 20px; padding: 15px 30px;">Đơn hàng đã được thanh toán</div>
   </div>
 </div>
-<app-footer></app-footer>
+

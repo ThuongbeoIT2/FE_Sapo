@@ -15,6 +15,7 @@ export class ProductOfStoreResponse {
   category: string;
   storeName: string;
   storeCode: string;
+  sold: number; 
 
   constructor(
     id: number,
@@ -32,7 +33,8 @@ export class ProductOfStoreResponse {
     description: string,
     category: string,
     storeName: string,
-    storeCode: string
+    storeCode: string,
+    sold: number
   ) {
     this.id = id;
     this.priceI = priceI;
@@ -50,5 +52,6 @@ export class ProductOfStoreResponse {
     this.category = category;
     this.storeName = storeName;
     this.storeCode = storeCode;
+    this.sold = sold;
   }
 }

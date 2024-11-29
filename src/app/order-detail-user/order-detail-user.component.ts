@@ -97,6 +97,38 @@ export class OrderDetailUserComponent implements OnInit {
       }
     });
   }
+
+  cancelOrder() {
+    this.storeService.cancelOrder(this.orderId).subscribe({
+      next: (ApiResponse) => {
+        if (ApiResponse.status === 'OK') {
+          console.log('Order cancelled:', ApiResponse);
+          window.location.reload();
+        } else {
+          console.error('Error cancelling order:', ApiResponse);
+        }
+      },
+      error: (error) => {
+        console.error('Error cancelling order:', error);
+      }
+    });
+  }
+
+  returnOrder() {
+    this.storeService.cancelOrder(this.orderId).subscribe({
+      next: (ApiResponse) => {
+        if (ApiResponse.status === 'OK') {
+          console.log('Order returned:', ApiResponse);
+          window.location.reload();
+        } else {
+          console.error('Error returning order:', ApiResponse);
+        }
+      },
+      error: (error) => {
+        console.error('Error returning order:', error);
+      }
+    });
+  }
   payment(){
    if(this.dataUser.paymentMethod==='1'){
     this.paymentService.paymentWithVNPAY(this.orderId, this.dataUser.fullName, this.dataUser.phoneNumber, this.dataUser.address).subscribe({

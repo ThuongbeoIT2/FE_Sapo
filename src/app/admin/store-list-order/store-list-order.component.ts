@@ -7,9 +7,19 @@ import { StoreService } from 'src/app/services/store.service';
 @Component({
   selector: 'app-store-list-order',
   templateUrl: './store-list-order.component.html',
-  styleUrls: ['./store-list-order.component.scss']
+  styleUrls: ['./store-list-order.component.scss'],
 })
 export class StoreListOrderComponent implements OnInit {
+  page: number = 0;
+  maxPage: number=100;
+    goToPage(page: number): void {
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { page },
+        queryParamsHandling: 'merge',
+      });
+    }
+  orderDetailResponse: OrderDetailResponse[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -17,23 +27,22 @@ export class StoreListOrderComponent implements OnInit {
     private storeService: StoreService
   ) {}
 
-  page: number = 0; // Trang hiện tại
-  orderDetailResponse: OrderDetailResponse[] = []; // Danh sách đơn hàng
-
   ngOnInit(): void {
-    // Lắng nghe thay đổi của queryParams
-    this.route.queryParams.subscribe(params => {
-      this.page = +params['page'] || 0; // Lấy giá trị `page` từ query params (mặc định là 0)
-      this.loadOrderDetails(this.page); // Gọi lại API khi `page` thay đổi
+    this.route.queryParams.subscribe((params) => {
+      this.page = +params['page'] || 0;
     });
+    if(this.page == 0){
+    this.loadOrderDetails(0);
+    }
+    this.loadOrderDetails(this.page);
   }
 
-  // Gọi API để lấy danh sách OrderDetail
+
   loadOrderDetails(page: number): void {
     this.storeService.getOrderDetails(page).subscribe({
       next: (response: PaginatedResponse<OrderDetailResponse>) => {
-        this.orderDetailResponse = response.content; // Lưu kết quả trả về từ API
-        console.log('orderDetailResponse:', this.orderDetailResponse);
+        this.orderDetailResponse = response.content;
+        this.maxPage = response.totalPages;
       },
       error: (error) => {
         console.error('Error:', error); // Xử lý lỗi nếu API thất bại
@@ -41,16 +50,15 @@ export class StoreListOrderComponent implements OnInit {
     });
   }
 
-  // Điều hướng đến một trang cụ thể
-  goToPage(page: number): void {
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: { page }, // Cập nhật `page` trong URL
-      queryParamsHandling: 'merge', // Giữ lại các queryParams khác nếu có
-    });
+  isStoreDashboardUrl(): boolean {
+    return this.router.url.includes('/store-dashboard');
   }
 
+  // Hiển thị chi tiết đơn hàng
   viewDetails(order: OrderDetailResponse): void {
-    console.log('Order details:', order);
+    this.router.navigate(['/store-order-detail'], {
+      relativeTo: this.route,
+      queryParams: { orderId: order.id },
+    });
   }
 }

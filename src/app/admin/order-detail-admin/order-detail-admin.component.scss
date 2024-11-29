@@ -1,0 +1,122 @@
+.order-container {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  background-color: #aad6e6;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.order-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.label {
+  color: #666;
+  font-weight: bold;
+}
+
+.value {
+  color: #333;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.form-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+
+  .section {
+    background-color: #aad6e6;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    h3 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    form .form-group {
+      margin-bottom: 15px;
+
+      label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+      }
+    }
+
+    .alert {
+      background-color: #e7f3fe;
+      color: #31708f;
+      padding: 10px;
+      border-radius: 4px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .payment-options {
+      .radio-option {
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+
+        input[type="radio"] {
+          margin-right: 8px;
+          accent-color: #2196f3;
+        }
+
+        label {
+          font-size: 16px;
+          color: #333;
+        }
+      }
+    }
+
+    .info-text {
+      font-size: 14px;
+      color: #666;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border-radius: 4px;
+    }
+  }
+}

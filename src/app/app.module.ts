@@ -85,6 +85,7 @@ import { CommentListComponent } from './comment-list/comment-list.component';
 import { HelpAdminComponent } from './admin/help-admin/help-admin.component';
 import { ManagerproductStatisComponent } from './admin/managerproduct-statis/managerproduct-statis.component';
 import { StoreListOrderComponent } from './admin/store-list-order/store-list-order.component';
+import { OrderDetailAdminComponent } from './admin/order-detail-admin/order-detail-admin.component';
 
 @NgModule({
   declarations: [
@@ -165,7 +166,8 @@ import { StoreListOrderComponent } from './admin/store-list-order/store-list-ord
        CommentListComponent,
        HelpAdminComponent,
        ManagerproductStatisComponent,
-       StoreListOrderComponent
+       StoreListOrderComponent,
+       OrderDetailAdminComponent
   ],
   imports: [
     BrowserModule,

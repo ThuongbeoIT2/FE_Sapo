@@ -44,6 +44,16 @@ export class ManageStoreComponent implements OnInit {
     });
   }
 
+  maxPage!: number; // Số trang tối đa
+  // Điều hướng đến một trang cụ thể
+  goToPage(page: number): void {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { page }, // Cập nhật `page` trong URL
+      queryParamsHandling: 'merge', // Giữ lại các queryParams khác nếu có
+    });
+  }
+
   fetchStoreTypes(): void {
     this.storeTypeService.getStoreTypes().subscribe({
       next: (data) => {
@@ -64,6 +74,7 @@ export class ManageStoreComponent implements OnInit {
       next: (data) => {
         this.stores = data.content; // All stores loaded
         this.filterStores(); // Apply filter
+        this.maxPage = data.totalPages; // Update max page
       },
       error: (error) => {
         this.showToast('Error', 'Unable to load stores', 'error');

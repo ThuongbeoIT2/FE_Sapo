@@ -30,7 +30,7 @@ export class ManageProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.fetchCategories(); // Lấy danh mục
+    this.fetchCategories(); 
     this.route.queryParams.subscribe((params) => {
       this.action = params['action'] || '';
       this.currentPage = +params['page'] || 1;
@@ -43,6 +43,15 @@ export class ManageProductComponent implements OnInit {
     });
   }
 
+  maxPage: number = 10;
+
+  goToPage(page: number): void {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { page }, // Cập nhật `page` trong URL
+      queryParamsHandling: 'merge', // Giữ lại các queryParams khác nếu có
+    });
+  }
   fetchCategories(): void {
     this.categoryService.getCategories().subscribe({
       next: (data) => {
@@ -61,8 +70,9 @@ export class ManageProductComponent implements OnInit {
   loadProducts(page: number): void {
     this.productService.getProducts(page).subscribe({
       next: (data) => {
-        this.products = data.content; // Lưu tất cả sản phẩm
-        this.filterProducts(); // Lọc sản phẩm sau khi tải
+        this.products = data.content;
+        this.filterProducts();
+        this.maxPage = data.totalPages;
       },
       error: (error) => {
         this.showToast('Error', 'Không thể tải sản phẩm', 'error');

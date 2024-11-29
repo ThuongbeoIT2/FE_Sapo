@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -7,16 +7,20 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./pagination-wrapper.component.scss']
 })
 export class PaginationWrapperComponent implements OnInit {
-  pages: number[] = Array.from({ length: 100 }, (_, i) => i + 1);
+  pages: number[] = [];
   visiblePages: number[] = [];
   currentPage: number = 1;
   maxVisiblePages: number = 5;
 
-  @Output() pageChanged: EventEmitter<number> = new EventEmitter<number>(); // Emit page changes
+  @Input() maxPage: number = 100; // Nhận giá trị tổng số trang từ component cha
+  @Output() pageChanged: EventEmitter<number> = new EventEmitter<number>(); // Emit khi thay đổi trang
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    // Khởi tạo danh sách các trang
+    this.pages = Array.from({ length: this.maxPage }, (_, i) => i + 1);
+
     this.route.queryParams.subscribe(params => {
       const page = +params['page'] || 1;
       this.currentPage = page;
@@ -24,25 +28,29 @@ export class PaginationWrapperComponent implements OnInit {
     });
   }
 
+  // Điều hướng trang (tăng/giảm)
   navigate(direction: number): void {
     const newPage = this.currentPage + direction;
-  if (newPage >= 1 && newPage <= this.pages.length) {
-    this.navigateToPage(newPage);
-  }
+    if (newPage >= 0 && newPage <this.maxPage -1) {
+      this.navigateToPage(newPage);
+    }
   }
 
+  // Điều hướng đến một trang cụ thể
   navigateToPage(page: number): void {
-    this.currentPage = page;
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: { page },
-      queryParamsHandling: 'merge' // merge with existing query parameters
-    });
-    this.updateVisiblePages();
-    this.pageChanged.emit(this.currentPage); // Emit page change
-
+    if (page >= 1 && page <= this.maxPage) { // Chỉ cho phép trong giới hạn trang
+      this.currentPage = page;
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { page },
+        queryParamsHandling: 'merge' // Giữ các query parameters khác
+      });
+      this.updateVisiblePages();
+      this.pageChanged.emit(this.currentPage); // Emit sự kiện thay đổi trang
+    }
   }
 
+  // Cập nhật các trang hiển thị (visiblePages)
   updateVisiblePages(): void {
     const half = Math.floor(this.maxVisiblePages / 2);
     let start = this.currentPage - half;
@@ -53,9 +61,9 @@ export class PaginationWrapperComponent implements OnInit {
       end = this.maxVisiblePages;
     }
 
-    if (end > this.pages.length) {
-      end = this.pages.length;
-      start = this.pages.length - this.maxVisiblePages + 1;
+    if (end > this.maxPage) {
+      end = this.maxPage;
+      start = this.maxPage - this.maxVisiblePages + 1;
     }
 
     if (start < 1) {
@@ -63,6 +71,6 @@ export class PaginationWrapperComponent implements OnInit {
     }
 
     this.visiblePages = this.pages.slice(start - 1, end);
-    
   }
+
 }

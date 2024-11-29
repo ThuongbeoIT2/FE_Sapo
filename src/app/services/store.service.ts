@@ -15,6 +15,8 @@ import { OrderDetailResponse } from '../model/orderDetail.model';
 export class StoreService {
   private apiUrl = 'http://localhost:8080/store/'; // Backend API URL
   private apiUrlOS = 'http://localhost:8080/productOS/';
+  private apiUrlAdmin = 'http://localhost:8080/admin/';
+  private apiUrlShipper = 'http://localhost:8080/shipper/';
   constructor(private http: HttpClient) {}
 
   // Fetch all stores with pagination
@@ -99,8 +101,11 @@ export class StoreService {
 
   // Approve a store
   approveStore(storeCode: string): Observable<ApiResponse> {
+    const formData = new FormData();
+    formData.append('storeCode', storeCode);
     return this.http
-      .get<ApiResponse>(`${this.apiUrl}acpstore/${storeCode}`)
+      .post<ApiResponse>(`${this.apiUrlAdmin}acpstore`,
+        formData)
       .pipe(catchError(this.handleError));
   }
 
@@ -115,9 +120,9 @@ export class StoreService {
     const formData = new FormData();
     formData.append('email', email);
     formData.append('message', message);
-
+    formData.append('storeCode', storeCode);
     return this.http
-      .post<ApiResponse>(`http://localhost:8080/admin/acpstore/${storeCode}`, formData)
+      .post<ApiResponse>(`{this.apiUrlAdmin}warningstore`, formData)
       .pipe(catchError(this.handleError));
   }
   // Search stores by keyword
@@ -127,7 +132,6 @@ export class StoreService {
       .pipe(catchError(this.handleError));
   }
 
-  // Login to store
 // Login to store
 loginStore(storeCode: string, password: string): Observable<ApiResponse> {
   const formData = new FormData();
@@ -311,6 +315,38 @@ getAllProductOSImageById( productOSID: number): Observable<ApiResponse> {
       .post<ApiResponse>(`${this.apiUrlOS}image/inactive/${id}`, formData)
       .pipe(catchError(this.handleError));
   }
+
+  // Nhận đơn hàng
+receiveOrder(shipperAccount: string, billID: number): Observable<ApiResponse> {
+  const formData = new FormData();
+  formData.append('shipperAccount', shipperAccount);
+  formData.append('billID', billID.toString());
+
+  return this.http
+    .post<ApiResponse>(`${this.apiUrlShipper}received`, formData)
+    .pipe(catchError(this.handleError));
+}
+
+// Hoàn tất đơn hàng
+completeOrder(billID: number): Observable<ApiResponse> {
+  const formData = new FormData();
+  formData.append('billID', billID.toString());
+
+  return this.http
+    .post<ApiResponse>(`${this.apiUrlShipper}complete`, formData)
+    .pipe(catchError(this.handleError));
+}
+
+// Hủy đơn hàng
+cancelOrder(orderId: number): Observable<ApiResponse> {
+  const formData = new FormData();
+  formData.append('orderId', orderId.toString());
+
+  return this.http
+    .post<ApiResponse>(`http://localhost:8080/order/cancel`, formData)
+    .pipe(catchError(this.handleError));
+}
+
   // Error handling
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';

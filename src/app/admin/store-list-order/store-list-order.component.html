@@ -19,7 +19,7 @@
         <td>{{ order.storeName }}</td>
         <td>{{ order.quantity }}</td>
         <td>{{ order.discount }}%</td>
-        <td>{{ order.price_total | currency:'VND' }}</td>
+        <td>{{ order.price_total | currency: 'VND' }}</td>
         <td>{{ order.isPayment === '1' ? 'Đã thanh toán' : 'Chưa thanh toán' }}</td>
         <td>
           <button class="action-button detail" (click)="viewDetails(order)">Chi tiết</button>
@@ -28,4 +28,11 @@
     </tbody>
   </table>
 </div>
-<app-pagination-wrapper ></app-pagination-wrapper>
+
+<!-- Phân trang -->
+<ng-container *ngIf="!isStoreDashboardUrl()">
+  <app-pagination-wrapper
+    [maxPage]="maxPage"
+    (pageChanged)="goToPage($event)"
+  ></app-pagination-wrapper>
+</ng-container>
