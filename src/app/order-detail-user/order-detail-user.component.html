@@ -14,10 +14,10 @@
   </style>
   <hr style="border: 0; height: 1px; background: linear-gradient(to right, transparent, #000, transparent);">
   <h1 class="text-center text-black">Thông tin đơn hàng</h1>
+  <!-- <app-order-process [status]="this.billPaymentResponse.orderStatus"></app-order-process> -->
   <app-order-process [status]="this.billPaymentResponse.orderStatus"></app-order-process>
-
   <div style="padding-top: 20px;"></div>
-  <div class="row">
+  <div *ngIf="!(this.billPaymentResponse.orderStatus === 3)" class="row">
     <div class="col-md-4 content-left">
       <div class="order-container">
         <h2>Thông tin đơn hàng</h2>
@@ -84,11 +84,11 @@
         </div>
 
         <!-- Payment Section -->
-        <div class="section" *ngIf="orderData.isPayment === '0'">
+        <div class="section" *ngIf="this.billPaymentResponse.orderStatus ===1">
             <h3>Thanh toán</h3>
             <div class="payment-options">
             <div class="radio-option">
-              <input type="radio" id="cod" name="paymentMethod" value="4" [(ngModel)]="dataUser.paymentMethod">
+              <input type="radio" id="cod" name="paymentMethod" value="2" [(ngModel)]="dataUser.paymentMethod">
               <label for="cod">Giao hàng nhanh tận nơi (COD)</label>
             </div>
             <div class="radio-option">
@@ -111,8 +111,13 @@
     <button *ngIf="this.billPaymentResponse.orderStatus === 1" (click)="cancelOrder()" class="btn btn-danger btn-lg" style="font-size: 20px; padding: 15px 30px;">Hủy đơn</button>
   </div>
   <div class="text-center" style="margin-top: 20px;">
-    <button *ngIf="orderData.isPayment === '0'" (click)="payment()" class="btn btn-success btn-lg" style="font-size: 20px; padding: 15px 30px;">Thanh toán</button>
+    <button *ngIf="this.billPaymentResponse.orderStatus === 3" (click)="returnOrder()" class="btn btn-warning btn-lg" style="font-size: 20px; padding: 15px 30px;">Hoàn hàng</button>
+  </div>
+  <div class="text-center" style="margin-top: 20px;">
+    <button *ngIf="this.billPaymentResponse.orderStatus ===1 " (click)="payment()" class="btn btn-success btn-lg" style="font-size: 20px; padding: 15px 30px;">Xác nhận</button>
     <div *ngIf="orderData.isPayment === '1'" class="alert alert-success" style="font-size: 20px; padding: 15px 30px;">Đơn hàng đã được thanh toán</div>
   </div>
+
+<div class="text-center" style="margin-top: 20px;">
 </div>
 <app-footer></app-footer>

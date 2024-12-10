@@ -54,7 +54,7 @@ export class ManageProductOsComponent {
           { id: 0, cateName: 'All', slug: 'All', thumbnail: '', description: '' },
           ...data,
         ];
-        this.category = this.categories[0].cateName; // Default to "All"
+        this.category = 'All';
       },
       error: (error) => {
         console.error('Error loading categories!', error);
@@ -100,14 +100,13 @@ export class ManageProductOsComponent {
 
   // Handle category selection change
   onCategoryChange(): void {
-    this.filterProducts(); // Filter products based on selected category
+    this.filterProducts();
   }
 
   // Filter products by selected category
   filterProducts(): void {
     console.log('Category:', this.category);
     if (this.category === 'All') {
-      // Show all products if "All" is selected
       this.filteredProducts = [...this.products];
     } else {
       this.filteredProducts = this.products.filter(

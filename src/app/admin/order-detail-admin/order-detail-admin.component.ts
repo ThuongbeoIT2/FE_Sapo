@@ -21,17 +21,9 @@ export class OrderDetailAdminComponent implements OnInit {
      private storeService: StoreService,
      private userService: UserService
    ) {}
- orderId: number = 0;
+ orderId!: number ;
  user!: User;
  billPaymentResponse!: BillPaymentResponse ;
-
- dataUser = {
-   fullName: '',
-   phoneNumber: '',
-   address: '',
-   paymentMethod: ''
- };
- isPayment: boolean = false;
 
  productOS!: ProductOfStoreResponse;
  orderData!: OrderDetailResponse ;
@@ -55,19 +47,7 @@ export class OrderDetailAdminComponent implements OnInit {
        console.error('Error loading order detail:', error);
      }
    });
-   this.userService.getCurrentUser().subscribe({
 
-     next: (response: User) => {
-       console.log('User:', response);
-       this.user = response;
-       this.dataUser.fullName = this.user.email;
-       this.dataUser.phoneNumber = this.user.phoneNumber;
-       this.dataUser.address = this.user.address;
-     },
-     error: (error) => {
-       console.error('Error loading user:', error);
-     }
-   });
 
  }
  loadProduct(id: number) {
@@ -98,6 +78,22 @@ export class OrderDetailAdminComponent implements OnInit {
    });
  }
 
+ completeOrder(){
+    this.storeService.completeOrder(this.orderId).subscribe({
+      next: (ApiResponse) => {
+        if (ApiResponse.status === 'OK') {
+          console.log('Order completed:', ApiResponse);
+          window.location.reload();
+        } else {
+          console.error('Error completing order:', ApiResponse);
+        }
+      },
+      error: (error) => {
+        console.error('Error completing order:', error);
+      }
+    });
+ }
+
  returnOrder() {
    this.storeService.cancelOrder(this.orderId).subscribe({
      next: (ApiResponse) => {
@@ -114,4 +110,27 @@ export class OrderDetailAdminComponent implements OnInit {
    });
  }
 
+
+ shipperPaymentAccount: string = '';
+
+payShipper() {
+  if (this.shipperPaymentAccount === '') {
+    console.error('Invalid payment amount');
+    return;
+  }
+
+  this.paymentService.orderReceived( this.shipperPaymentAccount,this.billPaymentResponse.billID).subscribe({
+    next: (ApiResponse) => {
+      if (ApiResponse.status === 'OK') {
+        console.log('Payment to shipper successful:', ApiResponse);
+        window.location.reload();
+      } else {
+        console.error('Error paying shipper:', ApiResponse);
+      }
+    },
+    error: (error) => {
+      console.error('Error paying shipper:', error);
+    }
+  });
+}
 }

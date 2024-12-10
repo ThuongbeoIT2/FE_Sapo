@@ -22,7 +22,6 @@ export class AdminloginComponent implements OnInit{
   }
 
   onLogin(){
-    alert(this.LoginRequest.email + this.LoginRequest.password)
     this.http.post('http://localhost:8080/auth/login',this.LoginRequest)
     .subscribe((res:any)=>{
       if(res != null){

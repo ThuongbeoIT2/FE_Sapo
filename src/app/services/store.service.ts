@@ -165,6 +165,14 @@ loginStore(storeCode: string, password: string): Observable<ApiResponse> {
       .post<PaginatedResponse<ProductOfStoreResponse>>(`${this.apiUrlOS}product`,formData)
       .pipe(catchError(this.handleError));
   }
+
+  getProductsOfMyStoreDashboard(page: number = 0): Observable<PaginatedResponse<ProductOfStoreResponse>> {
+    const formData = new FormData();
+    formData.append('page', page.toString());
+    return this.http
+      .post<PaginatedResponse<ProductOfStoreResponse>>(`${this.apiUrlOS}dasdboard`,formData)
+      .pipe(catchError(this.handleError));
+  }
   getListProductOfStoreBySlug(slug:string,page: number): Observable<PaginatedResponse<ProductOfStoreResponse>> {
     const formData = new FormData();
     formData.append('slug', slug);
@@ -346,6 +354,7 @@ cancelOrder(orderId: number): Observable<ApiResponse> {
     .post<ApiResponse>(`http://localhost:8080/order/cancel`, formData)
     .pipe(catchError(this.handleError));
 }
+
 
   // Error handling
   private handleError(error: HttpErrorResponse) {

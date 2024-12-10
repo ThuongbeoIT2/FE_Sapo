@@ -93,6 +93,15 @@ export class PaymentService {
     );
   }
 
+  orderReceived(shipperAccount: string, billID: number): Observable<ApiResponse> {
+    const url = `${this.baseUrl}/shipper/received`;
+    const formData = new FormData();
+    formData.append('shipperAccount', shipperAccount);
+    formData.append('billID', billID.toString());
+    return this.http.post<ApiResponse>(`${this.baseUrl}shipper/received`, formData).pipe(
+      catchError(this.handleError)
+    );
+  }
   getPaymentBillDetail(orderId: number): Observable<ApiResponse> {
     const formData = new FormData();
     formData.append('orderId', orderId.toString());

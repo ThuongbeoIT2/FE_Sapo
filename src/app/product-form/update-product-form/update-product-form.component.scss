@@ -25,14 +25,21 @@
   font-weight: bold;
 }
 
-.form-group input,
-.form-group textarea {
+.form-group input {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
 }
 
+.form-group textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  resize: vertical;
+  min-height: 300px;
+}
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: #007bff;

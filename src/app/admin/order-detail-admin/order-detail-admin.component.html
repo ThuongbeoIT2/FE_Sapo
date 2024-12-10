@@ -16,8 +16,9 @@
   <app-order-process [status]="this.billPaymentResponse.orderStatus"></app-order-process>
 
   <div style="padding-top: 20px;"></div>
-  <div class="row">
-    <div class="col-md-4 content-left">
+  <div class="row" style="display: flex; justify-content: space-between; align-items: flex-start;">
+    <!-- Cột thông tin đơn hàng -->
+    <div class="col-md-6 content-left" style="flex: 1; margin-right: 10px;">
       <div class="order-container">
         <h2>Thông tin đơn hàng</h2>
         <div class="order-details">
@@ -45,68 +46,33 @@
             <span class="label">Khuyến mãi hiện tại:</span>
             <span class="value">{{ orderData.discount }}%</span>
           </div>
-            <div class="order-item">
+          <div class="order-item">
             <span class="label">Trạng thái thanh toán:</span>
             <span class="value">{{ orderData.isPayment === '1' ? 'Đã thanh toán' : 'Chưa thanh toán' }}</span>
-            </div>
+          </div>
         </div>
       </div>
-
     </div>
-    <div class="col-md-8 content-right">
-      <div class="form-container">
-        <!-- Buyer Information Section -->
-        <div class="section">
-          <form>
-            <div class="form-group">
-              <label>Họ và tên</label>
-              <input type="text" class="form-control" placeholder="Nhập họ và tên" [(ngModel)]="dataUser.fullName" name="fullName">
-            </div>
-            <div class="form-group">
-              <label>Số điện thoại</label>
-              <input type="tel" class="form-control" placeholder="Nhập số điện thoại" [(ngModel)]="dataUser.phoneNumber" name="phoneNumber">
-            </div>
-            <div class="form-group">
-              <label>Địa chỉ</label>
-              <input type="text" class="form-control" placeholder="Nhập địa chỉ" [(ngModel)]="dataUser.address" name="address">
-            </div>
-          </form>
-        </div>
 
-
-        <!-- Shipping Section -->
-        <div class="section">
-          <h3>Vận chuyển</h3>
-            <p class="alert alert-warning">
-            Vui lòng nhập thông tin giao hàng đầy đủ và chính xác để chúng tôi có thể giao hàng đến đúng địa chỉ của bạn. Nếu có bất kỳ thắc mắc nào, vui lòng liên hệ với bộ phận chăm sóc khách hàng của chúng tôi để được hỗ trợ.
-            </p>
-        </div>
-
-        <!-- Payment Section -->
-        <div class="section" *ngIf="orderData.isPayment === '0'">
-            <h3>Thanh toán</h3>
-            <div class="payment-options">
-            <div class="radio-option">
-              <input type="radio" id="cod" name="paymentMethod" value="4" [(ngModel)]="dataUser.paymentMethod">
-              <label for="cod">Giao hàng nhanh tận nơi (COD)</label>
-            </div>
-            <div class="radio-option">
-              <input type="radio" id="card" name="paymentMethod" value="1" [(ngModel)]="dataUser.paymentMethod">
-              <label for="card">Thanh toán VNPAY</label>
-            </div>
-            </div>
-          <p class="info-text">
-            Bạn có thể thanh toán đơn hàng bằng cách chuyển khoản vào STK của chúng tôi. Chúng tôi sẽ chuyển hàng ngay cho bạn khi xác nhận đã nhận được tiền. Cảm ơn bạn đã mua sản phẩm của chúng tôi.
-          </p>
-        </div>
+    <!-- Cột thông tin hóa đơn -->
+    <div *ngIf="orderData.isPayment === '1'" class="col-md-6 bill-section" style="flex: 1; margin-left: 10px;">
+      <div class="bill-container">
+        <app-billpayment [bill]="this.billPaymentResponse"></app-billpayment>
       </div>
-
     </div>
   </div>
-  <div *ngIf="orderData.isPayment === '1'" class="bill-section" >
-    <app-billpayment [bill]="this.billPaymentResponse"></app-billpayment>
+
+  <div  *ngIf="!(this.billPaymentResponse.orderStatus===3)"  class="text-center" style="margin-top: 20px; ">
+    <div class="form-group text-center" style="margin-top: 20px;">
+      <label for="shipperPaymentAccount">Tài khoản Shipper:</label>
+      <input type="text" id="shipperPaymentAccount" class="form-control" [(ngModel)]="shipperPaymentAccount" placeholder="Nhập thông tin" style="width: 50%; margin: 0 auto;">
+    </div>
+    <button class="btn btn-primary" (click)="payShipper()">Thanh toán cho shipper</button>
   </div>
 
+  <div *ngIf="this.billPaymentResponse.orderStatus===2" class="text-center" style="margin-top: 20px;">
+    <button class="btn btn-success" (click)="completeOrder()">Hoàn thành đơn hàng</button>
+  </div>
   <div class="text-center" style="margin-top: 20px;">
     <div *ngIf="orderData.isPayment === '1'" class="alert alert-success" style="font-size: 20px; padding: 15px 30px;">Đơn hàng đã được thanh toán</div>
   </div>

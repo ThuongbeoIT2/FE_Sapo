@@ -9,11 +9,11 @@
 
         <div class="signup">
           <form (ngSubmit)="onRegister()">
-            <label for="chk" aria-hidden="true">Sign up</label>
-            <input type="text" name="name" placeholder="name" required="" [(ngModel)]="SignUpRequest.name" >
+            <label for="chk" aria-hidden="true">Sapo Store</label>
+            <input type="text" name="name" placeholder="Họ tên" required="" [(ngModel)]="SignUpRequest.name" >
             <input type="email" name="email" placeholder="Email" required="" [(ngModel)]="SignUpRequest.email">
-            <input type="password" name="password" placeholder="Password" required="" [(ngModel)]="SignUpRequest.password">
-            <button type="submit">Sign Up</button>
+            <input type="password" name="password" placeholder="Mật khẩu" required="" [(ngModel)]="SignUpRequest.password">
+            <button type="submit">Đăng ký</button>
           </form>
         </div>
 
@@ -21,9 +21,9 @@
           <form>
             <label for="chk" aria-hidden="true">Login</label>
             <input type="email" name="email" [(ngModel)]="LoginRequest.email" placeholder="Email" required="">
-            <input type="password" name="password" [(ngModel)]="LoginRequest.password" placeholder="Password" required="">
-            <button (click)="onLogin()">Login</button>
-            <button  ><a  href="http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/oauth2/redirect">Login with Google</a></button>
+            <input type="password" name="password" [(ngModel)]="LoginRequest.password" placeholder="Mật khẩu" required="">
+            <button (click)="onLogin()" style="color: white;">Đăng nhập</button>
+            <button><a href="http://localhost:8080/oauth2/authorize/google?redirect_uri=http://localhost:4200/oauth2/redirect" style="color: white;">Đăng nhập với Google</a></button>
           </form>
         </div>
 

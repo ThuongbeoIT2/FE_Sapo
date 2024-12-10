@@ -41,7 +41,7 @@ export class OrderDetailUserComponent implements OnInit {
       this.orderId = orderId;
       console.log('Order ID:', orderId);
     });
-    this.loadBillDetail(this.orderId);
+
     this.paymentService.getOrderById(this.orderId).subscribe({
       next: (ApiResponse) => {
         if (ApiResponse.status === 'OK') {
@@ -54,6 +54,7 @@ export class OrderDetailUserComponent implements OnInit {
         console.error('Error loading order detail:', error);
       }
     });
+    this.loadBillDetail(this.orderId);
     this.userService.getCurrentUser().subscribe({
 
       next: (response: User) => {
@@ -103,7 +104,7 @@ export class OrderDetailUserComponent implements OnInit {
       next: (ApiResponse) => {
         if (ApiResponse.status === 'OK') {
           console.log('Order cancelled:', ApiResponse);
-          window.location.reload();
+            this.router.navigate(['/my-cart']);
         } else {
           console.error('Error cancelling order:', ApiResponse);
         }
@@ -115,19 +116,7 @@ export class OrderDetailUserComponent implements OnInit {
   }
 
   returnOrder() {
-    this.storeService.cancelOrder(this.orderId).subscribe({
-      next: (ApiResponse) => {
-        if (ApiResponse.status === 'OK') {
-          console.log('Order returned:', ApiResponse);
-          window.location.reload();
-        } else {
-          console.error('Error returning order:', ApiResponse);
-        }
-      },
-      error: (error) => {
-        console.error('Error returning order:', error);
-      }
-    });
+   alert('Sẽ phát triển sau!');
   }
   payment(){
    if(this.dataUser.paymentMethod==='1'){

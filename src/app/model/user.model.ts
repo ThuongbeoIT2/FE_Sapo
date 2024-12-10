@@ -5,7 +5,8 @@ export interface User {
   imageUrl?: string;
   emailVerified: boolean;
   provider: string;
-  providerId:string;
+  providerId: string;
   phoneNumber: string;
   address: string;
+  role: number;
 }

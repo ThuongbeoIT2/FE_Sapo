@@ -86,6 +86,8 @@ import { HelpAdminComponent } from './admin/help-admin/help-admin.component';
 import { ManagerproductStatisComponent } from './admin/managerproduct-statis/managerproduct-statis.component';
 import { StoreListOrderComponent } from './admin/store-list-order/store-list-order.component';
 import { OrderDetailAdminComponent } from './admin/order-detail-admin/order-detail-admin.component';
+import { FornChangePasswordComponent } from './forn-change-password/forn-change-password.component';
+import { ProductListSalesComponent } from './product-list-sales/product-list-sales.component';
 
 @NgModule({
   declarations: [
@@ -167,7 +169,9 @@ import { OrderDetailAdminComponent } from './admin/order-detail-admin/order-deta
        HelpAdminComponent,
        ManagerproductStatisComponent,
        StoreListOrderComponent,
-       OrderDetailAdminComponent
+       OrderDetailAdminComponent,
+       FornChangePasswordComponent,
+       ProductListSalesComponent
   ],
   imports: [
     BrowserModule,
